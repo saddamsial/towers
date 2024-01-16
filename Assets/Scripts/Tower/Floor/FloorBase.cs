@@ -1,11 +1,9 @@
-using System.Collections;
 using EPOOutline;
 using GameStates;
 using Guns;
 using Managers;
 using NaughtyAttributes;
 using UnityEngine;
-using Utils;
 using Utils.PoolSystem;
 
 //machine gun, canon, flame gun, rocket, laser, ice cannon, bomb launcher, tesla, shockwave, plasma

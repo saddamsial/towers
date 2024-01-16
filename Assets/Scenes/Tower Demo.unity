@@ -747,12 +747,12 @@ MonoBehaviour:
   stamp: 0
   warnings: 1
   spawnedClonesList:
-  - {fileID: 1170717341}
-  - {fileID: 472404455}
-  - {fileID: 1188774230}
-  - {fileID: 1443552904}
-  - {fileID: 1220121082}
   - {fileID: 0}
+  - {fileID: 1220121082}
+  - {fileID: 1443552904}
+  - {fileID: 1188774230}
+  - {fileID: 472404455}
+  - {fileID: 1170717341}
   despawnedClones: []
   delays: []
   deactivatedChild: {fileID: 0}
@@ -1332,6 +1332,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6935329347518002868, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
   m_PrefabInstance: {fileID: 396457274}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &415613483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415613484}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &415613484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415613483}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9632983, y: 4.2077, z: 5.8827252}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &458887994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5037,3 +5068,4 @@ SceneRoots:
   - {fileID: 2817680450834735512}
   - {fileID: 8742966077363145734}
   - {fileID: 173441977}
+  - {fileID: 415613484}
