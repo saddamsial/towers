@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
+  m_Name: Machine Gun So
+  m_EditorClassIdentifier: 
+  myBullet: {fileID: 11400000, guid: 466213bea3c0f495dbf6d12a0a95f3a7, type: 2}
+  frequency: 2
+  muzzleEffect: {fileID: 6886161382623852717, guid: 21443f82c4af72c44844ba6e6afa61be, type: 3}
