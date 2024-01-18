@@ -14,10 +14,12 @@ namespace Tower.Floor
     {
         [SerializeField] private float height;
         [SerializeField] public Transform gunPosition;
-        [SerializeField] public Transform attackTo;
+        public Transform attackTo;
+
         public Outlinable outline;
         public TowerController mainTower;
-        public GameObject attachedGun;
+        public GameObject attachedGunObj;
+        public GunBase attachedGun;
         public bool enableDemoItems;
 
         [ShowIf("enableDemoItems")]
@@ -36,9 +38,16 @@ namespace Tower.Floor
         {
             if (!gun) //demo purpose
             {
+                if (attachedGunObj != null)
+                {
+                    attachedGunObj.Despawn();
+                    attachedGunObj = null;
+                    attachedGun = null;
+                }
                 var gunObj = demoGun.Spawn(gunPosition.position, transform.rotation);
                 GameController.onGunPlaced?.Invoke(gunObj, this);
-                attachedGun = gunObj;
+                attachedGunObj = gunObj;
+                attachedGun = attachedGunObj.GetComponent<GunBase>();
                 gunObj.transform.parent = gunPosition;
             }
         }
@@ -47,7 +56,7 @@ namespace Tower.Floor
         {
             Debug.Log("removed");
             attackTo = null;
-            attachedGun.Despawn();
+            attachedGunObj = null;
         }
 
 
@@ -56,6 +65,12 @@ namespace Tower.Floor
             if (GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
 
             outline.enabled = state;
+        }
+
+        public virtual void Die(FloorBase diedObj)
+        {
+            if (diedObj.transform != transform) return;
+            gameObject.Despawn();
         }
     }
 }

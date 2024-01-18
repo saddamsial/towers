@@ -9,11 +9,12 @@ namespace Tower.Floor
     {
         public override void OnEnable()
         {
+            GameController.OnDied += Die;
             InputController.Instance.onTargetSet += Attack;
-
         }
         public override void OnDisable()
         {
+            GameController.OnDied -= Die;
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
         }
@@ -29,6 +30,11 @@ namespace Tower.Floor
             outline.OutlineParameters.Enabled = true;
             yield return new WaitForSeconds(0.5f);
             outline.OutlineParameters.Enabled = false;
+        }
+
+        public override void Die(FloorBase diedObj)
+        {
+            base.Die(diedObj);
         }
     }
 }

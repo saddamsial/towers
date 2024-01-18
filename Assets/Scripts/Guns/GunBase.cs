@@ -12,7 +12,7 @@ namespace Guns
 {
     public class GunBase : MonoBehaviour
     {
-        private bool canShoot;
+        public bool canShoot;
         public GunSo myGun;
         private float frequency;
         public FloorBase myFloor;
@@ -22,13 +22,13 @@ namespace Guns
         private void OnEnable()
         {
             GameController.onGunPlaced += Init;
-            health.OnDied += Die;
+            GameController.OnDied += Died;
         }
 
         private void OnDisable()
         {
             GameController.onGunPlaced -= Init;
-            health.OnDied -= Die;
+            GameController.OnDied -= Died;
         }
 
         private void Init(GameObject gun, FloorBase floor)
@@ -50,22 +50,22 @@ namespace Guns
             else
             {
                 frequency = myGun.frequency;
+                if (!myFloor.attackTo) return;
                 Shoot();
             }
         }
 
         protected virtual void Shoot()
         {
-            if (!myFloor.attackTo) return; //{ canShoot = false; return; };
+            //{ canShoot = false; return; };
             var bullet = myGun.myBullet.prefab.Spawn(spawnPosition.position, Quaternion.identity);
             bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().gunPosition);
         }
 
-        public virtual void Die()
+        public void Died(FloorBase diedObj)
         {
+            if (diedObj.attachedGunObj != transform) return;
             canShoot = false;
-            myFloor.Detach();
-            gameObject.Despawn();
         }
     }
 }

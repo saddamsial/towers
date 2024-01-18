@@ -97,7 +97,7 @@ namespace Lean.Pool
 						// If this pool recycles clones, then this can be expected
 						if (pool.Recycle == true)
 						{
-							
+
 						}
 						// This shouldn't happen
 						else

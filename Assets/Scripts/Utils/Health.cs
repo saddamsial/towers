@@ -1,4 +1,6 @@
 ﻿using System;
+using Managers;
+using Tower.Floor;
 using UnityEngine;
 
 namespace Utils
@@ -6,12 +8,13 @@ namespace Utils
     public class Health : Progressive, IDamageable, IHealable
     {
         [SerializeField] private Transform hitTransform;
-        
+
         private const float DeathThreshold = 0f;
         public Transform GetTransform => hitTransform;
-        
+
+        public FloorBase myFloor;
         public float DamageTaken { get; set; }
-        
+
         public bool Died { get; set; }
 
         public bool IsVulnerable { get; set; } = true;
@@ -19,7 +22,6 @@ namespace Utils
         public event Action OnDamage;
         public event Action OnHeal;
         public event Action OnFull;
-        public event Action OnDied;
 
         public void Damage(float amount)
         {
@@ -28,16 +30,16 @@ namespace Utils
             if (IsVulnerable) Decrease(amount);
 
             DamageTaken = amount;
-            
+
             OnDamage?.Invoke();
 
             if (!ReachedThreshold(DeathThreshold)) return;
 
             Died = true;
             Current = 0f;
-            OnDied?.Invoke();
+            GameController.OnDied?.Invoke(myFloor);
         }
-        
+
         public void Heal(float amount)
         {
             if (ReachedInitial()) return;
@@ -45,9 +47,9 @@ namespace Utils
             Increase(amount);
 
             OnHeal?.Invoke();
-            
+
             if (!ReachedInitial()) return;
-            
+
             Current = Initial;
             OnFull?.Invoke();
 

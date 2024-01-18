@@ -10,11 +10,13 @@ namespace Tower.Floor
     {
         public override void OnEnable()
         {
+            GameController.OnDied += Die;
             InputController.Instance.onTargetSet += Attack;
         }
 
         public override void OnDisable()
         {
+            GameController.OnDied -= Die;
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
         }
@@ -23,6 +25,17 @@ namespace Tower.Floor
         {
             if (!mainTower.selectedFloors.Contains(transform)) return;
             attackTo = target;
+            attachedGun.canShoot = true;
+        }
+
+        public override void Die(FloorBase diedObj)
+        {
+            base.Die(diedObj);
+            if (diedObj.transform == attackTo)
+            {
+                attackTo = null;
+                attachedGun.canShoot = false;
+            }
         }
     }
 }

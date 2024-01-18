@@ -747,12 +747,12 @@ MonoBehaviour:
   stamp: 0
   warnings: 1
   spawnedClonesList:
-  - {fileID: 0}
-  - {fileID: 1220121082}
-  - {fileID: 1443552904}
-  - {fileID: 1188774230}
-  - {fileID: 472404455}
   - {fileID: 1170717341}
+  - {fileID: 472404455}
+  - {fileID: 1188774230}
+  - {fileID: 1443552904}
+  - {fileID: 1220121082}
+  - {fileID: 0}
   despawnedClones: []
   delays: []
   deactivatedChild: {fileID: 0}
@@ -1575,6 +1575,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
   m_PrefabInstance: {fileID: 875118592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &472404458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+  m_PrefabInstance: {fileID: 875118592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472404455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &534404794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,7 +2013,7 @@ PrefabInstance:
     - target: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: myFloor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1687396587}
     - target: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000059604645
@@ -2047,6 +2058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machine gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287902533673033660, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 1687396587}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2413,7 +2428,7 @@ PrefabInstance:
     - target: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: myFloor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2029842581}
     - target: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000059604645
@@ -2458,6 +2473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machine gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287902533673033660, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2029842581}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2569,6 +2588,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
   m_PrefabInstance: {fileID: 1432630758}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1170717345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+  m_PrefabInstance: {fileID: 1432630758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170717341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1188774230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
@@ -2579,6 +2609,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
   m_PrefabInstance: {fileID: 963560982}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1188774233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+  m_PrefabInstance: {fileID: 963560982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188774230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1220121082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
@@ -2589,6 +2630,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
   m_PrefabInstance: {fileID: 1825681324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1220121085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+  m_PrefabInstance: {fileID: 1825681324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220121082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1239318723 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3084271409117851134, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
@@ -2617,6 +2669,7 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1239318723}
   mainTower: {fileID: 980741126}
+  attachedGunObj: {fileID: 0}
   attachedGun: {fileID: 0}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
@@ -3122,7 +3175,8 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1423070429}
   mainTower: {fileID: 980741126}
-  attachedGun: {fileID: 1170717341}
+  attachedGunObj: {fileID: 1170717341}
+  attachedGun: {fileID: 1170717345}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
 --- !u!1001 &1432630758
@@ -3136,7 +3190,7 @@ PrefabInstance:
     - target: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: myFloor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1423070431}
     - target: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000059604645
@@ -3181,6 +3235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machine gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287902533673033660, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 1423070431}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3196,6 +3254,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
   m_PrefabInstance: {fileID: 1583362476}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1443552907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+  m_PrefabInstance: {fileID: 1583362476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443552904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1469147422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,6 +3591,7 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1517745932}
   mainTower: {fileID: 980741126}
+  attachedGunObj: {fileID: 0}
   attachedGun: {fileID: 0}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
@@ -3558,7 +3628,8 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1528802265}
   mainTower: {fileID: 980741126}
-  attachedGun: {fileID: 1443552904}
+  attachedGunObj: {fileID: 1443552904}
+  attachedGun: {fileID: 1443552907}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
 --- !u!1001 &1556965086
@@ -3766,7 +3837,7 @@ PrefabInstance:
     - target: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: myFloor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1528802267}
     - target: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000059604645
@@ -3811,6 +3882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machine gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287902533673033660, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 1528802267}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4046,7 +4121,8 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1687396585}
   mainTower: {fileID: 980741126}
-  attachedGun: {fileID: 472404455}
+  attachedGunObj: {fileID: 472404455}
+  attachedGun: {fileID: 472404458}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
 --- !u!1 &1712936671
@@ -4189,6 +4265,7 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1713539553}
   mainTower: {fileID: 980741126}
+  attachedGunObj: {fileID: 0}
   attachedGun: {fileID: 0}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
@@ -4378,7 +4455,7 @@ PrefabInstance:
     - target: {fileID: 471023317384531243, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: myFloor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1884834351}
     - target: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000059604645
@@ -4423,6 +4500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machine gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3287902533673033660, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 1884834351}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4456,7 +4537,8 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1884834349}
   mainTower: {fileID: 980741126}
-  attachedGun: {fileID: 1220121082}
+  attachedGunObj: {fileID: 1220121082}
+  attachedGun: {fileID: 1220121085}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
 --- !u!1 &1921159589
@@ -4688,6 +4770,7 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 1966491236}
   mainTower: {fileID: 980741126}
+  attachedGunObj: {fileID: 0}
   attachedGun: {fileID: 0}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
@@ -4724,7 +4807,8 @@ MonoBehaviour:
   attackTo: {fileID: 0}
   outline: {fileID: 2029842579}
   mainTower: {fileID: 980741126}
-  attachedGun: {fileID: 1188774230}
+  attachedGunObj: {fileID: 1188774230}
+  attachedGun: {fileID: 1188774233}
   enableDemoItems: 1
   demoGun: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
 --- !u!1 &2115790782

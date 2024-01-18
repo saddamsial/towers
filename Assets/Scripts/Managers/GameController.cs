@@ -10,5 +10,7 @@ namespace Managers
     {
         public static Action<GameObject, FloorBase> onGunPlaced;
         public static Action onEditMode;
+        public static Action<FloorBase> OnDied;
+
     }
 }

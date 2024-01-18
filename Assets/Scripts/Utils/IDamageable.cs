@@ -10,8 +10,6 @@ namespace Utils
 
         public bool IsVulnerable { get; set; }
         public event Action OnDamage;
-        public event Action OnDied;
-
         void Damage(float amount);
     }
 }
