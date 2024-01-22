@@ -12,6 +12,7 @@ namespace Tower.Floor
         {
             GameController.OnDied += Die;
             InputController.Instance.onTargetSet += Attack;
+            AttachGun();
         }
 
         public override void OnDisable()

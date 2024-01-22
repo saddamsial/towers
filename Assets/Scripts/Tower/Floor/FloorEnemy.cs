@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Managers;
 using UnityEngine;
 
@@ -35,6 +36,11 @@ namespace Tower.Floor
         public override void Die(FloorBase diedObj)
         {
             base.Die(diedObj);
+        }
+
+        public void MoveToNewPositionAfterDestroy(Vector3 newPos, float delay)
+        {
+            transform.DOMove(newPos, 0.5f + delay).SetEase(Ease.InBack);
         }
     }
 }

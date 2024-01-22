@@ -62,7 +62,7 @@ namespace Tower.Floor
 
         public void SetOutlinableState(bool state)
         {
-            if (GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
+            if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
 
             outline.enabled = state;
         }

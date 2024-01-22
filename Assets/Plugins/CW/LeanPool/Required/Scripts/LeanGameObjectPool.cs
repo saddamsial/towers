@@ -7,7 +7,7 @@ namespace Lean.Pool
 {
 	/// <summary>This component allows you to pool GameObjects, giving you a very fast alternative to Instantiate and Destroy.
 	/// Pools also have settings to preload, recycle, and set the spawn capacity, giving you lots of control over your spawning.</summary>
-	[ExecuteInEditMode]
+	// [ExecuteInEditMode]
 	[HelpURL(LeanPool.HelpUrlPrefix + "LeanGameObjectPool")]
 	[AddComponentMenu(LeanPool.ComponentPathPrefix + "GameObject Pool")]
 	public class LeanGameObjectPool : MonoBehaviour, ISerializationCallbackReceiver
@@ -16,7 +16,7 @@ namespace Lean.Pool
 		public class Delay
 		{
 			public GameObject Clone;
-			public float      Life;
+			public float Life;
 		}
 
 		public enum NotificationType
@@ -38,7 +38,8 @@ namespace Lean.Pool
 		public static LinkedList<LeanGameObjectPool> Instances = new LinkedList<LeanGameObjectPool>(); private LinkedListNode<LeanGameObjectPool> instancesNode;
 
 		/// <summary>The prefab this pool controls.</summary>
-		public GameObject Prefab { set { if (value != prefab) { UnregisterPrefab(); prefab = value; RegisterPrefab(); } } get { return prefab; } } [SerializeField] private GameObject prefab;
+		public GameObject Prefab { set { if (value != prefab) { UnregisterPrefab(); prefab = value; RegisterPrefab(); } } get { return prefab; } }
+		[SerializeField] private GameObject prefab;
 
 		/// <summary>If you need to perform a special action when a prefab is spawned or despawned, then this allows you to control how that action is performed.
 		/// <tip>None</tip>If you use this then you must rely on the OnEnable and OnDisable messages.
@@ -46,30 +47,38 @@ namespace Lean.Pool
 		/// <tip>BroadcastMessage</tip>The prefab clone and all its children are sent the OnSpawn and OnDespawn messages.
 		/// <tip>IPoolable</tip>The prefab clone's components implementing IPoolable are called.
 		/// <tip>Broadcast IPoolable</tip>The prefab clone and all its child components implementing IPoolable are called.</summary>
-		public NotificationType Notification { set { notification = value; } get { return notification; } } [SerializeField] private NotificationType notification = NotificationType.IPoolable;
+		public NotificationType Notification { set { notification = value; } get { return notification; } }
+		[SerializeField] private NotificationType notification = NotificationType.IPoolable;
 
 		/// <summary>This allows you to control how spawned/despawned GameObjects will be handled. The <b>DeactivateViaHierarchy</b> mode should be used if you need to maintain your prefab's de/activation state.
 		/// ActivateAndDeactivate = Despawned clones will be deactivated and placed under this GameObject.
 		/// DeactivateViaHierarchy = Despawned clones will be placed under a deactivated GameObject and left alone.</summary>
-		public StrategyType Strategy { set { strategy = value; } get { return strategy; } } [SerializeField] private StrategyType strategy = StrategyType.ActivateAndDeactivate;
+		public StrategyType Strategy { set { strategy = value; } get { return strategy; } }
+		[SerializeField] private StrategyType strategy = StrategyType.ActivateAndDeactivate;
 
 		/// <summary>Should this pool preload some clones?</summary>
-		public int Preload { set { preload = value; } get { return preload; } } [SerializeField] private int preload;
+		public int Preload { set { preload = value; } get { return preload; } }
+		[SerializeField] private int preload;
 
 		/// <summary>Should this pool have a maximum amount of spawnable clones?</summary>
-		public int Capacity { set { capacity = value; } get { return capacity; } } [SerializeField] private int capacity;
+		public int Capacity { set { capacity = value; } get { return capacity; } }
+		[SerializeField] private int capacity;
 
 		/// <summary>If the pool reaches capacity, should new spawns force older ones to despawn?</summary>
-		public bool Recycle { set { recycle = value; } get { return recycle; } } [SerializeField] private bool recycle;
+		public bool Recycle { set { recycle = value; } get { return recycle; } }
+		[SerializeField] private bool recycle;
 
 		/// <summary>Should this pool be marked as DontDestroyOnLoad?</summary>
-		public bool Persist { set { persist = value; } get { return persist; } } [SerializeField] private bool persist;
+		public bool Persist { set { persist = value; } get { return persist; } }
+		[SerializeField] private bool persist;
 
 		/// <summary>Should the spawned clones have their clone index appended to their name?</summary>
-		public bool Stamp { set { stamp = value; } get { return stamp; } } [SerializeField] private bool stamp;
+		public bool Stamp { set { stamp = value; } get { return stamp; } }
+		[SerializeField] private bool stamp;
 
 		/// <summary>Should detected issues be output to the console?</summary>
-		public bool Warnings { set { warnings = value; } get { return warnings; } } [SerializeField] private bool warnings = true;
+		public bool Warnings { set { warnings = value; } get { return warnings; } }
+		[SerializeField] private bool warnings = true;
 
 		/// <summary>This stores all spawned clones in a list. This is used when Recycle is enabled, because knowing the spawn order must be known. This list is also used during serialization.</summary>
 		[SerializeField]
@@ -85,7 +94,7 @@ namespace Lean.Pool
 		/// <summary>All the delayed destruction objects.</summary>
 		[SerializeField]
 		private List<Delay> delays = new List<Delay>();
-		
+
 		[SerializeField]
 		private Transform deactivatedChild;
 
@@ -679,7 +688,7 @@ namespace Lean.Pool
 			var newDelay = LeanClassPool<Delay>.Spawn() ?? new Delay();
 
 			newDelay.Clone = clone;
-			newDelay.Life  = t;
+			newDelay.Life = t;
 
 			delays.Add(newDelay);
 		}
@@ -751,7 +760,7 @@ namespace Lean.Pool
 
 					clone.transform.localPosition = localPosition;
 					clone.transform.localRotation = localRotation;
-					clone.transform.localScale    = localScale;
+					clone.transform.localScale = localScale;
 
 					return clone;
 				}
@@ -768,7 +777,7 @@ namespace Lean.Pool
 
 				clone.transform.localPosition = localPosition;
 				clone.transform.localRotation = localRotation;
-				clone.transform.localScale    = localScale;
+				clone.transform.localScale = localScale;
 
 				return clone;
 			}
@@ -793,7 +802,7 @@ namespace Lean.Pool
 
 			cloneTransform.localPosition = localPosition;
 			cloneTransform.localRotation = localRotation;
-			cloneTransform.localScale    = localScale;
+			cloneTransform.localScale = localScale;
 
 			cloneTransform.SetParent(parent, worldPositionStays);
 
@@ -886,10 +895,10 @@ namespace Lean.Pool.Editor
 			GetTargets(out tgt, out tgts);
 
 			BeginError(Any(tgts, t => t.Prefab == null));
-				if (Draw("prefab", "The prefab this pool controls.") == true)
-				{
-					Each(tgts, t => { t.Prefab = (GameObject)serializedObject.FindProperty("prefab").objectReferenceValue; }, true);
-				}
+			if (Draw("prefab", "The prefab this pool controls.") == true)
+			{
+				Each(tgts, t => { t.Prefab = (GameObject)serializedObject.FindProperty("prefab").objectReferenceValue; }, true);
+			}
 			EndError();
 			Draw("notification", "If you need to perform a special action when a prefab is spawned or despawned, then this allows you to control how that action is performed. None = If you use this then you must rely on the OnEnable and OnDisable messages. SendMessage = The prefab clone is sent the OnSpawn and OnDespawn messages. BroadcastMessage = The prefab clone and all its children are sent the OnSpawn and OnDespawn messages. IPoolable = The prefab clone's components implementing IPoolable are called. Broadcast IPoolable = The prefab clone and all its child components implementing IPoolable are called.");
 			Draw("strategy", "This allows you to control how spawned/despawned GameObjects will be handled. The DeactivateViaHierarchy mode should be used if you need to maintain your prefab's de/activation state.\n\nActivateAndDeactivate = Despawned clones will be deactivated and placed under this GameObject.\n\nDeactivateViaHierarchy = Despawned clones will be placed under a deactivated GameObject and left alone.");
@@ -903,9 +912,9 @@ namespace Lean.Pool.Editor
 			Separator();
 
 			BeginDisabled();
-				DrawClones("Spawned", true, false, "notification");
-				DrawClones("Despawned", false, true, "strategy");
-				DrawClones("Total", true, true, "preload");
+			DrawClones("Spawned", true, false, "notification");
+			DrawClones("Despawned", false, true, "strategy");
+			DrawClones("Total", true, true, "preload");
 			EndDisabled();
 
 			if (Application.isPlaying == false)
@@ -920,8 +929,8 @@ namespace Lean.Pool.Editor
 		private void DrawClones(string title, bool spawned, bool despawned, string propertyName)
 		{
 			var property = serializedObject.FindProperty(propertyName);
-			var rect     = EditorGUILayout.BeginVertical(); EditorGUILayout.LabelField(string.Empty, GUILayout.Height(EditorGUI.GetPropertyHeight(property))); EditorGUILayout.EndVertical();
-			var rectF    = rect; rectF.height = 16;
+			var rect = EditorGUILayout.BeginVertical(); EditorGUILayout.LabelField(string.Empty, GUILayout.Height(EditorGUI.GetPropertyHeight(property))); EditorGUILayout.EndVertical();
+			var rectF = rect; rectF.height = 16;
 
 			tgt.GetClones(tempClones, spawned, despawned);
 
