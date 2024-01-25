@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game Data")]
 public class GameSo : ScriptableObject
 {
+    public string dataLocation;
     [ReorderableList]
     [Label("Levels")]
     public List<EnemyTowerSo> levels = new();

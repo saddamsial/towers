@@ -21,12 +21,12 @@ namespace Tower
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
 
-        public virtual void Start()
+        public void Start()
         {
 
         }
 
-        public virtual void Update()
+        public void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {

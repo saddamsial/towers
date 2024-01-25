@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3afb1445067934f808a23d7b164cd225, type: 3}
-  m_Name: Game Data So
+  m_Name: Game Presets
   m_EditorClassIdentifier: 
+  dataLocation: gameData
   levels:
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
-  myTowerFloorCount: 3
+  myTowerFloorCount: 2
   myFloorMaterials:
   - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
   - {fileID: 11400000, guid: 4fffea7a7b5d94740b3f4749a7c81e1c, type: 2}

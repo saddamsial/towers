@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: ES3Defaults
   m_EditorClassIdentifier: 
   settings:
-    _location: 3
+    _location: 0
     path: SaveFile.es3
-    encryptionType: 1
+    encryptionType: 0
     compressionType: 0
-    encryptionPassword: siesta-fiesta
-    directory: 1
+    encryptionPassword: password
+    directory: 0
     format: 0
     prettyPrint: 1
     bufferSize: 2048
