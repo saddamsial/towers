@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerData : Data
@@ -12,22 +10,22 @@ public class TowerData : Data
         {
             _floorCount = value;
 
-            //SaveSystem.Instance.SaveData(_floorCount);
+            ES3.Save(id + "_FloorCount", _floorCount, eS3Settings);
         }
     }
 
-    public TowerData() : base("my tower")
+    public TowerData(string id) : base(id)
     {
 
     }
 
-    public override void Load()
+    public override void Load(ES3Settings eS3Settings)
     {
         Debug.Log("-->" + FloorCount);
         // if (FloorCount == -1)
-
-        // _floorCount = ES3.Load("_FloorCount", DataController.Instance.GamePresets.myTowerFloorCount, eS3Settings);
+        _floorCount = ES3.Load(id + "_FloorCount", DataController.Instance.gamePresets.myTowerFloorCount, eS3Settings);
         Debug.Log("->" + FloorCount);
     }
+
 
 }

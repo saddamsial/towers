@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afb1445067934f808a23d7b164cd225, type: 3}
   m_Name: Game Presets
   m_EditorClassIdentifier: 
-  dataLocation: gameData
+  dataLocation: gameData.json
   levels:
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}

@@ -17,12 +17,15 @@ namespace Tower
         public List<GameObject> floors = new();
         public GameObject tempFloor;
         [ReorderableList]
-
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
 
+
+        private TowerData _data;
+
         public void Start()
         {
+            _data = (TowerData)DataController.Instance.GetData("my tower", new TowerData("my tower"));
 
         }
 
@@ -36,6 +39,7 @@ namespace Tower
 
         public virtual void AddFloor()
         {
+            _data._floorCount++;
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
             floors.Add(tempFloor);
             var floorBase = tempFloor.GetComponent<FloorBase>();

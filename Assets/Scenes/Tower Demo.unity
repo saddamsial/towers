@@ -1061,11 +1061,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 381191622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa73d6298ca9f46229186009b85d7c7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dcd9b3b0e3b341618fb2d1fa1940551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveName: SaveData_
-  saveDataIndex: 0
+  gameValues: []
+  GamePresets: {fileID: 0}
 --- !u!1 &381495525
 GameObject:
   m_ObjectHideFlags: 0

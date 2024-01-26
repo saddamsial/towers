@@ -842,7 +842,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
+    Android: URP_OUTLINE;UNITY_VISUAL_SCRIPTING;JSONSerializationFileSave
     EmbeddedLinux: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
     GameCoreScarlett: URP_OUTLINE
     GameCoreXboxOne: URP_OUTLINE
@@ -858,7 +858,7 @@ PlayerSettings:
     WebGL: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
     Windows Store Apps: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
     XboxOne: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
-    iPhone: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
+    iPhone: URP_OUTLINE;UNITY_VISUAL_SCRIPTING;JSONSerializationFileSave
     tvOS: URP_OUTLINE;UNITY_VISUAL_SCRIPTING
   additionalCompilerArguments: {}
   platformArchitecture: {}
