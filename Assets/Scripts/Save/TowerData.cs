@@ -22,8 +22,8 @@ public class TowerData : Data
     public override void Load(ES3Settings eS3Settings)
     {
         Debug.Log("-->" + FloorCount);
-        // if (FloorCount == -1)
-        _floorCount = ES3.Load(id + "_FloorCount", DataController.Instance.gamePresets.myTowerFloorCount, eS3Settings);
+        if (_floorCount == -1)
+            _floorCount = ES3.Load(id + "_FloorCount", DataController.Instance.gamePresets.myTowerFloorCount, eS3Settings);
         Debug.Log("->" + FloorCount);
     }
 

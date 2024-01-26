@@ -5,7 +5,7 @@ using Utils;
 public class DataController : Singleton<DataController>
 {
 
-    ES3Settings eS3Settings;
+    public ES3Settings eS3Settings;
 
     public List<Data> data = new();
     Data tempData;
@@ -15,9 +15,15 @@ public class DataController : Singleton<DataController>
     private void Awake()
     {
         gamePresets = Resources.Load<GameSo>("Game Presets");
-        eS3Settings = new ES3Settings(gamePresets.dataLocation + ".json", ES3.Location.Resources);
+        eS3Settings = new ES3Settings(gamePresets.dataLocation + ".json", ES3.Location.Cache);
+
+        ES3.CacheFile(gamePresets.dataLocation + ".json", eS3Settings);
 
         Load();
+    }
+
+    public void Start()
+    {
     }
 
     public Data GetData(string id, Data defaultData)
@@ -46,7 +52,6 @@ public class DataController : Singleton<DataController>
     private void Load()
     {
 
-        ES3.CacheFile(eS3Settings.FullPath, eS3Settings);
         data = ES3.Load("_data", new List<Data>(), eS3Settings);
 
         data ??= new();
@@ -54,11 +59,12 @@ public class DataController : Singleton<DataController>
 
     public void Save()
     {
+
         ES3.Save("_data", data, eS3Settings);
         ES3.StoreCachedFile(gamePresets.dataLocation + ".json", eS3Settings);
     }
 
-    public void ClearData()
+    public void DeleteData()
     {
         ES3.DeleteFile(gamePresets.dataLocation + ".json", eS3Settings);
     }

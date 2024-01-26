@@ -22,11 +22,6 @@ namespace ES3Internal
         static readonly HideFlags[] invalidHideFlags = new HideFlags[] { HideFlags.DontSave, HideFlags.DontSaveInBuild, HideFlags.DontSaveInEditor, HideFlags.HideAndDontSave };
 #endif
 
-#if !UNITY_EDITOR
-        [NonSerialized]
-#endif
-        public List<UnityEngine.Object> excludeObjects = new List<UnityEngine.Object>();
-        
         private static System.Random rng;
 
         [HideInInspector]
@@ -270,12 +265,6 @@ namespace ES3Internal
 
         public long Add(UnityEngine.Object obj)
         {
-            if (obj == null)
-                return -1;
-
-            if (!CanBeSaved(obj))
-                return -1;
-
             long id;
             // If it already exists in the list, do nothing.
             if (refId.TryGetValue(obj, out id))
@@ -301,9 +290,6 @@ namespace ES3Internal
 
         public long Add(UnityEngine.Object obj, long id)
         {
-            if (obj == null)
-                return -1;
-
             if (!CanBeSaved(obj))
                 return -1;
 
@@ -380,7 +366,7 @@ namespace ES3Internal
 
         public void RemoveNullOrInvalidValues()
         {
-            var nullKeys = idRef.Where(pair => pair.Value == null || !CanBeSaved(pair.Value) || excludeObjects.Contains(pair.Value)).Select(pair => pair.Key).ToList();
+            var nullKeys = idRef.Where(pair => pair.Value == null || !CanBeSaved(pair.Value)).Select(pair => pair.Key).ToList();
             foreach (var key in nullKeys)
                 idRef.Remove(key);
 
@@ -427,9 +413,9 @@ namespace ES3Internal
         }
 
 #if UNITY_EDITOR
-        public static HashSet<UnityEngine.Object> CollectDependenciesLegacy(UnityEngine.Object obj, HashSet<UnityEngine.Object> dependencies = null, int depth = int.MinValue)
+        public static HashSet<UnityEngine.Object> CollectDependencies(UnityEngine.Object obj, HashSet<UnityEngine.Object> dependencies = null, int depth = int.MinValue)
         {
-            return CollectDependenciesLegacy(new UnityEngine.Object[] { obj }, dependencies, depth);
+            return CollectDependencies(new UnityEngine.Object[] { obj }, dependencies, depth);
         }
 
         /*
@@ -437,7 +423,7 @@ namespace ES3Internal
          * For GameObjects, it will traverse all children.
          * For Components or ScriptableObjects, it will get all serialisable UnityEngine.Object fields/properties as dependencies.
          */
-        public static HashSet<UnityEngine.Object> CollectDependenciesLegacy(UnityEngine.Object[] objs, HashSet<UnityEngine.Object> dependencies = null, int depth = int.MinValue)
+        public static HashSet<UnityEngine.Object> CollectDependencies(UnityEngine.Object[] objs, HashSet<UnityEngine.Object> dependencies = null, int depth = int.MinValue)
         {
             if (depth == int.MinValue)
                 depth = ES3Settings.defaultSettingsScriptableObject.collectDependenciesDepth;
@@ -474,21 +460,21 @@ namespace ES3Internal
                     if (dependencies.Add(go))
                     {
                         // Get the dependencies of each Component in the GameObject.
-                        CollectDependenciesLegacy(go.GetComponents<Component>(), dependencies, depth - 1);
+                        CollectDependencies(go.GetComponents<Component>(), dependencies, depth - 1);
                         // Get the dependencies of each child in the GameObject.
                         foreach (Transform child in go.transform)
-                            CollectDependenciesLegacy(child.gameObject, dependencies, depth); // Don't decrement child, as we consider this a top-level object.
+                            CollectDependencies(child.gameObject, dependencies, depth); // Don't decrement child, as we consider this a top-level object.
                     }
                 }
                 // Else if it's a Component or ScriptableObject, add the values of any UnityEngine.Object fields as dependencies.
                 else
-                    CollectDependenciesFromFieldsLegacy(obj, dependencies, depth - 1);
+                    CollectDependenciesFromFields(obj, dependencies, depth - 1);
             }
 
             return dependencies;
         }
 
-        private static void CollectDependenciesFromFieldsLegacy(UnityEngine.Object obj, HashSet<UnityEngine.Object> dependencies, int depth)
+        private static void CollectDependenciesFromFields(UnityEngine.Object obj, HashSet<UnityEngine.Object> dependencies, int depth)
         {
             // If we've already collected dependencies for this, do nothing.
             if (!dependencies.Add(obj))
@@ -598,7 +584,7 @@ namespace ES3Internal
                 {
                     var renderer = (Renderer)obj;
                     foreach (var material in renderer.sharedMaterials)
-                        CollectDependenciesFromFieldsLegacy(material, dependencies, depth - 1);
+                        CollectDependenciesFromFields(material, dependencies, depth - 1);
                     return;
                 }
             }
@@ -632,9 +618,9 @@ namespace ES3Internal
 
                                 // If it's a GameObject, use CollectDependencies so that Components are also added.
                                 if (elementType == typeof(GameObject))
-                                    CollectDependenciesLegacy(elementValue, dependencies, depth - 1);
+                                    CollectDependencies(elementValue, dependencies, depth - 1);
                                 else
-                                    CollectDependenciesFromFieldsLegacy(elementValue, dependencies, depth - 1);
+                                    CollectDependenciesFromFields(elementValue, dependencies, depth - 1);
                             }
                             // Otherwise this array does not contain UnityEngine.Object types, so we should stop.
                             else
@@ -650,9 +636,9 @@ namespace ES3Internal
 
                         // If it's a GameObject, use CollectDependencies so that Components are also added.
                         if (propertyValue.GetType() == typeof(GameObject))
-                            CollectDependenciesLegacy(propertyValue, dependencies, depth - 1);
+                            CollectDependencies(propertyValue, dependencies, depth - 1);
                         else
-                            CollectDependenciesFromFieldsLegacy(propertyValue, dependencies, depth - 1);
+                            CollectDependenciesFromFields(propertyValue, dependencies, depth - 1);
                     }
                 }
                 catch { }

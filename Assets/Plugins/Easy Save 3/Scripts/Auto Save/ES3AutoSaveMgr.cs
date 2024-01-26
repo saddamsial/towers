@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 #if UNITY_VISUAL_SCRIPTING
 [Unity.VisualScripting.IncludeInSettings(true)]
@@ -73,8 +72,7 @@ public class ES3AutoSaveMgr : MonoBehaviour
                 if (autoSave != null && autoSave.enabled)
                     gameObjects.Add(autoSave.gameObject);
             }
-            // Save in the same order as their depth in the hierarchy.
-            ES3.Save<GameObject[]>(key, gameObjects.OrderBy(x => GetDepth(x.transform)).ToArray(), settings);
+            ES3.Save<GameObject[]>(key, gameObjects.ToArray(), settings);
         }
 
         if(settings.location == ES3.Location.Cache && ES3.FileExists(settings))
@@ -142,19 +140,5 @@ public class ES3AutoSaveMgr : MonoBehaviour
 
         foreach (var go in this.gameObject.scene.GetRootGameObjects())
             autoSaves.UnionWith(go.GetComponentsInChildren<ES3AutoSave>(true));
-    }
-
-    // Gets the depth of a Transform in the hierarchy.
-    static int GetDepth(Transform t)
-    {
-        int depth = 0;
-
-        while (t.parent != null)
-        {
-            t = t.parent;
-            depth++;
-        }
-
-        return depth;
     }
 }
