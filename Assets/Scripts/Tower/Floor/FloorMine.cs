@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data_and_Scriptable.GunSo;
 using Managers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Tower.Floor
         {
             GameController.OnDied += Die;
             InputController.Instance.onTargetSet += Attack;
-            AttachGun();
+            // AttachGun();
         }
 
         public override void OnDisable()
@@ -20,6 +21,11 @@ namespace Tower.Floor
             GameController.OnDied -= Die;
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
+        }
+
+        public override void Init(TowerController mainTower, GunSo gun)
+        {
+
         }
 
         public override void Attack(Transform target)

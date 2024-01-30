@@ -1,3 +1,6 @@
+using System;
+using System.Net.Http.Headers;
+using Data_and_Scriptable.GunSo;
 using EPOOutline;
 using GameStates;
 using Guns;
@@ -20,53 +23,43 @@ namespace Tower.Floor
         public TowerController mainTower;
         public GameObject attachedGunObj;
         public GunBase attachedGun;
-        public bool enableDemoItems;
-
-        [ShowIf("enableDemoItems")]
-        [BoxGroup("Demo Items")]
-        public GameObject demoGun;
+        public GameObject tempGun;
 
         public abstract void OnEnable();
-
         public abstract void OnDisable();
 
         public abstract void Attack(Transform target);
 
-
-        [Button]
-        public void AttachGun(GunBase gun = null)
+        public virtual void Init(TowerController mainTower, GunSo gun)
         {
-            if (!gun) //demo purpose
-            {
-                if (attachedGunObj != null)
-                {
-                    attachedGunObj.Despawn();
-                    attachedGunObj = null;
-                    attachedGun = null;
-                }
-                var gunObj = demoGun.Spawn(gunPosition.position, transform.rotation);
-                GameController.onGunPlaced?.Invoke(gunObj, this);
-                attachedGunObj = gunObj;
-                attachedGun = attachedGunObj.GetComponent<GunBase>();
-                gunObj.transform.parent = gunPosition;
-            }
+            AttachGun(gun.myPrefab);
         }
-
+        public void AttachGun(GameObject tempGun = null)
+        {
+            if (attachedGunObj != null)
+            {
+                attachedGunObj.Despawn();
+                attachedGunObj = null;
+                attachedGun = null;
+            }
+            var gunObj = (tempGun ? tempGun : this.tempGun).Spawn(gunPosition.position, transform.rotation);
+            GameController.onGunPlaced?.Invoke(gunObj, this);
+            attachedGunObj = gunObj;
+            attachedGun = attachedGunObj.GetComponent<GunBase>();
+            gunObj.transform.parent = gunPosition;
+        }
         public void Detach()
         {
             Debug.Log("removed");
             attackTo = null;
             attachedGunObj = null;
         }
-
-
         public void SetOutlinableState(bool state)
         {
             if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
 
             outline.enabled = state;
         }
-
         public virtual void Die(FloorBase diedObj)
         {
             if (diedObj.transform != transform) return;

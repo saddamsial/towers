@@ -17,12 +17,13 @@ using UnityEngine.Networking;
 #endif
 public class ES3
 {
-	public enum Location 		{ File, PlayerPrefs, InternalMS, Resources, Cache };
-	public enum Directory		{ PersistentDataPath, DataPath }
-	public enum EncryptionType 	{ None, AES };
-    public enum CompressionType { None, Gzip};
-    public enum Format 			{ JSON };
-	public enum ReferenceMode	{ ByRef, ByValue, ByRefAndValue};
+    public enum Location { File, PlayerPrefs, InternalMS, Resources, Cache };
+    public enum Directory { PersistentDataPath, DataPath }
+    public enum EncryptionType { None, AES };
+    public enum CompressionType { None, Gzip };
+    public enum Format { JSON };
+    public enum ReferenceMode { ByRef, ByValue, ByRefAndValue };
+    public enum ImageType { JPEG, PNG };
 
     #region ES3.Save
 
@@ -292,14 +293,16 @@ public class ES3
 
     /// <summary>Saves a Texture2D as a PNG or JPG, depending on the file extension used for the filePath.</summary>
     /// <param name="texture">The Texture2D we want to save as a JPG or PNG.</param>
+    /// <param name="quality">Quality to encode with, where 1 is minimum and 100 is maximum. Note that this only applies to JPGs.</param>
     /// <param name="imagePath">The relative or absolute path of the PNG or JPG file we want to create.</param>
     public static void SaveImage(Texture2D texture, int quality, string imagePath)
     {
-        SaveImage(texture, new ES3Settings(imagePath));
+        SaveImage(texture, quality, new ES3Settings(imagePath));
     }
 
     /// <summary>Saves a Texture2D as a PNG or JPG, depending on the file extension used for the filePath.</summary>
     /// <param name="texture">The Texture2D we want to save as a JPG or PNG.</param>
+    /// <param name="quality">Quality to encode with, where 1 is minimum and 100 is maximum. Note that this only applies to JPGs.</param>
     /// <param name="imagePath">The relative or absolute path of the PNG or JPG file we want to create.</param>
     public static void SaveImage(Texture2D texture, int quality, string imagePath, ES3Settings settings)
     {
@@ -308,6 +311,7 @@ public class ES3
 
     /// <summary>Saves a Texture2D as a PNG or JPG, depending on the file extension used for the filePath.</summary>
     /// <param name="texture">The Texture2D we want to save as a JPG or PNG.</param>
+    /// <param name="quality">Quality to encode with, where 1 is minimum and 100 is maximum. Note that this only applies to JPGs.</param>
     /// <param name="settings">The settings we want to use to override the default settings.</param>
     public static void SaveImage(Texture2D texture, int quality, ES3Settings settings)
     {
@@ -324,6 +328,18 @@ public class ES3
             throw new System.ArgumentException("File path must have extension of .png, .jpg or .jpeg when using ES3.SaveImage.");
 
         ES3.SaveRaw(bytes, settings);
+    }
+
+
+    /// <summary>Saves a Texture2D as a PNG or JPG, depending on the file extension used for the filePath.</summary>
+    /// <param name="texture">The Texture2D we want to save as a JPG or PNG.</param>
+    /// <param name="quality">Quality to encode with, where 1 is minimum and 100 is maximum. Note that this only applies to JPGs.</param>
+    public static byte[] SaveImageToBytes(Texture2D texture, int quality, ES3.ImageType imageType)
+    {
+        if (imageType == ImageType.JPEG)
+            return texture.EncodeToJPG(quality);
+        else
+            return texture.EncodeToPNG();
     }
 
     #endregion
@@ -641,7 +657,7 @@ public class ES3
         using (var stream = ES3Stream.CreateStream(settings, ES3FileMode.Read))
         {
             if (stream == null)
-                throw new System.IO.FileNotFoundException("File "+settings.path+" could not be found");
+                throw new System.IO.FileNotFoundException("File " + settings.path + " could not be found");
 
             if (stream.GetType() == typeof(System.IO.Compression.GZipStream))
             {
@@ -671,7 +687,7 @@ public class ES3
 		}
 		return null;*/
     }
-    
+
     /// <summary>Loads the default file as a byte array.</summary>
     public static string LoadRawString()
     {
@@ -825,7 +841,7 @@ public class ES3
 
     #region Serialize/Deserialize
 
-    public static byte[] Serialize<T>(T value, ES3Settings settings=null)
+    public static byte[] Serialize<T>(T value, ES3Settings settings = null)
     {
         return Serialize(value, ES3TypeMgr.GetOrCreateES3Type(typeof(T)), settings);
     }
@@ -850,7 +866,7 @@ public class ES3
         }
     }
 
-    public static T Deserialize<T>(byte[] bytes, ES3Settings settings=null)
+    public static T Deserialize<T>(byte[] bytes, ES3Settings settings = null)
     {
         return (T)Deserialize(ES3TypeMgr.GetOrCreateES3Type(typeof(T)), bytes, settings);
     }
@@ -861,9 +877,9 @@ public class ES3
             settings = new ES3Settings();
 
         using (var ms = new System.IO.MemoryStream(bytes, false))
-            using (var stream = ES3Stream.CreateStream(ms, settings, ES3FileMode.Read))
-                using (var reader = ES3Reader.Create(stream, settings, false))
-                    return reader.Read<object>(type);
+        using (var stream = ES3Stream.CreateStream(ms, settings, ES3FileMode.Read))
+        using (var reader = ES3Reader.Create(stream, settings, false))
+            return reader.Read<object>(type);
     }
 
     public static void DeserializeInto<T>(byte[] bytes, T obj, ES3Settings settings = null) where T : class
@@ -877,34 +893,34 @@ public class ES3
             settings = new ES3Settings();
 
         using (var ms = new System.IO.MemoryStream(bytes, false))
-            using (var reader = ES3Reader.Create(ms, settings, false))
-                reader.ReadInto<T>(obj, type);
+        using (var reader = ES3Reader.Create(ms, settings, false))
+            reader.ReadInto<T>(obj, type);
     }
 
     #endregion
 
     #region Other ES3 Methods
 
-    public static byte[] EncryptBytes(byte[] bytes, string password=null)
+    public static byte[] EncryptBytes(byte[] bytes, string password = null)
     {
         if (string.IsNullOrEmpty(password))
             password = ES3Settings.defaultSettings.encryptionPassword;
         return new AESEncryptionAlgorithm().Encrypt(bytes, password, ES3Settings.defaultSettings.bufferSize);
     }
 
-    public static byte[] DecryptBytes(byte[] bytes, string password=null)
+    public static byte[] DecryptBytes(byte[] bytes, string password = null)
     {
         if (string.IsNullOrEmpty(password))
             password = ES3Settings.defaultSettings.encryptionPassword;
         return new AESEncryptionAlgorithm().Decrypt(bytes, password, ES3Settings.defaultSettings.bufferSize);
     }
 
-    public static string EncryptString(string str, string password=null)
+    public static string EncryptString(string str, string password = null)
     {
         return Convert.ToBase64String(EncryptBytes(ES3Settings.defaultSettings.encoding.GetBytes(str), password));
     }
 
-    public static string DecryptString(string str, string password=null)
+    public static string DecryptString(string str, string password = null)
     {
         return ES3Settings.defaultSettings.encoding.GetString(DecryptBytes(Convert.FromBase64String(str), password));
     }
@@ -1399,7 +1415,7 @@ public class ES3
         {
             if (settings.directory == ES3.Directory.PersistentDataPath)
                 settings.path = ES3IO.persistentDataPath;
-            else 
+            else
                 settings.path = ES3IO.dataPath;
         }
         return GetFiles(new ES3Settings());

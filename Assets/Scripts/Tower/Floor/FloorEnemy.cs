@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data_and_Scriptable.GunSo;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
@@ -18,6 +19,11 @@ namespace Tower.Floor
             GameController.OnDied -= Die;
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
+        }
+
+        public override void Init(TowerController mainTower, GunSo gun)
+        {
+
         }
 
         public override void Attack(Transform target)

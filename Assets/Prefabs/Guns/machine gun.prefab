@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canShoot: 0
   myGun: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
   myFloor: {fileID: 0}
   skin: {fileID: 8669249631831545435}
@@ -66,6 +67,7 @@ MonoBehaviour:
   initial: 10
   _current: 0
   hitTransform: {fileID: 1152706401841267163}
+  myFloor: {fileID: 0}
 --- !u!1 &6866372695079246909
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +108,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7254948147057901965}
     m_Modifications:
+    - target: {fileID: 1917853233265291906, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3045795035518236602, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
@@ -161,6 +167,22 @@ PrefabInstance:
     - target: {fileID: 4857865524627234093, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
       propertyPath: m_Name
       value: turret place holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269275848968044412, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600636509680800702, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739315476910875355, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294319082210175196, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

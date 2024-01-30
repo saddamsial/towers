@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 namespace GameStates
 {
+    [Serializable]
     public abstract class GameState : MonoBehaviour
     {
         [SerializeField] private GameObject myPanel;

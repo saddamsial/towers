@@ -1,17 +1,17 @@
 using UnityEngine;
 using Utils;
-
+using UnityEngine.SceneManagement;
 namespace GameStates
 {
     public class GameStateManager : Singleton<GameStateManager>
     {
         public GameState currentState;
-        [SerializeField] private OnGameState onGameState;
-        [SerializeField] private OnMenuState onMenuState;
-        [SerializeField] private OnCompleteState onCompleteState;
-        [SerializeField] private OnFailState onFailState;
-        [SerializeField] private OnPauseState onPauseState;
-        [SerializeField] private OnEditState onEditState;
+        public OnGameState onGameState;
+        public OnMenuState onMenuState;
+        public OnCompleteState onCompleteState;
+        public OnFailState onFailState;
+        public OnPauseState onPauseState;
+        public OnEditState onEditState;
 
         private void Start()
         {
@@ -55,7 +55,7 @@ namespace GameStates
             return currentState.GetType();
         }
 
-        private void SetState(GameState newState)
+        public void SetState(GameState newState)
         {
             ExitState(currentState);
             currentState = newState;
@@ -82,6 +82,11 @@ namespace GameStates
             {
                 SetState(onPauseState); // Pause game
             }
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

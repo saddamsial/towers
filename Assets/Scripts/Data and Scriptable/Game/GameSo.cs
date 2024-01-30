@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Game Data")]
-public class GameSo : ScriptableObject
+public class GamePresets : ScriptableObject
 {
     public string dataLocation;
     [ReorderableList]

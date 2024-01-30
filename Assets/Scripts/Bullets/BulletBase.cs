@@ -9,7 +9,7 @@ namespace Bullets
 {
     public class BulletBase : MonoBehaviour
     {
-        [SerializeField] private BulletSo bullet;
+        [SerializeField] public BulletSo bullet;
         [SerializeField] private Transform skin;
         [SerializeField] private TrailRenderer trailRenderer;
 
@@ -17,8 +17,7 @@ namespace Bullets
         {
             trailRenderer.Clear();
             skin.GetChild((int)bullet.bulletType).gameObject.SetActive(true);
-            transform.DOJump(target.position + Vector3.up * 0.5f, 1f, 1, bullet.speed).SetEase(Ease.Linear)
-                .OnComplete(() => OnReached(target));
+
         }
 
         public void OnReached(Transform other)

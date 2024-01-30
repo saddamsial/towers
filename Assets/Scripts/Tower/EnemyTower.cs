@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameStates;
 using Managers;
 using Tower.Floor;
 using Unity.VisualScripting;
@@ -22,7 +23,7 @@ namespace Tower
 
         public void Start()
         {
-
+            GenerateTowerWithSo();
         }
 
         public void Update()
@@ -52,7 +53,10 @@ namespace Tower
         public void RearrangeFloors(FloorBase floorObj)
         {
             floors.Remove(floorObj.gameObject);
-
+            if (floors.Count <= 0)
+            {
+                GameStateManager.Instance.SetState(GameStateManager.Instance.onCompleteState);
+            }
             for (int i = 0; i < floors.Count; i++)
             {
                 floors[i].GetComponent<FloorEnemy>().MoveToNewPositionAfterDestroy(transform.localPosition + 1.6f * i * Vector3.up, delay: 0.1f * i);

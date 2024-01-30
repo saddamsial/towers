@@ -10,12 +10,12 @@ public class DataController : Singleton<DataController>
     public List<Data> data = new();
     Data tempData;
 
-    public GameSo gamePresets;
+    public GamePresets gamePresets;
 
     private void Awake()
     {
-        gamePresets = Resources.Load<GameSo>("Game Presets");
-        eS3Settings = new ES3Settings(gamePresets.dataLocation + ".json", ES3.Location.Cache);
+        gamePresets = Resources.Load<GamePresets>("Game Presets");
+        eS3Settings = new ES3Settings(gamePresets.dataLocation + ".json", ES3.Location.File);
 
         ES3.CacheFile(gamePresets.dataLocation + ".json", eS3Settings);
 
@@ -32,13 +32,12 @@ public class DataController : Singleton<DataController>
         {
             if (data[i].id == id)
             {
-                Debug.Log("found");
                 tempData = data[i];
             }
         }
         if (tempData == null)
         {
-            Debug.Log("found--");
+            Debug.Log("not found");
 
             tempData = defaultData;
             data.Add(tempData);
@@ -61,7 +60,7 @@ public class DataController : Singleton<DataController>
     {
 
         ES3.Save("_data", data, eS3Settings);
-        ES3.StoreCachedFile(gamePresets.dataLocation + ".json", eS3Settings);
+        // ES3.StoreCachedFile(gamePresets.dataLocation + ".json", eS3Settings);
     }
 
     public void DeleteData()

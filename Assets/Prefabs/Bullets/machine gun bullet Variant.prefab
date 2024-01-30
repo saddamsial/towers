@@ -56,6 +56,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_Time
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165247044519266139, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165247044519266139, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165247044519266139, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8899490439400522935, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_IsKinematic
       value: 0
