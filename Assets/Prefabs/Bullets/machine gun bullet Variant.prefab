@@ -58,11 +58,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_Time
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_Parameters.widthMultiplier
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
+      value: -2.5517433
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inWeight
+      value: 0.081761
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outSlope
+      value: -2.5517433
       objectReference: {fileID: 0}
     - target: {fileID: 6165247044519266139, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_LocalScale.x

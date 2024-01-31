@@ -25,7 +25,8 @@ namespace Tower.Floor
 
         public override void Init(TowerController mainTower, GunSo gun)
         {
-
+            base.Init(mainTower, gun);
+            AttachGun(gun.myPrefab);
         }
 
         public override void Attack(Transform target)

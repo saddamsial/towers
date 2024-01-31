@@ -40,8 +40,8 @@ public class TowerData : Data
     {
         if (_floorCount == -1)
             _floorCount = ES3.Load(id + "_FloorCount", DataController.Instance.gamePresets.myTowerFloorCount, ES3Settings.defaultSettings);
-        if (guns.Count == 0)
-            guns = ES3.Load(id + "_FloorGuns", DataController.Instance.gamePresets.myFloorGuns, eS3Settings);
+        // if (guns.Count == 0) 
+        guns = ES3.Load(id + "_FloorGuns", DataController.Instance.gamePresets.myFloorGuns, eS3Settings);
     }
 
 

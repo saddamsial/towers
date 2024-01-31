@@ -16,7 +16,11 @@ namespace Bullets
         public virtual void Init(Transform target)
         {
             trailRenderer.Clear();
-            skin.GetChild((int)bullet.bulletType).gameObject.SetActive(true);
+            for (int i = 0; i < skin.childCount; i++)
+            {
+                skin.GetChild(i).gameObject.SetActive(i == (int)bullet.bulletType);
+            }
+
 
         }
 

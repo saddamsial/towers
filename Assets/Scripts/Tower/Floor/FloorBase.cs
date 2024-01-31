@@ -32,7 +32,7 @@ namespace Tower.Floor
 
         public virtual void Init(TowerController mainTower, GunSo gun)
         {
-            AttachGun(gun.myPrefab);
+            this.mainTower = mainTower;
         }
         public void AttachGun(GameObject tempGun = null)
         {

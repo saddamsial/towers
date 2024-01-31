@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
   m_Name: Machine Gun So
   m_EditorClassIdentifier: 
-  myPrefab: {fileID: 1152706401841267163, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
+  myPrefab: {fileID: 2507120889772542911, guid: c8d563af35a5b462d8c1cbf9ee611c12, type: 3}
   myBullet: {fileID: 11400000, guid: 466213bea3c0f495dbf6d12a0a95f3a7, type: 2}
-  frequency: 0.3
+  frequency: 0.1
   muzzleEffect: {fileID: 6886161382623852717, guid: 21443f82c4af72c44844ba6e6afa61be, type: 3}
