@@ -56,6 +56,7 @@ namespace Tower
             if (floors.Count <= 0)
             {
                 GameStateManager.Instance.SetState(GameStateManager.Instance.onCompleteState);
+                return;
             }
             for (int i = 0; i < floors.Count; i++)
             {

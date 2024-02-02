@@ -92,6 +92,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7348789173814922424, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_ImplicitCom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899490439400522935, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      propertyPath: m_ImplicitCom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8899490439400522935, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_IsKinematic
       value: 0

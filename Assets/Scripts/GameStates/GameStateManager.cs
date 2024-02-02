@@ -13,8 +13,13 @@ namespace GameStates
         public OnPauseState onPauseState;
         public OnEditState onEditState;
 
+        public GameData data;
+
         private void Start()
         {
+            data = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
+            data.playCount++;
+            Debug.Log(data.playCount);
             currentState = onCompleteState;
             SetState(onMenuState);
         }

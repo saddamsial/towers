@@ -19,14 +19,12 @@ namespace Tower
         [ReorderableList]
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
-
-
-        public TowerData _data;
-
+        public TowerData data;
         public void Start()
         {
-            _data = (TowerData)DataController.Instance.GetData("my tower", new TowerData("my tower"));
-            for (int i = 0; i < _data._floorCount; i++)
+            data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
+
+            for (int i = 0; i < data._floorCount; i++)
             {
                 AddFloor(i, false);
             }
@@ -43,12 +41,12 @@ namespace Tower
         public virtual void AddFloor(int whichFloor, bool isNewFloor = true)
         {
             if (isNewFloor)
-                _data._floorCount++;
-            Debug.Log(_data.Guns[whichFloor]);
+                data._floorCount++;
+            //Debug.Log(_data.Guns[whichFloor]);
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
             floors.Add(tempFloor);
             var floorBase = tempFloor.GetComponent<FloorBase>();
-            floorBase.Init(this, _data.Guns[whichFloor]);
+            // floorBase.Init(this, _data.saveObject.Guns[whichFloor]);
         }
 
         protected void AddToList()

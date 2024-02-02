@@ -4,8 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Tower Demo.unity
-    guid: 82cbaf7991d1e43e4944fc4dd3b34470
+  m_Scenes: []
   m_configObjects: {}
