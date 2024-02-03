@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class TowerData : Data
 {
-    public int _floorCount = -1;
+    public int floorCount = -1;
     public int FloorCount
     {
-        get => _floorCount;
+        get => floorCount;
         set
         {
-            _floorCount = value;
+            floorCount = value;
         }
     }
 
@@ -28,18 +28,18 @@ public class TowerData : Data
 
     public TowerData() : base("tower")
     {
-        FloorCount = 2;
-        Guns = new List<GunSo>();
+        Load();
     }
 
     public override void Load()
     {
         base.Load();
 
-        Debug.Log("->?" + _floorCount);
-        _floorCount = ES3.Load(id + "FloorCount", 2);
+        Debug.Log("->?" + floorCount);
+        FloorCount = ES3.Load(id + "FloorCount", 2);
+        Guns = ES3.Load(id + "guns", DataPersistenceController.Instance.presets.myFloorGuns);
 
-        Debug.Log("->" + _floorCount);
+        Debug.Log("->" + floorCount);
 
 
     }

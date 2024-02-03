@@ -19,7 +19,7 @@ namespace GameStates
         {
             data = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
             data.playCount++;
-            Debug.Log(data.playCount);
+            Debug.Log("play count-> " + data.playCount);
             currentState = onCompleteState;
             SetState(onMenuState);
         }

@@ -7,8 +7,7 @@ using Utils;
 public class DataPersistenceController : Singleton<DataPersistenceController>
 {
     private ES3Settings settings;
-
-    public string fileName;
+    public GamePresets presets;
     public List<Data> data = new();
 
     public void Start()
@@ -18,8 +17,8 @@ public class DataPersistenceController : Singleton<DataPersistenceController>
 
     public void LoadGame()
     {
-        settings = new ES3Settings(fileName, ES3.Location.Cache);
-        ES3.CacheFile(fileName, settings);
+        settings = new ES3Settings(presets.dataLocation, ES3.Location.Cache);
+        ES3.CacheFile(presets.dataLocation, settings);
         data = ES3.Load("_data", new List<Data>(), settings);
 
         if (data == null)
@@ -28,7 +27,7 @@ public class DataPersistenceController : Singleton<DataPersistenceController>
     public void SaveGame()
     {
         ES3.Save("_data", data, settings);
-        ES3.StoreCachedFile(fileName, settings);
+        ES3.StoreCachedFile(presets.dataLocation, settings);
     }
 
     public List<Data> FindAllData()

@@ -24,7 +24,7 @@ namespace Tower
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
 
-            for (int i = 0; i < data._floorCount; i++)
+            for (int i = 0; i < data.floorCount; i++)
             {
                 AddFloor(i, false);
             }
@@ -41,12 +41,12 @@ namespace Tower
         public virtual void AddFloor(int whichFloor, bool isNewFloor = true)
         {
             if (isNewFloor)
-                data._floorCount++;
-            //Debug.Log(_data.Guns[whichFloor]);
+                data.floorCount++;
+            Debug.Log(data.Guns[whichFloor]);
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
             floors.Add(tempFloor);
             var floorBase = tempFloor.GetComponent<FloorBase>();
-            // floorBase.Init(this, _data.saveObject.Guns[whichFloor]);
+            floorBase.Init(this, data.Guns[whichFloor]);
         }
 
         protected void AddToList()

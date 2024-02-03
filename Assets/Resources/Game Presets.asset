@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afb1445067934f808a23d7b164cd225, type: 3}
   m_Name: Game Presets
   m_EditorClassIdentifier: 
-  dataLocation: gameData
+  dataLocation: saveData.json
   levels:
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
@@ -22,4 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fffea7a7b5d94740b3f4749a7c81e1c, type: 2}
   myFloorGuns:
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  - {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}
   - {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}
