@@ -42,7 +42,7 @@ namespace Tower
         {
             if (isNewFloor)
                 data.floorCount++;
-            Debug.Log(data.Guns[whichFloor]);
+            //Debug.Log(data.Guns[whichFloor]);
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
             floors.Add(tempFloor);
             var floorBase = tempFloor.GetComponent<FloorBase>();
