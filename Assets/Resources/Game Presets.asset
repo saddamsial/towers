@@ -23,4 +23,3 @@ MonoBehaviour:
   myFloorGuns:
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
   - {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}
-  - {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}

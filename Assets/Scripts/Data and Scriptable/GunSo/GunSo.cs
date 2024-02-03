@@ -8,6 +8,8 @@ namespace Data_and_Scriptable.GunSo
         public GameObject myPrefab;
         public BulletSo.BulletSo myBullet;
         public float frequency;
+        public float coolDownTime;
+        public int ammoCount;
         public GameObject muzzleEffect;
 
     }

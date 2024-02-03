@@ -35,11 +35,11 @@ public class TowerData : Data
     {
         base.Load();
 
-        Debug.Log("->?" + floorCount);
+        // Debug.Log("->?" + floorCount);
         FloorCount = ES3.Load(id + "FloorCount", 2);
         Guns = ES3.Load(id + "guns", DataPersistenceController.Instance.presets.myFloorGuns);
 
-        Debug.Log("->" + floorCount);
+        // Debug.Log("->" + floorCount);
 
 
     }

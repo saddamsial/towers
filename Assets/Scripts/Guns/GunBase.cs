@@ -12,9 +12,10 @@ namespace Guns
 {
     public class GunBase : MonoBehaviour
     {
-        public bool canShoot;
+        public bool canShoot, coolDown;
         public GunSo myGun;
-        private float frequency;
+        public int tempBulletCount;
+        private float frequency, coolDownTime;
         public FloorBase myFloor;
         public Transform skin;
         public Transform spawnPosition;
@@ -43,15 +44,30 @@ namespace Guns
         {
             if (!canShoot) return;
 
-            if (frequency > 0)
+            if (coolDown)
             {
-                frequency -= Time.deltaTime;
+                if (coolDownTime > 0)
+                {
+                    coolDownTime -= Time.deltaTime;
+                }
+                else
+                {
+                    tempBulletCount = 0;
+                    coolDown = false;
+                }
             }
             else
             {
-                frequency = myGun.frequency;
-                if (!myFloor.attackTo) return;
-                Shoot();
+                if (frequency > 0)
+                {
+                    frequency -= Time.deltaTime;
+                }
+                else
+                {
+                    frequency = myGun.frequency;
+                    if (!myFloor.attackTo) return;
+                    Shoot();
+                }
             }
         }
 
@@ -60,6 +76,12 @@ namespace Guns
             //{ canShoot = false; return; };
             var bullet = myGun.myBullet.prefab.Spawn(spawnPosition.position, Quaternion.identity);
             bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().gunPosition);
+            tempBulletCount++;
+            if (tempBulletCount == myGun.ammoCount)
+            {
+                coolDownTime = myGun.coolDownTime;
+                coolDown = true;
+            }
         }
 
         public void Died(FloorBase diedObj)
