@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1152706401841267163}
-  - component: {fileID: 471023317384531243}
+  - component: {fileID: 692792686306506194}
   - component: {fileID: 3287902533673033660}
   m_Layer: 0
-  m_Name: machine gun
+  m_Name: laser gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7254948147057901965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &471023317384531243
+--- !u!114 &692792686306506194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,19 +43,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2507120889772542911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fca8201d4cb403a89be460eaf69c54, type: 3}
+  m_Script: {fileID: 11500000, guid: dac92e4232abb46b59b5f78814689d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canShoot: 0
   coolDown: 0
-  myGun: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  isLaser: 1
+  myGun: {fileID: 11400000, guid: 477a58235367640c0ba2c17a38a46945, type: 2}
   tempBulletCount: 0
   myFloor: {fileID: 0}
   skin: {fileID: 4397896174209589393}
   spawnPosition:
-  - {fileID: 676856101118783284}
-  turretPivot: {fileID: 676856101118726530}
+  - {fileID: 5908784640762771929}
+  turretPivot: {fileID: 5908784640762784749}
   health: {fileID: 3287902533673033660}
+  laserShootingTime: 3
 --- !u!114 &3287902533673033660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c586ba9c10a24031b46f9260a79c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initial: 10
+  initial: 20
   _current: 0
   hitTransform: {fileID: 1152706401841267163}
   myFloor: {fileID: 0}
@@ -334,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2173000288540266761, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2270012679587304913, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -731,6 +733,10 @@ PrefabInstance:
     - target: {fileID: 4893559582317070430, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993534747638341820, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5116614178569804512, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1817,18 +1823,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
---- !u!4 &676856101118726530 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2173000288540378793, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
-  m_PrefabInstance: {fileID: 1678894016423892779}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &676856101118783284 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2173000288540309535, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
-  m_PrefabInstance: {fileID: 1678894016423892779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4397896174209589393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3045795035518236602, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+  m_PrefabInstance: {fileID: 1678894016423892779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5908784640762771929 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4993534747638198002, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
+  m_PrefabInstance: {fileID: 1678894016423892779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5908784640762784749 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4993534747638152390, guid: 9c35ea1885ffe49d48a37b323ea6822b, type: 3}
   m_PrefabInstance: {fileID: 1678894016423892779}
   m_PrefabAsset: {fileID: 0}

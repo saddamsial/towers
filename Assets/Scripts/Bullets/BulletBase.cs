@@ -20,8 +20,6 @@ namespace Bullets
             {
                 skin.GetChild(i).gameObject.SetActive(i == (int)bullet.bulletType);
             }
-
-
         }
 
         public void OnReached(Transform other)
@@ -39,6 +37,5 @@ namespace Bullets
             gameObject.Despawn();
             bullet.effect.Spawn(transform.position, Quaternion.identity).Despawn(bullet.despawnTime);
         }
-
     }
 }

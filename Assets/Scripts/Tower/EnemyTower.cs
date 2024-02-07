@@ -18,7 +18,11 @@ namespace Tower
         public void OnEnable()
         {
             GameController.OnDied += RearrangeFloors;
+        }
 
+        public void OnDisable()
+        {
+            GameController.OnDied -= RearrangeFloors;
         }
 
         public void Start()

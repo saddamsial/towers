@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
   - {fileID: 11400000, guid: 4fffea7a7b5d94740b3f4749a7c81e1c, type: 2}
   myFloorGuns:
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}
+  - {fileID: 11400000, guid: 29e89acafd59b432a93416aac22903a0, type: 2}
+  - {fileID: 11400000, guid: 477a58235367640c0ba2c17a38a46945, type: 2}

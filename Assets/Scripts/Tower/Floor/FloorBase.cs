@@ -43,10 +43,10 @@ namespace Tower.Floor
                 attachedGun = null;
             }
             var gunObj = (tempGun ? tempGun : this.tempGun).Spawn(gunPosition.position, transform.rotation);
-            GameController.onGunPlaced?.Invoke(gunObj, this);
             attachedGunObj = gunObj;
             attachedGun = attachedGunObj.GetComponent<GunBase>();
             gunObj.transform.parent = gunPosition;
+            GameController.onGunPlaced?.Invoke(gunObj, this);
         }
         public void Detach()
         {

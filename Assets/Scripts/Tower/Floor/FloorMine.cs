@@ -33,6 +33,7 @@ namespace Tower.Floor
         {
             if (!mainTower.selectedFloors.Contains(transform)) return;
             attackTo = target;
+            attachedGun.RotateToTarget();
             attachedGun.canShoot = true;
         }
 
@@ -41,6 +42,12 @@ namespace Tower.Floor
             base.Die(diedObj);
             if (diedObj.transform == attackTo)
             {
+                Debug.Log("here " + attachedGun.isLaser);
+                if (attachedGun.isLaser)
+                {
+                    Debug.Log("here");
+                    attachedGun.GetComponent<LaserGun>().DamageState(false, true);
+                }
                 attackTo = null;
                 attachedGun.canShoot = false;
             }

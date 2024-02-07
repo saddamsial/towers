@@ -7,18 +7,25 @@ using DG.Tweening;
 using Managers;
 using Tower.Floor;
 using Utils;
+using System.Collections.Generic;
+using NaughtyAttributes;
+using UnityEditor;
 
 namespace Guns
 {
     public class GunBase : MonoBehaviour
     {
-        public bool canShoot, coolDown;
+        public bool canShoot, coolDown, isLaser;
         public GunSo myGun;
+        [HideIf("isLaser")]
         public int tempBulletCount;
-        private float frequency, coolDownTime;
+        private float frequency;
+        private float coolDownTime;
         public FloorBase myFloor;
         public Transform skin;
-        public Transform spawnPosition;
+        [ReorderableList]
+        public List<Transform> spawnPosition = new();
+        public Transform turretPivot;
         public Health health;
         private void OnEnable()
         {
@@ -40,7 +47,7 @@ namespace Guns
             skin.GetChild((int)myGun.myBullet.bulletType).gameObject.SetActive(true);
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!canShoot) return;
 
@@ -70,12 +77,21 @@ namespace Guns
                 }
             }
         }
-
+        public void RotateToTarget()
+        {
+            turretPivot.DODynamicLookAt(myFloor.attackTo.GetComponent<FloorBase>().gunPosition.position, 0.3f).OnComplete(() =>
+            {
+                if (isLaser)
+                {
+                    Shoot();
+                }
+            });
+        }
         protected virtual void Shoot()
         {
-            //{ canShoot = false; return; };
-            var bullet = myGun.myBullet.prefab.Spawn(spawnPosition.position, Quaternion.identity);
+            var bullet = myGun.myBullet.prefab.Spawn(spawnPosition[0].position, Quaternion.identity);
             bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().gunPosition);
+
             tempBulletCount++;
             if (tempBulletCount == myGun.ammoCount)
             {
