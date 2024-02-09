@@ -25,7 +25,7 @@ public class LaserGun : GunBase
         StartCoroutine(LaserDelay());
     }
 
-    IEnumerator LaserDelay()
+    public virtual IEnumerator LaserDelay()
     {
         if (tempBullet && tempBullet.activeInHierarchy)
         {
@@ -38,7 +38,7 @@ public class LaserGun : GunBase
         LaserShoot(tempBullet.transform.GetChild(0), tempBullet.transform.GetChild(1), tempBullet.GetComponent<LineRenderer>());
     }
 
-    public void LaserShoot(Transform firstPoint, Transform endPoint, LineRenderer lineRenderer)
+    public virtual void LaserShoot(Transform firstPoint, Transform endPoint, LineRenderer lineRenderer)
     {
         firstPoint.position = spawnPosition[0].position;
         // endPoint.position = myFloor.attackTo.GetComponent<FloorBase>().gunPosition.position + Vector3.up * 0.5f;
@@ -50,7 +50,7 @@ public class LaserGun : GunBase
     }
 
     Transform targetObj;
-    public void DamageState(bool isOn, bool enemyDied = false)
+    public virtual void DamageState(bool isOn, bool enemyDied = false)
     {
         damage = isOn;
         if (enemyDied)
@@ -59,7 +59,7 @@ public class LaserGun : GunBase
         }
     }
 
-    public void DespawnTempBullet()
+    public virtual void DespawnTempBullet()
     {
         var lineRenderer = tempBullet.GetComponent<LineRenderer>();
         tempBullet.transform.GetChild(0).DOMove(tempBullet.transform.GetChild(1).position, 0.2f).OnUpdate(() =>

@@ -50,11 +50,11 @@ namespace Bullets
 
         private void OnHit(Transform other)
         {
-            tempExplodeEffect.Despawn(1);
+            tempExplodeEffect.Despawn(.2f);
             tempSpawnEffect.Despawn();
             movingObj.transform.parent = null;
             // mySkin.explodeEffect.Spawn(other.position, quaternion.identity);
-            gameObject.Despawn();
+            gameObject.Despawn(.2f);
             // bullet.effect.Spawn(transform.position, Quaternion.identity).Despawn(bullet.despawnTime);
         }
     }
