@@ -13,8 +13,8 @@ namespace Data_and_Scriptable.BulletSo
         BombLauncher = 5,
         Shotgun = 6,
         Tesla = 7,
-        Shockwave = 8,
-        Plasma = 9//flame gun
+        Plasma = 8,//flame gun
+        Shockwave = 9
     }
 
     [CreateAssetMenu(menuName = "Bullet")]
