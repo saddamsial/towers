@@ -119,7 +119,7 @@ MonoBehaviour:
   skin: {fileID: 2475498026679827675}
   mySkin:
     spawnEffect: {fileID: 1005800579108804, guid: b5228327566dd7b42950677605733d7f, type: 3}
-    movingObj: {fileID: 1658112780640456, guid: e6c50dbbce40e427c9971c45823dfa17, type: 3}
+    movingObj: {fileID: 1554052670201816, guid: 32563c1c7ddb94746889e29751f49ec9, type: 3}
     explodeEffect: {fileID: 1344780025213116, guid: cf870bd1ddb489a49806f50c4c73a281, type: 3}
   movingObj: {fileID: 0}
   tempSpawnEffect: {fileID: 0}

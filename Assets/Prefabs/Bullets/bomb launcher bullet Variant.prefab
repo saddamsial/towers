@@ -85,9 +85,9 @@ MonoBehaviour:
   bullet: {fileID: 11400000, guid: 1e34bf4ddbc434ac9b9b4932348f782a, type: 2}
   skin: {fileID: 2475498026679827675}
   mySkin:
-    spawnEffect: {fileID: 1000012903210382, guid: 033d08e548a8e0c4b85a2110d068aaa0, type: 3}
-    movingObj: {fileID: 1238843893459588, guid: 46bf08350ee566542b0bb087e35a1020, type: 3}
-    explodeEffect: {fileID: 1879272669879180, guid: 194f033b43d363949850b7e8cf1cff4d, type: 3}
+    spawnEffect: {fileID: 130848, guid: d16221e794fe16e4e8994a7f8c770561, type: 3}
+    movingObj: {fileID: 131070, guid: 4b21d8abf8d26b449b109c8edb5cc78a, type: 3}
+    explodeEffect: {fileID: 193574, guid: 5c2bdcf6f0badc34f9f192b0995e4a79, type: 3}
   movingObj: {fileID: 0}
   tempSpawnEffect: {fileID: 0}
   tempExplodeEffect: {fileID: 0}
