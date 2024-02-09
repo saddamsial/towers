@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1845992316216235480, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_Name
-      value: rocket bullet variant Variant
+      value: shotgun bullet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2129455887341761706, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,5 +55,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1845992316216235480, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7251344570111721204}
   m_SourcePrefab: {fileID: 100100000, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+--- !u!1 &5157209963326484195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1845992316216235480, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+  m_PrefabInstance: {fileID: 6776896096271956795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-7251344570111721204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157209963326484195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4032d8befbf674df1ae01d394ef25e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 11400000, guid: b84831b8ff2304ef099de6b7595c7cc8, type: 2}
+  skin: {fileID: 5994138482556653560}
+  mySkin:
+    spawnEffect: {fileID: 1584403288528622, guid: a7f7e53efb9c16141af1c5631e25cbb8, type: 3}
+    movingObj: {fileID: 1238843893459588, guid: edc555170136714468e06ae43a7e0c86, type: 3}
+    explodeEffect: {fileID: 1879272669879180, guid: 52baafc6c69151e418a228e14e1bd356, type: 3}
+  movingObj: {fileID: 0}
+  tempSpawnEffect: {fileID: 0}
+  tempExplodeEffect: {fileID: 0}
+--- !u!4 &5994138482556653560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 946646702684419267, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
+  m_PrefabInstance: {fileID: 6776896096271956795}
+  m_PrefabAsset: {fileID: 0}

@@ -11,10 +11,10 @@ namespace Data_and_Scriptable.BulletSo
         Laser = 3,
         IceCannon = 4,
         BombLauncher = 5,
-        Tesla = 6,
+        Shotgun = 6,
         Shockwave = 7,
         Plasma = 8,
-        FlameGun = 9
+        Tesla = 9//flame gun
     }
 
     [CreateAssetMenu(menuName = "Bullet")]
@@ -28,7 +28,5 @@ namespace Data_and_Scriptable.BulletSo
         [HideIf("isLaser")]
         public float despawnTime;
         public float damage;
-        [HideIf("isLaser")]
-        public GameObject effect;
     }
 }

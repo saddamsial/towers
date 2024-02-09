@@ -104,7 +104,8 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2590951919582271513, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -136,9 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 11400000, guid: 466213bea3c0f495dbf6d12a0a95f3a7, type: 2}
   skin: {fileID: 2475498026679827675}
-  trailRenderer: {fileID: 9139744888412331533}
---- !u!96 &9139744888412331533 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
-  m_PrefabInstance: {fileID: 3420930868248758296}
-  m_PrefabAsset: {fileID: 0}
+  mySkin:
+    spawnEffect: {fileID: 1069073989498846, guid: 7658ae01d0a0655468898c47617f4de6, type: 3}
+    movingObj: {fileID: 1564468091806366, guid: f1dc4df701f37324c98ea16f41770afc, type: 3}
+    explodeEffect: {fileID: 1096352044232144, guid: 6e4b9c1925f0d3f4d8446e551a2e20d3, type: 3}

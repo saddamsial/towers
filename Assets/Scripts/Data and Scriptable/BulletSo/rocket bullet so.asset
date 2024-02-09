@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 2
   prefab: {fileID: 5157209963326484195, guid: b0d72b21f0b804d1fbbee9ac5741646b, type: 3}
+  isLaser: 0
   speed: 12
   despawnTime: 1
-  damage: 5
-  effect: {fileID: 150592, guid: 2c82b2af38b82f442bd9a24539b8d33c, type: 3}
+  damage: 1

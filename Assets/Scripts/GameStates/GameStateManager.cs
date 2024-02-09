@@ -28,31 +28,31 @@ namespace GameStates
         {
             // currentState.OnUpdateState();
 
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                TogglePause();
-            }
+            // if (Input.GetKeyDown(KeyCode.P))
+            // {
+            //     TogglePause();
+            // }
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                SetState(onMenuState);
-            }
+            // if (Input.GetKeyDown(KeyCode.M))
+            // {
+            //     SetState(onMenuState);
+            // }
 
             if (Input.GetKeyDown(KeyCode.G))
             {
                 SetState(onGameState);
             }
 
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                SetState(onCompleteState);
-            }
+            // if (Input.GetKeyDown(KeyCode.C))
+            // {
+            //     SetState(onCompleteState);
+            // }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log(currentState.GetType());
-                SetState(onEditState);
-            }
+            // if (Input.GetKeyDown(KeyCode.E))
+            // {
+            //     Debug.Log(currentState.GetType());
+            //     SetState(onEditState);
+            // }
         }
 
         public System.Type GetCurrentState()

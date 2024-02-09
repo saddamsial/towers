@@ -1,4 +1,3 @@
-using System;
 using Bullets;
 using Data_and_Scriptable.GunSo;
 using UnityEngine;
@@ -9,7 +8,6 @@ using Tower.Floor;
 using Utils;
 using System.Collections.Generic;
 using NaughtyAttributes;
-using UnityEditor;
 
 namespace Guns
 {
@@ -89,15 +87,21 @@ namespace Guns
         }
         protected virtual void Shoot()
         {
-            var bullet = myGun.myBullet.prefab.Spawn(spawnPosition[0].position, Quaternion.identity);
-            bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().gunPosition);
-
-            tempBulletCount++;
-            if (tempBulletCount == myGun.ammoCount)
+            for (int i = 0; i < spawnPosition.Count; i++)
             {
-                coolDownTime = myGun.coolDownTime;
-                coolDown = true;
+                var bullet = myGun.myBullet.prefab.Spawn(spawnPosition[i].position, Quaternion.identity);
+                bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().shootPositions[i],
+                    myFloor.attackTo.GetComponent<FloorBase>().attachedGun.GetComponent<IDamageable>());
+
+                // if (myGun.ammoCount == 0) break;
+                tempBulletCount++;
+                if (tempBulletCount == myGun.ammoCount)
+                {
+                    coolDownTime = myGun.coolDownTime;
+                    coolDown = true;
+                }
             }
+
         }
 
         public void Died(FloorBase diedObj)

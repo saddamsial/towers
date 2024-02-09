@@ -1,11 +1,9 @@
-using System;
-using System.Net.Http.Headers;
+using System.Collections.Generic;
 using Data_and_Scriptable.GunSo;
 using EPOOutline;
 using GameStates;
 using Guns;
 using Managers;
-using NaughtyAttributes;
 using UnityEngine;
 using Utils.PoolSystem;
 
@@ -17,8 +15,8 @@ namespace Tower.Floor
     {
         [SerializeField] private float height;
         [SerializeField] public Transform gunPosition;
+        public List<Transform> shootPositions = new();
         public Transform attackTo;
-
         public Outlinable outline;
         public TowerController mainTower;
         public GameObject attachedGunObj;

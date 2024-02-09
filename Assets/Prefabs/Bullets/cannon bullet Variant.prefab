@@ -84,7 +84,8 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2590951919582271513, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -116,9 +117,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 11400000, guid: c5aed091db0524a5fb0ee4d67956f309, type: 2}
   skin: {fileID: 2475498026679827675}
-  trailRenderer: {fileID: 9139744888412331533}
---- !u!96 &9139744888412331533 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 5886050724447557141, guid: 6428e0df966df47d0ae3d51e28b29331, type: 3}
-  m_PrefabInstance: {fileID: 3420930868248758296}
-  m_PrefabAsset: {fileID: 0}
+  mySkin:
+    spawnEffect: {fileID: 1005800579108804, guid: b5228327566dd7b42950677605733d7f, type: 3}
+    movingObj: {fileID: 1658112780640456, guid: e6c50dbbce40e427c9971c45823dfa17, type: 3}
+    explodeEffect: {fileID: 1344780025213116, guid: cf870bd1ddb489a49806f50c4c73a281, type: 3}
+  movingObj: {fileID: 0}
+  tempSpawnEffect: {fileID: 0}
+  tempExplodeEffect: {fileID: 0}
+  isIceCannon: 0

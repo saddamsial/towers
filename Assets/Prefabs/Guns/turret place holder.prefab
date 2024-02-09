@@ -34,11 +34,11 @@ Transform:
   - {fileID: 725252451967616704}
   - {fileID: 4993534747638151044}
   - {fileID: 7095799884951019514}
+  - {fileID: 2409746056700745211}
+  - {fileID: 8524608494437030433}
   - {fileID: 4955982764956951445}
   - {fileID: 4947019635929409343}
-  - {fileID: 2409746056700745211}
   - {fileID: 9063808694845118474}
-  - {fileID: 8524608494437030433}
   - {fileID: 3793201365125496622}
   - {fileID: 6595190032852139615}
   m_Father: {fileID: 0}
@@ -833,7 +833,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 113658, guid: 45d1fe44ae62c474f914b29f3c019ba0, type: 3}
       propertyPath: m_Name
-      value: Flamer
+      value: Shotgun
       objectReference: {fileID: 0}
     - target: {fileID: 113658, guid: 45d1fe44ae62c474f914b29f3c019ba0, type: 3}
       propertyPath: m_IsActive

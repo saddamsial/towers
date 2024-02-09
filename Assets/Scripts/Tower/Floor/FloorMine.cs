@@ -42,10 +42,8 @@ namespace Tower.Floor
             base.Die(diedObj);
             if (diedObj.transform == attackTo)
             {
-                Debug.Log("here " + attachedGun.isLaser);
                 if (attachedGun.isLaser)
                 {
-                    Debug.Log("here");
                     attachedGun.GetComponent<LaserGun>().DamageState(false, true);
                 }
                 attackTo = null;

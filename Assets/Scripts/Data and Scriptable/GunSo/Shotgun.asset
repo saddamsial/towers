@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  myPrefab: {fileID: 2507120889772542911, guid: 5af630c0cc8ea45bb8dcb7f94631e652, type: 3}
+  myBullet: {fileID: 11400000, guid: b84831b8ff2304ef099de6b7595c7cc8, type: 2}
+  isLaser: 0
+  frequency: 2
+  coolDownTime: 0
+  ammoCount: 0

@@ -15,8 +15,5 @@ namespace Data_and_Scriptable.GunSo
         public float coolDownTime;
         [HideIf("isLaser")]
         public int ammoCount;
-        [HideIf("isLaser")]
-        public GameObject muzzleEffect;
-
     }
 }

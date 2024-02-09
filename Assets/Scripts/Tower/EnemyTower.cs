@@ -49,7 +49,7 @@ namespace Tower
         {
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
             floors.Add(tempFloor);
-            tempFloor.transform.GetChild(0).GetChild(enemyTowerSo.floorTemps[c].floorSo.skinNo).gameObject.SetActive(true);// TODO burayı daha düzgün yap
+            tempFloor.transform.GetChild(0).GetChild(enemyTowerSo.floorTemps[c].floorSo.skinNo).gameObject.SetActive(true);//TODOtower burayı daha düzgün yap
             var floorBase = tempFloor.GetComponent<FloorBase>();
             floorBase.mainTower = TowerController.Instance;
         }
