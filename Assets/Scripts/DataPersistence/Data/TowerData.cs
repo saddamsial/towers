@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Data_and_Scriptable.GunSo;
 using UnityEngine;
 
+[ES3Serializable]
 public class TowerData : Data
 {
     public int floorCount = -1;
@@ -12,6 +13,7 @@ public class TowerData : Data
         set
         {
             floorCount = value;
+            ES3.Save(id + "FloorCount", floorCount);
         }
     }
 
@@ -22,7 +24,7 @@ public class TowerData : Data
         set
         {
             guns = new List<GunSo>(value);
-            // ES3.Save(id + "_FloorGuns", guns);
+            ES3.Save(id + "guns", guns);
         }
     } //= new();
 
@@ -33,11 +35,9 @@ public class TowerData : Data
 
     public override void Load()
     {
-        // base.Load();
-
         // Debug.Log("->?" + floorCount);
-        FloorCount = ES3.Load(id + "FloorCount", DataPersistenceController.Instance.presets.myTowerFloorCount);
-        Guns = ES3.Load(id + "guns", DataPersistenceController.Instance.presets.myFloorGuns);
+        floorCount = ES3.Load(id + "FloorCount", DataPersistenceController.Instance.presets.myTowerFloorCount);
+        guns = ES3.Load(id + "guns", DataPersistenceController.Instance.presets.myFloorGuns);
 
         // Debug.Log("->" + floorCount);
 
