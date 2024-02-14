@@ -63,6 +63,7 @@ namespace GameStates
         public void SetState(GameState newState)
         {
             ExitState(currentState);
+            // Debug.Log(newState.name);
             currentState = newState;
             EnterState(newState);
         }

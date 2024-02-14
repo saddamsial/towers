@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using GameStates;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class AnimationEvents : MonoBehaviour
+{
+    public List<UnityEvent> eventsToTrigger = new();
+
+    public void InvokeEvents()
+    {
+
+        if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() == typeof(OnMenuState))
+        {
+            eventsToTrigger[0]?.Invoke();
+        }
+        else if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() == typeof(OnEditState))
+        {
+            eventsToTrigger[1]?.Invoke();
+        }
+    }
+}

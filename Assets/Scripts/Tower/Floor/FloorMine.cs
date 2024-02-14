@@ -9,6 +9,7 @@ namespace Tower.Floor
 {
     public class FloorMine : FloorBase
     {
+        public GameObject addFloorButton;
         public override void OnEnable()
         {
             GameController.OnDied += Die;

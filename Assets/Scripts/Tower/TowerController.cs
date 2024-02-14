@@ -23,7 +23,7 @@ namespace Tower
         public void Start()
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
-            Debug.Log(data.FloorCount);
+            //Debug.Log(data.FloorCount);
             for (int i = 0; i < data.floorCount; i++)
             {
                 AddFloor(i, false);
@@ -44,9 +44,16 @@ namespace Tower
                 data.FloorCount++;
             //Debug.Log(data.Guns[whichFloor]);
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
+            if (isNewFloor && floors.Count > 0) floors[^1].GetComponent<FloorMine>().addFloorButton.SetActive(false);
             floors.Add(tempFloor);
+            if (isNewFloor) floors[^1].GetComponent<FloorMine>().addFloorButton.SetActive(true);
             var floorBase = tempFloor.GetComponent<FloorBase>();
             floorBase.Init(this, data.Guns[whichFloor]);
+        }
+
+        public void EditModeOpen(bool state)
+        {
+            floors[^1].GetComponent<FloorMine>().addFloorButton.SetActive(state);
         }
 
         protected void AddToList()
