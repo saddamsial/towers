@@ -4,16 +4,19 @@ using Data_and_Scriptable.GunSo;
 using Managers;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tower.Floor
 {
     public class FloorMine : FloorBase
     {
-        public GameObject addFloorButton;
+        public Button addFloorButton;
+        public GameObject upgradeButton;
         public override void OnEnable()
         {
             GameController.OnDied += Die;
             InputController.Instance.onTargetSet += Attack;
+            addFloorButton.onClick.RemoveAllListeners();
             // AttachGun();
         }
 
@@ -27,6 +30,8 @@ namespace Tower.Floor
         public override void Init(TowerController mainTower, GunSo gun)
         {
             base.Init(mainTower, gun);
+            addFloorButton.onClick.AddListener(mainTower.AddNewFloor);
+
             AttachGun(gun.myPrefab);
         }
 

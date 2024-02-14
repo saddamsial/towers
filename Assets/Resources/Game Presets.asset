@@ -21,7 +21,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
   - {fileID: 11400000, guid: 4fffea7a7b5d94740b3f4749a7c81e1c, type: 2}
   - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+  - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
   myFloorGuns:
   - {fileID: 11400000, guid: 3c2022b59bd394e15979278503498ee2, type: 2}
   - {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}
+  - {fileID: 11400000, guid: 62f6bf9a657604e7aa40aa9839fc65fe, type: 2}
+  - {fileID: 11400000, guid: 477a58235367640c0ba2c17a38a46945, type: 2}
+  - {fileID: 11400000, guid: ca6beda3488674983877a107a4b43bff, type: 2}
+  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  - {fileID: 11400000, guid: 739f3508fabaa4481bd5d0e4346aea6e, type: 2}
+  - {fileID: 11400000, guid: 29e89acafd59b432a93416aac22903a0, type: 2}
+  - {fileID: 11400000, guid: 08229908a09ca432c803d3a188611a27, type: 2}
   - {fileID: 11400000, guid: 477a58235367640c0ba2c17a38a46945, type: 2}

@@ -8,6 +8,7 @@ using UnityEngine;
 using Tower.Floor;
 using Utils.PoolSystem;
 using Utils;
+using Cinemachine;
 
 namespace Tower
 {
@@ -20,6 +21,7 @@ namespace Tower
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
         public TowerData data;
+        public CinemachineTargetGroup targetGroup;
         public void Start()
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
@@ -34,7 +36,7 @@ namespace Tower
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                AddFloor(floors.Count, true);
+                AddNewFloor();
             }
         }
 
@@ -44,16 +46,21 @@ namespace Tower
                 data.FloorCount++;
             //Debug.Log(data.Guns[whichFloor]);
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
-            if (isNewFloor && floors.Count > 0) floors[^1].GetComponent<FloorMine>().addFloorButton.SetActive(false);
+            if (isNewFloor && floors.Count > 0) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(false);
             floors.Add(tempFloor);
-            if (isNewFloor) floors[^1].GetComponent<FloorMine>().addFloorButton.SetActive(true);
+            if (isNewFloor) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(true);
             var floorBase = tempFloor.GetComponent<FloorBase>();
             floorBase.Init(this, data.Guns[whichFloor]);
+            targetGroup.AddMember(tempFloor.transform.GetChild(1), 1 - (whichFloor * 0.05f), whichFloor == 0 ? 4 : 2);
         }
 
         public void EditModeOpen(bool state)
         {
-            floors[^1].GetComponent<FloorMine>().addFloorButton.SetActive(state);
+            floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(state);
+        }
+        public void AddNewFloor()
+        {
+            AddFloor(floors.Count, true);
         }
 
         protected void AddToList()
