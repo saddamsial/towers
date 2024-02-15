@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5721446618766099225}
   - component: {fileID: 2955323738224644513}
   - component: {fileID: 6340858128923402290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 4023987278908619297}
   - component: {fileID: 1163780785206973518}
   - component: {fileID: 4402390633339900804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2174697056519676697}
   - component: {fileID: 7893908196185993614}
   - component: {fileID: 3273772851976966159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 5233850670546737262}
   - component: {fileID: 5565291217933730657}
   - component: {fileID: 4470149716919006588}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 6787314948350551446}
   - component: {fileID: 8332089937609217671}
   - component: {fileID: 8232146915416535876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ RectTransform:
   m_GameObject: {fileID: 6623602993755564726}
   m_LocalRotation: {x: -0, y: -0.20408703, z: -0, w: 0.97895277}
   m_LocalPosition: {x: 0, y: 0, z: 1.42}
-  m_LocalScale: {x: 1.5922, y: 1.5922, z: 1.5922}
+  m_LocalScale: {x: 1.338881, y: 1.338881, z: 1.338881}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5721446618766099225}
@@ -483,7 +483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -23.552, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.75, y: -1.38}
+  m_AnchoredPosition: {x: -1.75, y: -1.537}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6787314948350551446
@@ -567,7 +567,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8332089937609217671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2791473329673029540}
+        m_TargetAssemblyTypeName: Tower.Floor.FloorMine, Assembly-CSharp
+        m_MethodName: UpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8657879919854231507
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +592,7 @@ GameObject:
   - component: {fileID: 5502181821868751848}
   - component: {fileID: 7173160840604347766}
   - component: {fileID: 2113837264009979379}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: add floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,14 +640,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.019585771, g: 0.754717, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec54ea78b696e4906b4c2fba7cd1b22f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43225060844684b2f90d02d74e722196, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -697,6 +709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2894033896944105387, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3084271409117851134, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -758,12 +774,24 @@ PrefabInstance:
       value: floor mine
       objectReference: {fileID: 0}
     - target: {fileID: 4721198468660304806, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721198468660304806, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_TagString
       value: tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747577839080732911, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5300428480493889919, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_Center.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300428480493889919, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6935329347518002868, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -804,6 +832,14 @@ PrefabInstance:
     - target: {fileID: 6935329347518002868, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039087517682093939, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391101826401097355, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4452988025280479330, guid: fac6662e303ad403c894100eb70bbc28, type: 3}

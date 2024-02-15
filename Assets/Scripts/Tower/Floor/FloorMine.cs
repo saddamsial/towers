@@ -64,7 +64,7 @@ namespace Tower.Floor
             var isEdit = GameStateManager.Instance.IsEditState();
             if (previousFloor != null)
             {
-                previousFloor.myCanvasRaycaster.enabled = false;
+                // previousFloor.myCanvasRaycaster.enabled = false;
                 previousFloor.addFloorButton.gameObject.SetActive(false);
             }
             addFloorButton.onClick.RemoveAllListeners();
@@ -79,7 +79,12 @@ namespace Tower.Floor
         {
             upgradeButton.SetActive(state);
             myCanvasRaycaster.enabled = state;
-            addFloorButton.gameObject.SetActive(state);
+            if (mainTower.floors[^1].transform == transform) addFloorButton.gameObject.SetActive(state);
+        }
+
+        public void UpgradeButton()
+        {
+            Debug.Log("upgrade pressed", gameObject);
         }
     }
 }

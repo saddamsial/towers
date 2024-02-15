@@ -14,25 +14,36 @@ namespace Managers
         private RaycastHit hit;
         private Ray ray;
         [SerializeField] private TowerController towerController;
-
+        Transform clickedObject;
+        public LayerMask myLayer, enemyLayer;
         void Start()
         {
         }
 
         private void LateUpdate()
         {
-            if (!Input.GetKeyDown(KeyCode.Mouse0) ||
-                !GameStateManager.Instance.IsGameState()) return;
-            var enemyTowerTarget = GetWorldPositionOnPlane(Input.mousePosition).transform;
-            if (!enemyTowerTarget || towerController.selectedFloors.Count < 1) return;
-            onTargetSet?.Invoke(enemyTowerTarget);
+            if (!Input.GetKeyDown(KeyCode.Mouse0)) return;
+
+            if (GameStateManager.Instance.IsGameState())
+            {
+                clickedObject = GetWorldPositionOnPlane(Input.mousePosition, enemyLayer).transform;
+                if (!clickedObject || towerController.selectedFloors.Count < 1) return;
+                onTargetSet?.Invoke(clickedObject);
+            }
+            if (GameStateManager.Instance.IsEditState())
+            {
+                clickedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
+                if (!clickedObject) return;
+                Debug.Log(clickedObject.name);
+            }
+
         }
 
-        private RaycastHit GetWorldPositionOnPlane(Vector3 screenPosition)
+        private RaycastHit GetWorldPositionOnPlane(Vector3 screenPosition, LayerMask layer)
         {
             ray = mainCam.ScreenPointToRay(screenPosition);
-            Physics.Raycast(ray, out hit, 100);
-            if (hit.transform && hit.transform.gameObject.layer == LayerMask.NameToLayer("enemy"))
+            Physics.Raycast(ray, out hit, 100, layer);
+            if (hit.transform)//&& hit.transform.gameObject.layer == layer)
             {
                 return hit;
             }
