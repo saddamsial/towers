@@ -302,7 +302,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527451903622216166}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -464,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3853869753898762035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -860,7 +860,8 @@ MonoBehaviour:
   attachedGun: {fileID: 0}
   tempGun: {fileID: 0}
   addFloorButton: {fileID: 2113837264009979379}
-  upgradeButton: {fileID: 0}
+  upgradeButton: {fileID: 6623602993755564726}
+  myCanvasRaycaster: {fileID: 3273772851976966159}
 --- !u!4 &7429381671903486132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6935329347518002868, guid: fac6662e303ad403c894100eb70bbc28, type: 3}

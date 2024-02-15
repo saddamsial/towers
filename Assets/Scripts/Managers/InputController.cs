@@ -22,7 +22,7 @@ namespace Managers
         private void LateUpdate()
         {
             if (!Input.GetKeyDown(KeyCode.Mouse0) ||
-                GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
+                !GameStateManager.Instance.IsGameState()) return;
             var enemyTowerTarget = GetWorldPositionOnPlane(Input.mousePosition).transform;
             if (!enemyTowerTarget || towerController.selectedFloors.Count < 1) return;
             onTargetSet?.Invoke(enemyTowerTarget);

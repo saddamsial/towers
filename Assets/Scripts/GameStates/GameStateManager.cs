@@ -1,6 +1,7 @@
 using UnityEngine;
 using Utils;
 using UnityEngine.SceneManagement;
+using UnityEditorInternal;
 namespace GameStates
 {
     public class GameStateManager : Singleton<GameStateManager>
@@ -58,6 +59,21 @@ namespace GameStates
         public System.Type GetCurrentState()
         {
             return currentState.GetType();
+        }
+
+        public bool IsEditState()
+        {
+            return GetCurrentState() == typeof(OnEditState);
+        }
+
+        public bool IsGameState()
+        {
+            return GetCurrentState() == typeof(OnGameState);
+        }
+
+        public bool IsMenuState()
+        {
+            return GetCurrentState() == typeof(OnMenuState);
         }
 
         public void SetState(GameState newState)

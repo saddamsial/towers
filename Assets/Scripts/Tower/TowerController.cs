@@ -9,6 +9,8 @@ using Tower.Floor;
 using Utils.PoolSystem;
 using Utils;
 using Cinemachine;
+using UnityEngine.Animations;
+using Managers;
 
 namespace Tower
 {
@@ -21,7 +23,9 @@ namespace Tower
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
         public TowerData data;
-        public CinemachineTargetGroup targetGroup;
+        public GamePresets gamePresets;
+        FloorMine prevFloorMine;
+
         public void Start()
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
@@ -46,12 +50,14 @@ namespace Tower
                 data.FloorCount++;
             //Debug.Log(data.Guns[whichFloor]);
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
-            if (isNewFloor && floors.Count > 0) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(false);
+            if (floors.Count > 0)
+            {
+                prevFloorMine = floors[^1].GetComponent<FloorMine>();
+            }
             floors.Add(tempFloor);
-            if (isNewFloor) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(true);
-            var floorBase = tempFloor.GetComponent<FloorBase>();
-            floorBase.Init(this, data.Guns[whichFloor]);
-            targetGroup.AddMember(tempFloor.transform.GetChild(1), 1 - (whichFloor * 0.05f), whichFloor == 0 ? 4 : 2);
+            // if (isNewFloor && floors.Count < gamePresets.myFloorGuns.Count - 1) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(true);
+            GameController.onFloorAdded?.Invoke(tempFloor.transform, whichFloor, this, data.Guns[whichFloor], prevFloorMine);
+
         }
 
         public void EditModeOpen(bool state)
@@ -65,7 +71,7 @@ namespace Tower
 
         protected void AddToList()
         {
-            if (GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
+            if (!GameStateManager.Instance.IsGameState()) return;
 
             foreach (var s in selections.Selectables.Where(s =>
                          !selectedFloors.Contains(s.transform) && !s.GetComponentInParent<EnemyTower>()))

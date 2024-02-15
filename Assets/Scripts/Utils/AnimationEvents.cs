@@ -11,11 +11,11 @@ public class AnimationEvents : MonoBehaviour
     public void InvokeEvents()
     {
 
-        if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() == typeof(OnMenuState))
+        if (GameStateManager.Instance && GameStateManager.Instance.IsMenuState())
         {
             eventsToTrigger[0]?.Invoke();
         }
-        else if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() == typeof(OnEditState))
+        else if (GameStateManager.Instance && GameStateManager.Instance.IsEditState())
         {
             eventsToTrigger[1]?.Invoke();
         }

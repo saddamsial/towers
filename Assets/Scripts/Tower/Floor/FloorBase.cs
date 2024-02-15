@@ -28,10 +28,6 @@ namespace Tower.Floor
 
         public abstract void Attack(Transform target);
 
-        public virtual void Init(TowerController mainTower, GunSo gun)
-        {
-            this.mainTower = mainTower;
-        }
         public void AttachGun(GameObject tempGun = null)
         {
             if (attachedGunObj != null)
@@ -54,7 +50,7 @@ namespace Tower.Floor
         }
         public void SetOutlinableState(bool state)
         {
-            if (GameStateManager.Instance && GameStateManager.Instance.GetCurrentState() != typeof(OnGameState)) return;
+            if (GameStateManager.Instance && !GameStateManager.Instance.IsGameState()) return;
 
             outline.enabled = state;
         }
