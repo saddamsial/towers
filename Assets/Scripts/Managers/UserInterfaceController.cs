@@ -1,17 +1,13 @@
 using UnityEngine;
+using Utils;
 
 namespace Managers
 {
-    public class UserInterfaceController : MonoBehaviour
+    public class UserInterfaceController : Singleton<UserInterfaceController>
     {
-        void Start()
+        private void Start()
         {
-        
-        }
 
-        void Update()
-        {
-        
         }
     }
 }

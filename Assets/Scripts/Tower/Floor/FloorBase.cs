@@ -32,9 +32,7 @@ namespace Tower.Floor
         {
             if (attachedGunObj != null)
             {
-                attachedGunObj.Despawn();
-                attachedGunObj = null;
-                attachedGun = null;
+                Detach();
             }
             var gunObj = (tempGun ? tempGun : this.tempGun).Spawn(gunPosition.position, transform.rotation);
             attachedGunObj = gunObj;
@@ -45,6 +43,7 @@ namespace Tower.Floor
         public void Detach()
         {
             Debug.Log("removed");
+            attachedGunObj.Despawn();
             attackTo = null;
             attachedGunObj = null;
         }

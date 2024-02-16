@@ -5,6 +5,7 @@ using Tower;
 using Tower.Floor;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Managers
 {
@@ -14,11 +15,17 @@ namespace Managers
         public static Action<bool> onEditMode;
         public static Action<FloorBase> OnDied;
         public static Action<Transform, int, TowerController, GunSo, FloorMine> onFloorAdded;
+        public static Action<int> onCloseCameraPressed;
+        public static Action<GameObject> swapGun;
 
+        public int currentFocusedGun;
         public void InvokeEditMode(bool state)
         {
             onEditMode?.Invoke(state);
         }
-
+        public void InvokeSwapGun(GameObject gun = null)
+        {
+            swapGun?.Invoke(gun);
+        }
     }
 }

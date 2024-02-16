@@ -13,15 +13,18 @@ public class CameraSettingsController : MonoBehaviour
     public CinemachineVirtualCamera editCam;
     private CinemachineGroupComposer cinemachineGroupComposer;
     public Transform closeCameras;
-    public GameObject zoomBackButton;
+    public GameObject zoomBackButton, closeCameraCanvas;
     int tempCameraNo;
+
     private void OnEnable()
     {
         GameController.onFloorAdded += FloorAdded;
+        GameController.onCloseCameraPressed += CloseCameraButton;
     }
     private void OnDisable()
     {
         GameController.onFloorAdded -= FloorAdded;
+        GameController.onCloseCameraPressed -= CloseCameraButton;
     }
     private void Start()
     {
@@ -44,20 +47,27 @@ public class CameraSettingsController : MonoBehaviour
     {
         if (tempCameraNo == no)
         {
-            closeCameras.GetChild(no).gameObject.SetActive(false);
-            tempCameraNo = -1;
-            zoomBackButton.SetActive(false);
+            BackNormalEditMode();
             return;
         }
-        if (tempCameraNo > 0)
+        if (tempCameraNo >= 0)
             closeCameras.GetChild(tempCameraNo).gameObject.SetActive(false);
         tempCameraNo = no;
+        GameController.Instance.currentFocusedGun = no;
         closeCameras.GetChild(no).gameObject.SetActive(true);
         zoomBackButton.SetActive(true);
+        closeCameraCanvas.SetActive(true);
     }
 
     public void BackNormalEditMode()
     {
+        /*
+            closeCameras.GetChild(no).gameObject.SetActive(false);
+            tempCameraNo = -1;
+            zoomBackButton.SetActive(false);
+        */
+        GameController.Instance.currentFocusedGun = -1;
+        closeCameraCanvas.SetActive(false);
         zoomBackButton.SetActive(false);
         closeCameras.GetChild(tempCameraNo).gameObject.SetActive(false);
         tempCameraNo = -1;

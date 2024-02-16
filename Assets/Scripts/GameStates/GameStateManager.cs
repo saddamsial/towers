@@ -34,10 +34,10 @@ namespace GameStates
             //     TogglePause();
             // }
 
-            // if (Input.GetKeyDown(KeyCode.M))
-            // {
-            //     SetState(onMenuState);
-            // }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SetState(onMenuState);
+            }
 
             if (Input.GetKeyDown(KeyCode.G))
             {

@@ -8,6 +8,7 @@ using Tower.Floor;
 using Utils;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Unity.Mathematics;
 
 namespace Guns
 {
@@ -25,6 +26,7 @@ namespace Guns
         public List<Transform> spawnPosition = new();
         public Transform turretPivot;
         public Health health;
+        private Quaternion firstRotation;
         private void OnEnable()
         {
             GameController.onGunPlaced += Init;
@@ -40,6 +42,7 @@ namespace Guns
         private void Init(GameObject gun, FloorBase floor)
         {
             if (gun != gameObject) return;
+            firstRotation = turretPivot.rotation;
             myFloor = floor;
             canShoot = true;
             skin.GetChild((int)myGun.myBullet.bulletType).gameObject.SetActive(true);
@@ -85,6 +88,11 @@ namespace Guns
                 }
             });
         }
+
+        public void ResetRotation()
+        {
+            turretPivot.DORotateQuaternion(firstRotation, 0.4f);//.rotation = firstRotation;
+        }
         protected virtual void Shoot()
         {
             for (int i = 0; i < spawnPosition.Count; i++)
@@ -108,6 +116,7 @@ namespace Guns
         {
             if (diedObj.attachedGunObj != transform) return;
             canShoot = false;
+
         }
     }
 }
