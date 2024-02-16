@@ -16,6 +16,7 @@ namespace Managers
         [SerializeField] private TowerController towerController;
         Transform clickedObject;
         public LayerMask myLayer, enemyLayer;
+        public CameraSettingsController cameraSettings;
         void Start()
         {
         }
@@ -34,7 +35,8 @@ namespace Managers
             {
                 clickedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
                 if (!clickedObject) return;
-                Debug.Log(clickedObject.name);
+                // Debug.Log(clickedObject.name);
+                cameraSettings.CloseCameraButton(towerController.floors.IndexOf(clickedObject.gameObject));
             }
 
         }

@@ -11,7 +11,7 @@ public class GamePresets : ScriptableObject
     [ReorderableList]
     [Label("Levels")]
     public List<EnemyTowerSo> levels = new();
-    public int myTowerFloorCount;
+    public int myTowerFloorCount, maxPossibleFloor;
     public List<FloorSo> myFloorMaterials = new();
     public List<GunSo> myFloorGuns = new();
 }

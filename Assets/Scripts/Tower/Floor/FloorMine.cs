@@ -69,7 +69,7 @@ namespace Tower.Floor
             }
             addFloorButton.onClick.RemoveAllListeners();
             addFloorButton.onClick.AddListener(mainTower.AddNewFloor);
-            addFloorButton.gameObject.SetActive(isEdit);
+            if (whichFloor < mainTower.gamePresets.maxPossibleFloor - 1) addFloorButton.gameObject.SetActive(isEdit);
             upgradeButton.SetActive(isEdit);
             AttachGun(gun.myPrefab);
             myCanvasRaycaster.enabled = isEdit;
@@ -79,7 +79,8 @@ namespace Tower.Floor
         {
             upgradeButton.SetActive(state);
             myCanvasRaycaster.enabled = state;
-            if (mainTower.floors[^1].transform == transform) addFloorButton.gameObject.SetActive(state);
+            if (mainTower.floors[^1].transform == transform && mainTower.floors.Count < mainTower.gamePresets.maxPossibleFloor - 1)
+                addFloorButton.gameObject.SetActive(state);
         }
 
         public void UpgradeButton()
