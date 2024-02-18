@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Data_and_Scriptable.GunSo;
 using GameStates;
+using Guns;
 using Managers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -78,7 +79,8 @@ namespace Tower.Floor
             myCanvasRaycaster.enabled = state;
             if (mainTower.floors[^1].transform == transform && mainTower.floors.Count < mainTower.gamePresets.maxPossibleFloor - 1)
                 addFloorButton.gameObject.SetActive(state);
-            attachedGun.ResetRotation();
+
+            attachedGun?.ResetRotation();
         }
         public void UpgradeButton()
         {
@@ -86,9 +88,11 @@ namespace Tower.Floor
         }
         public void SwapGun(GameObject newGun = null)
         {
-            if (mainTower.floors.IndexOf(gameObject) != GameController.Instance.currentFocusedGun) return;
+            var index = mainTower.floors.IndexOf(gameObject);
+            if (index != GameController.Instance.currentFocusedGun) return;
             Debug.Log("this gun");
             AttachGun(newGun);
+            mainTower.data.UpdateFloorGun(index, newGun.GetComponent<GunBase>().myGun);
         }
     }
 }

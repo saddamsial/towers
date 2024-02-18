@@ -28,6 +28,11 @@ public class TowerData : Data
         }
     } //= new();
 
+    public void UpdateFloorGun(int index, GunSo gun)
+    {
+        Guns[index] = gun;
+    }
+
     public TowerData() : base("tower")
     {
         Load();

@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
-  m_Name: Bomb Launcher Gun So
+  m_Name: Empty Gun So
   m_EditorClassIdentifier: 
-  gunName: Bomb Launcher
-  myPrefab: {fileID: 2507120889772542911, guid: c4df2ea3ef1534defa2a15bec666dd34, type: 3}
-  myBullet: {fileID: 11400000, guid: 1e34bf4ddbc434ac9b9b4932348f782a, type: 2}
+  gunName: empty
+  myPrefab: {fileID: 2507120889772542911, guid: a7cfb5a9c59224a76bb3f1f01f9e2682, type: 3}
+  isEmpty: 1
+  myBullet: {fileID: 0}
   isLaser: 0
-  frequency: 2
+  frequency: 999
   coolDownTime: 0
   ammoCount: 0

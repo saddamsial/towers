@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
   m_Name: Laser Gun So
   m_EditorClassIdentifier: 
+  gunName: Laser
   myPrefab: {fileID: 2507120889772542911, guid: 3922e7e57fef14f8ebbfa15a711a4433, type: 3}
   myBullet: {fileID: 11400000, guid: 327699c6b4e9245dcb0b8112184889d2, type: 2}
   isLaser: 1
   frequency: 0.3
   coolDownTime: 0
   ammoCount: 0
-  muzzleEffect: {fileID: 0}

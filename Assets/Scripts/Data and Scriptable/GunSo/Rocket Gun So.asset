@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
   m_Name: Rocket Gun So
   m_EditorClassIdentifier: 
+  gunName: Rocket
   myPrefab: {fileID: 2507120889772542911, guid: 08793b6336c1b4c859eb3fad1363eaa4, type: 3}
   myBullet: {fileID: 11400000, guid: 77d96afab02ef4ce391c92fdb9a7cec2, type: 2}
+  isLaser: 0
   frequency: 0.5
   coolDownTime: 3
   ammoCount: 5
-  muzzleEffect: {fileID: 147450, guid: d786954ea58ae6f45b3de29c31ec67f9, type: 3}

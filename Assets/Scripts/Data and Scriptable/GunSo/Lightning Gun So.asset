@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16830d9d94644f3fb4bbcc1fd38af05, type: 3}
   m_Name: Lightning Gun So
   m_EditorClassIdentifier: 
+  gunName: Lightning
   myPrefab: {fileID: 2507120889772542911, guid: 2e6ab9d19324642e0828bf95cf4775a1, type: 3}
   myBullet: {fileID: 11400000, guid: 8a878ba9667824943b73e24a8801262d, type: 2}
   isLaser: 1

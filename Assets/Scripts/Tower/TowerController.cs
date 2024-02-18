@@ -11,6 +11,7 @@ using Utils;
 using Cinemachine;
 using UnityEngine.Animations;
 using Managers;
+using Data_and_Scriptable.GunSo;
 
 namespace Tower
 {
@@ -25,7 +26,6 @@ namespace Tower
         public TowerData data;
         public GamePresets gamePresets;
         FloorMine prevFloorMine;
-
         public void Start()
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
