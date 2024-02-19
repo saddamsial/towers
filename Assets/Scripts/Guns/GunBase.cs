@@ -73,13 +73,20 @@ namespace Guns
                 else
                 {
                     frequency = myGun.frequency;
-                    if (!myFloor.attackTo) return;
+                    if (!myFloor.attackTo) { canShoot = false; return; }
                     Shoot();
                 }
             }
         }
         public void RotateToTarget()
         {
+            turretPivot.DOKill();
+            coolDownTime = myGun.coolDownTime;
+            coolDown = true;
+            frequency = myGun.frequency;
+            canShoot = true;
+
+            // Debug.Log(myFloor.attackTo, myFloor.attackTo);
             turretPivot.DODynamicLookAt(myFloor.attackTo.GetComponent<FloorBase>().gunPosition.position, 0.3f).OnComplete(() =>
             {
                 if (isLaser)

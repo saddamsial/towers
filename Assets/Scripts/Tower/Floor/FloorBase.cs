@@ -42,15 +42,14 @@ namespace Tower.Floor
         }
         public void Detach()
         {
-            Debug.Log("removed");
+            //Debug.Log("removed");
             attachedGunObj.Despawn();
             attackTo = null;
             attachedGunObj = null;
         }
         public void SetOutlinableState(bool state)
         {
-            if (GameStateManager.Instance && !GameStateManager.Instance.IsGameState()) return;
-
+            if (GameStateManager.Instance && !GameStateManager.Instance.IsGameState() || !attachedGun) return;
             outline.enabled = state;
         }
         public virtual void Die(FloorBase diedObj)

@@ -37,10 +37,9 @@ namespace Tower.Floor
         }
         public override void Attack(Transform target)
         {
-            if (!mainTower.selectedFloors.Contains(transform)) return;
+            if (!mainTower.selectedFloors.Contains(transform) || !attachedGun) return;
             attackTo = target;
             attachedGun.RotateToTarget();
-            attachedGun.canShoot = true;
         }
         public override void Die(FloorBase diedObj)
         {
@@ -90,7 +89,7 @@ namespace Tower.Floor
         {
             var index = mainTower.floors.IndexOf(gameObject);
             if (index != GameController.Instance.currentFocusedGun) return;
-            Debug.Log("this gun");
+            //Debug.Log("this gun");
             AttachGun(newGun);
             mainTower.data.UpdateFloorGun(index, newGun.GetComponent<GunBase>().myGun);
         }
