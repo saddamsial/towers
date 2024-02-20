@@ -90,5 +90,13 @@ namespace Tower
             yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f);
             selectedFloors.Clear();
         }
+
+        public GunSo FocusedGunSo()
+        {
+            if (GameController.Instance.currentFocusedGun < 0 ||
+            !floors[GameController.Instance.currentFocusedGun].GetComponent<FloorBase>().attachedGun) return null;
+            var so = floors[GameController.Instance.currentFocusedGun].GetComponent<FloorBase>().attachedGun.myGun;
+            return so;
+        }
     }
 }

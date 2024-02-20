@@ -90,8 +90,8 @@ namespace Tower.Floor
             var index = mainTower.floors.IndexOf(gameObject);
             if (index != GameController.Instance.currentFocusedGun) return;
             //Debug.Log("this gun");
-            AttachGun(newGun);
             mainTower.data.UpdateFloorGun(index, newGun.GetComponent<GunBase>().myGun);
+            AttachGun(newGun);
         }
     }
 }

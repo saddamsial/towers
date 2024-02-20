@@ -50,6 +50,7 @@ public class CameraSettingsController : MonoBehaviour
             BackNormalEditMode();
             return;
         }
+
         if (tempCameraNo >= 0)
             closeCameras.GetChild(tempCameraNo).gameObject.SetActive(false);
         tempCameraNo = no;
@@ -61,13 +62,14 @@ public class CameraSettingsController : MonoBehaviour
 
     public void BackNormalEditMode()
     {
+        GameController.onZoomOutFromGun?.Invoke();
         /*
             closeCameras.GetChild(no).gameObject.SetActive(false);
             tempCameraNo = -1;
             zoomBackButton.SetActive(false);
         */
         GameController.Instance.currentFocusedGun = -1;
-        closeCameraCanvas.SetActive(false);
+        // closeCameraCanvas.SetActive(false);
         zoomBackButton.SetActive(false);
         closeCameras.GetChild(tempCameraNo).gameObject.SetActive(false);
         tempCameraNo = -1;

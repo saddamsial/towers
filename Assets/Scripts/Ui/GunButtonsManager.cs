@@ -10,10 +10,11 @@ using Tower.Floor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class GunButtonsManager : MonoBehaviour
 {
-    public int buttonNo, focusedGun = -1;
+    public int buttonNo;
     public Button swapButton;
     public Image gunLogo;
     public TMP_Text gunTitleText, gunStatsText, gunButtonStateText;
@@ -28,44 +29,57 @@ public class GunButtonsManager : MonoBehaviour
     public void OnEnable()
     {
         GameController.onCloseCameraPressed += CloseCameraPressed;
-        GameController.swapGun += GunSwaped;
+        GameController.swapGun += StateSetup;
+        GameController.onZoomOutFromGun += ZoomOut;
     }
 
     public void OnDisable()
     {
         GameController.onCloseCameraPressed -= CloseCameraPressed;
-        GameController.swapGun -= GunSwaped;
+        GameController.swapGun -= StateSetup;
+        GameController.onZoomOutFromGun -= ZoomOut;
     }
     void Start()
     {
-
         tempGunButton = gunButtons[buttonNo];
         tempGunSo = tempGunButton.gun;
         tempGunBulletSo = tempGunButton.gun.myBullet;
-
 
         gunLogo.sprite = tempGunButton.gunLogo;
         gunTitleText.text = tempGunSo.gunName;
 
         data = (GunData)DataPersistenceController.Instance.GetData("gun", new GunData(tempGunSo.gunName));
-
-        swapButton.onClick.RemoveAllListeners();
-        //swapButton.onClick.AddListener(() => GameController.Instance.InvokeSwapGun(tempGunSo.myPrefab));
-
-        GunSwaped(tempGunSo.myPrefab);
-    }
-
-    public void GunSwaped(GameObject gun)
-    {
-        //if (TowerController.Instance.floors.Count < buttonNo + 1) return;
-
-        if (data.unlockState)
+        if (buttonNo == 0 && !data.unlockState)
         {
-            // Debug.Log(gun.name);
-            // Debug.Log(tempGunSo.myPrefab.name);
-            if (gun == tempGunSo.myPrefab && focusedGun == buttonNo)
+            Debug.Log("default unlock for machine gun");
+            data.UnlockState = true;
+        }
+    }
+    public void ZoomOut()
+    {
+        contentPanel.SetActive(false);
+    }
+    public void CloseCameraPressed(int id)
+    {
+        swapButton.onClick.RemoveAllListeners();
+        contentPanel.SetActive(GameController.Instance.currentFocusedGun != -1);
+        StateSetup();
+
+    }
+    public void StateSetup(GameObject swapedGun = null)
+    {
+        swapButton.interactable = true;
+        StartCoroutine(StateSetupDelay());
+    }
+    IEnumerator StateSetupDelay()
+    {
+        yield return new WaitForSeconds(0.05f);
+        if (IsGunUnlocked())
+        {
+            if (TowerController.Instance.FocusedGunSo() && TowerController.Instance.FocusedGunSo() == tempGunSo)
             {
                 gunButtonStateText.text = "Equiped";
+                swapButton.interactable = false;
                 swapButton.onClick.RemoveAllListeners();
             }
             else
@@ -77,24 +91,17 @@ public class GunButtonsManager : MonoBehaviour
         else
         {
             gunButtonStateText.text = "Unlock";
-            swapButton.onClick.AddListener(() => Unlock(gun));
+            swapButton.onClick.AddListener(() => Unlock(tempGunSo.myPrefab));
         }
     }
-
     public void Unlock(GameObject gun)
     {
         data.UnlockState = true;
-        GunSwaped(gun);
+        gunButtonStateText.text = "Equip";
+        swapButton.onClick.AddListener(() => GameController.Instance.InvokeSwapGun(gun));
     }
-
-    public void CloseCameraPressed(int id)
+    public bool IsGunUnlocked()
     {
-        // Debug.Log(id + "  " + buttonNo);
-        swapButton.onClick.RemoveAllListeners();
-
-        contentPanel.SetActive(true);
-        focusedGun = id;
-
-
+        return data.unlockState;
     }
 }
