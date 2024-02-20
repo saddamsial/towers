@@ -35,7 +35,7 @@ namespace Managers
             {
                 clickedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
                 if (!clickedObject) return;
-                // Debug.Log(clickedObject.name);
+                //Debug.Log(clickedObject.name + "  " + towerController.floors.IndexOf(clickedObject.gameObject));
                 GameController.onCloseCameraPressed?.Invoke(towerController.floors.IndexOf(clickedObject.gameObject));
             }
 
