@@ -13,8 +13,12 @@ public class LaserGun : GunBase
 {
     GameObject tempBullet;
     bool damage;
-    float laserFrequency = 0.3f;
+    float laserFrequency;
     IDamageable damageable;
+    private void Start()
+    {
+        laserFrequency = myGun.frequency;
+    }
     protected override void Shoot()
     {
         targetObj = myFloor.attackTo.GetComponent<FloorBase>().gunPosition;

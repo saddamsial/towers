@@ -14,4 +14,16 @@ public class GamePresets : ScriptableObject
     public int myTowerFloorCount, maxPossibleFloor;
     public List<FloorSo> myFloorMaterials = new();
     public List<GunSo> myFloorGuns = new();
+    public bool HideDefaults;
+    [HideIf("HideDefaults")]
+    public List<FloorSo> myFloorMaterialsDefault = new();
+    [HideIf("HideDefaults")]
+    public List<GunSo> myFloorGunsDefault = new();
+
+    [Button]
+    public void ResetData()
+    {
+        myFloorGuns = new List<GunSo>(myFloorGunsDefault);
+        myFloorMaterials = new List<FloorSo>(myFloorMaterialsDefault);
+    }
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3623609053b47cf955d882418d252a, type: 3}
   m_Name: Cannon Button So
   m_EditorClassIdentifier: 
-  gunLogo: {fileID: 21300000, guid: f50d5117f889a46ca8065d0265e01dc1, type: 3}
+  gunLogo: {fileID: 21300000, guid: 7b2fc5cb110bf43769a9a09b8cfff1db, type: 3}
   gun: {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}

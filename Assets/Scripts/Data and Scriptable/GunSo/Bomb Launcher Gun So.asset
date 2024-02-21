@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Bomb Launcher
   myPrefab: {fileID: 2507120889772542911, guid: c4df2ea3ef1534defa2a15bec666dd34, type: 3}
+  isEmpty: 0
   myBullet: {fileID: 11400000, guid: 1e34bf4ddbc434ac9b9b4932348f782a, type: 2}
   isLaser: 0
-  frequency: 2
+  frequency: 0.15
   coolDownTime: 0
   ammoCount: 0

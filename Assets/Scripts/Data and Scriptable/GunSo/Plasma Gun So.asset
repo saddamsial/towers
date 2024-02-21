@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Plasma
   myPrefab: {fileID: 2507120889772542911, guid: e0ce0214d93e04740b7609d1a62e427f, type: 3}
+  isEmpty: 0
   myBullet: {fileID: 11400000, guid: 83c8d57c0edee4061b3eeb356028087f, type: 2}
   isLaser: 0
-  frequency: 2.5
+  frequency: 0.3
   coolDownTime: 0
   ammoCount: 0

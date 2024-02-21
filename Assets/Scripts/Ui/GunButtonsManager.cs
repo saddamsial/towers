@@ -16,8 +16,8 @@ public class GunButtonsManager : MonoBehaviour
 {
     public int buttonNo;
     public Button swapButton;
-    public Image gunLogo;
-    public TMP_Text gunTitleText, gunStatsText, gunButtonStateText;
+    public Image gunLogo, damageStat, speedStat;
+    public TMP_Text gunTitleText, gunButtonStateText;
     public List<GunButtonSo> gunButtons = new();
     GunButtonSo tempGunButton;
     BulletSo tempGunBulletSo;
@@ -44,6 +44,9 @@ public class GunButtonsManager : MonoBehaviour
         tempGunButton = gunButtons[buttonNo];
         tempGunSo = tempGunButton.gun;
         tempGunBulletSo = tempGunButton.gun.myBullet;
+
+        damageStat.fillAmount = tempGunBulletSo.damage;
+        speedStat.fillAmount = tempGunSo.frequency;
 
         gunLogo.sprite = tempGunButton.gunLogo;
         gunTitleText.text = tempGunSo.gunName;

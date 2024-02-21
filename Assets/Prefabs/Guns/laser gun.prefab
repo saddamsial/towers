@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 5908784640762771929}
   turretPivot: {fileID: 5908784640762784749}
   health: {fileID: 3287902533673033660}
-  laserShootingTime: 3
+  laserFrequency: 0.9
 --- !u!114 &3287902533673033660
 MonoBehaviour:
   m_ObjectHideFlags: 0

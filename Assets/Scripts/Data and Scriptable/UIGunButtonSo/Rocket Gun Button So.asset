@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3623609053b47cf955d882418d252a, type: 3}
   m_Name: Rocket Gun Button So
   m_EditorClassIdentifier: 
-  gunLogo: {fileID: 21300000, guid: a0c13c6d7e2a04ae796db88e60bd0923, type: 3}
+  gunLogo: {fileID: 21300000, guid: e42feea5bea0c4acb95390a5e4305b5c, type: 3}
   gun: {fileID: 11400000, guid: 29e89acafd59b432a93416aac22903a0, type: 2}

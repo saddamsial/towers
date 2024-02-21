@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3623609053b47cf955d882418d252a, type: 3}
   m_Name: Machine Gun Button So
   m_EditorClassIdentifier: 
-  gunLogo: {fileID: 21300000, guid: 90ad77f86d3f340988ade060dbf09fac, type: 3}
+  gunLogo: {fileID: 21300000, guid: e8c2dd20ff7cb4d71a7831ca38fcf6be, type: 3}
   gun: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}

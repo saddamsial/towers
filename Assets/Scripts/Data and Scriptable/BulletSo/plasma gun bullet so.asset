@@ -17,4 +17,4 @@ MonoBehaviour:
   isLaser: 0
   speed: 4
   despawnTime: 0
-  damage: 10
+  damage: 1
