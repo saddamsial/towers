@@ -84,7 +84,7 @@ public class LaserGun : GunBase
         {
             if (damageable == null) return;
             damageable.Damage(myGun.myBullet.damage);
-            laserFrequency = 0.3f;
+            laserFrequency = myGun.frequency;
         }
 
     }

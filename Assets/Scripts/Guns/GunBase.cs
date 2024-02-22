@@ -39,6 +39,11 @@ namespace Guns
             GameController.OnDied -= Died;
         }
 
+        public float GetFrequency()
+        {
+            return (1 - myGun.frequency) * 5;
+        }
+
         private void Init(GameObject gun, FloorBase floor)
         {
             if (gun != gameObject) return;
@@ -72,7 +77,7 @@ namespace Guns
                 }
                 else
                 {
-                    frequency = myGun.frequency;
+                    frequency = GetFrequency();
                     if (!myFloor.attackTo) { canShoot = false; return; }
                     Shoot();
                 }
@@ -83,7 +88,7 @@ namespace Guns
             turretPivot.DOKill();
             coolDownTime = myGun.coolDownTime;
             coolDown = true;
-            frequency = myGun.frequency;
+            frequency = GetFrequency();
             canShoot = true;
 
             // Debug.Log(myFloor.attackTo, myFloor.attackTo);
