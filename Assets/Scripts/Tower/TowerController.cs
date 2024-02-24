@@ -26,6 +26,7 @@ namespace Tower
         public TowerData data;
         public GamePresets gamePresets;
         FloorMine prevFloorMine;
+        public CameraSettingsController cameraSettings;
         public void Start()
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
@@ -34,6 +35,7 @@ namespace Tower
             {
                 AddFloor(i, false);
             }
+            cameraSettings.ZoomLevel(data.FloorCount);
         }
 
         public void Update()
@@ -57,6 +59,7 @@ namespace Tower
             floors.Add(tempFloor);
             // if (isNewFloor && floors.Count < gamePresets.myFloorGuns.Count - 1) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(true);
             GameController.onFloorAdded?.Invoke(tempFloor.transform, whichFloor, this, data.Guns[whichFloor], prevFloorMine);
+            cameraSettings.ZoomLevel(data.FloorCount);
 
         }
 

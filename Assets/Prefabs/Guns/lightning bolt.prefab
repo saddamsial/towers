@@ -57,7 +57,6 @@ MonoBehaviour:
   - {fileID: 6047200773803937470}
   turretPivot: {fileID: 6047200773803920806}
   health: {fileID: 3287902533673033660}
-  laserFrequency: 0.6
 --- !u!114 &3287902533673033660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c586ba9c10a24031b46f9260a79c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initial: 20
+  initial: 8
   _current: 0
   hitTransform: {fileID: 1152706401841267163}
   myFloor: {fileID: 0}

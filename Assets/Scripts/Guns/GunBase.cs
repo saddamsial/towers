@@ -41,7 +41,7 @@ namespace Guns
 
         public float GetFrequency()
         {
-            return (1 - myGun.frequency) * 5;
+            return (1 - myGun.frequency) * 2;
         }
 
         private void Init(GameObject gun, FloorBase floor)
@@ -86,8 +86,11 @@ namespace Guns
         public void RotateToTarget()
         {
             turretPivot.DOKill();
-            coolDownTime = myGun.coolDownTime;
-            coolDown = true;
+            if (tempBulletCount > 0)
+            {
+                coolDownTime = myGun.coolDownTime;
+                coolDown = true;
+            }
             frequency = GetFrequency();
             canShoot = true;
 

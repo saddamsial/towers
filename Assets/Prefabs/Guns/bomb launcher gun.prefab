@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c586ba9c10a24031b46f9260a79c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initial: 10
+  initial: 12
   _current: 0
   hitTransform: {fileID: 1152706401841267163}
   myFloor: {fileID: 0}

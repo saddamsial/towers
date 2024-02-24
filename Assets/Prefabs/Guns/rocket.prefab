@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canShoot: 0
   coolDown: 0
+  isLaser: 0
   myGun: {fileID: 11400000, guid: 29e89acafd59b432a93416aac22903a0, type: 2}
   tempBulletCount: 0
   myFloor: {fileID: 0}
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c586ba9c10a24031b46f9260a79c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initial: 10
+  initial: 20
   _current: 0
   hitTransform: {fileID: 1152706401841267163}
   myFloor: {fileID: 0}

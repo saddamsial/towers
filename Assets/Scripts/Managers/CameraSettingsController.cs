@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using Data_and_Scriptable.GunSo;
 using Managers;
 using Tower;
 using Tower.Floor;
 using UnityEngine;
+using PathCreation;
 
 public class CameraSettingsController : MonoBehaviour
 {
     public CinemachineTargetGroup targetGroup;
-    public CinemachineVirtualCamera editCam;
+    public CinemachineVirtualCamera editCam, gameCam;
     private CinemachineGroupComposer cinemachineGroupComposer;
-    public Transform closeCameras;
+    public Transform closeCameras, followObj, lookObj;
     public GameObject zoomBackButton, closeCameraCanvas;
     int tempCameraNo;
-
+    public PathCreator followPath, lookPath;
     private void OnEnable()
     {
         GameController.onFloorAdded += FloorAdded;
@@ -30,6 +29,16 @@ public class CameraSettingsController : MonoBehaviour
     {
         cinemachineGroupComposer = editCam.GetCinemachineComponent<CinemachineGroupComposer>();
 
+    }
+
+    public void ZoomLevel(int floorCount)
+    {
+        floorCount -= 2;
+        Debug.Log("-- " + floorCount);
+        var v = floorCount <= 0 ? 0.99f : 1 - 1.0f / 8 * floorCount;
+        Debug.Log("-- " + v);
+        followObj.position = followPath.path.GetPointAtTime(v);
+        lookObj.position = lookPath.path.GetPointAtTime(v);
     }
 
     private void Update()
