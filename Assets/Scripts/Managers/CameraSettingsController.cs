@@ -34,11 +34,9 @@ public class CameraSettingsController : MonoBehaviour
     public void ZoomLevel(int floorCount)
     {
         floorCount -= 2;
-        Debug.Log("-- " + floorCount);
-        var v = floorCount <= 0 ? 0.99f : 1 - 1.0f / 8 * floorCount;
-        Debug.Log("-- " + v);
-        followObj.position = followPath.path.GetPointAtTime(v);
-        lookObj.position = lookPath.path.GetPointAtTime(v);
+        var duration = floorCount <= 0 ? 0.99f : 1 - 1.0f / 8 * floorCount;
+        followObj.position = followPath.path.GetPointAtTime(duration);
+        lookObj.position = lookPath.path.GetPointAtTime(duration);
     }
 
     private void Update()

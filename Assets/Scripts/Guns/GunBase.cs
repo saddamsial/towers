@@ -9,6 +9,7 @@ using Utils;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using Unity.Mathematics;
+using GameStates;
 
 namespace Guns
 {
@@ -110,6 +111,7 @@ namespace Guns
         }
         protected virtual void Shoot()
         {
+            if (!GameStateManager.Instance.IsGameState()) { canShoot = false; ResetRotation(); return; }
             for (int i = 0; i < spawnPosition.Count; i++)
             {
                 var bullet = myGun.myBullet.prefab.Spawn(spawnPosition[i].position, Quaternion.identity);
@@ -124,7 +126,6 @@ namespace Guns
                     coolDown = true;
                 }
             }
-
         }
 
         public void Died(FloorBase diedObj)

@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using Utils;
+using Utils.PoolSystem;
 
 namespace Bullets
 {
@@ -14,7 +15,14 @@ namespace Bullets
             // .OnComplete(() => OnReached(target));
             movingObj.transform.LookAt(target);
             movingObj.transform.DOMove(target.position /* + Vector3.up * 0.5f */, bullet.speed).SetSpeedBased().SetEase(Ease.OutSine)
-            .OnComplete(() => OnReached(target, damageable));
+            .OnComplete(() => OnReached(target, damageable)).OnUpdate(() =>
+            {
+                if (!target.gameObject.activeInHierarchy)
+                {
+                    movingObj.transform.DOKill();
+                    movingObj.Despawn();
+                };
+            });
         }
     }
 }

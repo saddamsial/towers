@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using Utils;
+using Utils.PoolSystem;
 
 namespace Bullets
 {
@@ -13,7 +14,14 @@ namespace Bullets
             // transform.DOJump(target.position + Vector3.up * 0.5f, 0.3f, 1, bullet.speed).SetEase(Ease.Linear)
             // .OnComplete(() => OnReached(target));
             movingObj.transform.DOMove(target.position /* + Vector3.up * 0.5f */, bullet.speed).SetSpeedBased().SetEase(Ease.OutSine)
-             .OnComplete(() => OnReached(target, damageable));
+             .OnComplete(() => OnReached(target, damageable)).OnUpdate(() =>
+            {
+                if (!target.gameObject.activeInHierarchy)
+                {
+                    movingObj.transform.DOKill();
+                    movingObj.Despawn();
+                };
+            });
 
             //TODOtower: burada eğer ice cannon ise freeze yap enemy toweri
         }
