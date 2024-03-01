@@ -23,7 +23,7 @@ public class GunButtonsManager : MonoBehaviour
     BulletSo tempGunBulletSo;
     GunSo tempGunSo;
     public GameObject contentPanel;
-
+    public TowerController mainTower;
     public GunData data;
 
     public void OnEnable()
@@ -79,7 +79,7 @@ public class GunButtonsManager : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         if (IsGunUnlocked())
         {
-            if (TowerController.Instance.FocusedGunSo() && TowerController.Instance.FocusedGunSo() == tempGunSo)
+            if (mainTower.FocusedGunSo() && mainTower.FocusedGunSo() == tempGunSo)
             {
                 gunButtonStateText.text = "Equiped";
                 swapButton.interactable = false;

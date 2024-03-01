@@ -1,26 +1,30 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameStates;
 using Managers;
 using Tower.Floor;
-using Unity.VisualScripting;
 using UnityEngine;
+using Utils;
 using Utils.PoolSystem;
 
 namespace Tower
 {
-    public class EnemyTower : MonoBehaviour
+    public class EnemyTower : TowerBase
     {
-        [SerializeField] private GameObject floorPrefab;
+        public TowerController mainTower;
         public EnemyTowerSo enemyTowerSo;
-        [SerializeField] private List<GameObject> floors = new();
-        public GameObject tempFloor;
 
+        public List<FloorMine> floorsMain = new();
+        public List<FloorMine> floorsHealth2Low;
+        public List<FloorMine> floorsPower2Least = new();
+        public List<FloorMine> floorsNotTargeted = new();
+        public List<FloorMine> floorsFreezed = new();
         public void OnEnable()
         {
             GameController.OnDied += RearrangeFloors;
         }
 
-        public void OnDisable()
+        protected void OnDisable()
         {
             GameController.OnDied -= RearrangeFloors;
         }
@@ -45,27 +49,30 @@ namespace Tower
                 AddFloor(i);
             }
         }
-        public void AddFloor(int c)
+        public override void AddFloor(int c)
         {
-            tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
+            base.AddFloor(c);
             floors.Add(tempFloor);
-            tempFloor.transform.GetChild(0).GetChild(enemyTowerSo.floorTemps[c].floorSo.skinNo).gameObject.SetActive(true);//TODOtower burayı daha düzgün yap
-            var floorBase = tempFloor.GetComponent<FloorBase>();
-            floorBase.mainTower = TowerController.Instance;
+            var floorEnemy = tempFloor.GetComponent<FloorEnemy>();
+            floorEnemy.Init(enemyTowerSo.floorTemps[c], this, mainTower);
+        }
+        public void GameStarted()
+        {
+            floorsMain = new List<FloorMine>(mainTower.floorMineList);
+            SelectTarget();
         }
 
-        public void RearrangeFloors(FloorBase floorObj)
+        public FloorMine SelectTarget()
         {
-            floors.Remove(floorObj.gameObject);
-            if (floors.Count <= 0)
-            {
-                GameStateManager.Instance.SetState(GameStateManager.Instance.onCompleteState);
-                return;
-            }
-            for (int i = 0; i < floors.Count; i++)
-            {
-                floors[i].GetComponent<FloorEnemy>().MoveToNewPositionAfterDestroy(transform.localPosition + 1.6f * i * Vector3.up, delay: 0.1f * i);
-            }
+            var tempTarget = floorsMain[0];
+
+            floorsHealth2Low = new List<FloorMine>(floorsMain.Where(x => x.attachedGun != null).OrderBy(x => x.myHealth.Current));
+            floorsPower2Least = new List<FloorMine>(floorsMain.Where(x => x.attachedGun != null).OrderBy(x => x.attachedGun.myGun.myBullet.damage));
+            floorsNotTargeted = new List<FloorMine>(floorsMain.Where(x => x.IsTargeted)).ToList();
+            floorsFreezed = new List<FloorMine>(floorsMain.Where(x => x.IsFreezed)).ToList();
+
+            tempTarget.IsTargeted = true;
+            return tempTarget;
         }
     }
 }

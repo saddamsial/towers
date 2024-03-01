@@ -15,12 +15,13 @@ namespace Guns
 {
     public class GunBase : MonoBehaviour
     {
-        public bool canShoot, coolDown, isLaser;
+        public bool canShoot, coolDown, isLaser, freezed;
         public GunSo myGun;
         [HideIf("isLaser")]
         public int tempBulletCount;
         private float frequency;
         private float coolDownTime;
+        public float freezeCountDown, freezeTime;
         public FloorBase myFloor;
         public Transform skin;
         [ReorderableList]
@@ -32,6 +33,7 @@ namespace Guns
         {
             GameController.onGunPlaced += Init;
             GameController.OnDied += Died;
+            freezeCountDown = freezeTime;
         }
 
         private void OnDisable()
@@ -58,6 +60,19 @@ namespace Guns
         {
             if (!canShoot) return;
 
+            if (freezed)
+            {
+                if (freezeCountDown > 0)
+                {
+                    freezeCountDown -= Time.deltaTime;
+                }
+                else
+                {
+                    freezeCountDown = freezeTime;
+                    freezed = false;
+                }
+                return;
+            }
             if (coolDown)
             {
                 if (coolDownTime > 0)

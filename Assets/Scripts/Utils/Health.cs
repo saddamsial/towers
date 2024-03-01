@@ -1,4 +1,5 @@
 ﻿using System;
+using Guns;
 using Managers;
 using Tower.Floor;
 using UnityEngine;
@@ -37,6 +38,7 @@ namespace Utils
 
             Died = true;
             Current = 0f;
+            // if (!myFloor && TryGetComponent<GunBase>(out var gunbase)) myFloor = gunbase.myFloor;
             GameController.OnDied?.Invoke(myFloor);
         }
 
@@ -52,6 +54,11 @@ namespace Utils
 
             Current = Initial;
             OnFull?.Invoke();
+        }
+
+        public void SetupHealth(float hp)
+        {
+            Current = initial = hp;
 
         }
     }

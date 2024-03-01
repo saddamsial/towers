@@ -12,14 +12,14 @@ using Cinemachine;
 using UnityEngine.Animations;
 using Managers;
 using Data_and_Scriptable.GunSo;
+using Guns;
 
 namespace Tower
 {
-    public class TowerController : Singleton<TowerController>
+    public class TowerController : TowerBase
     {
-        [SerializeField] private GameObject floorPrefab;
-        public List<GameObject> floors = new();
-        public GameObject tempFloor;
+        public List<FloorMine> floorMineList = new();
+
         [ReorderableList]
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
@@ -27,6 +27,16 @@ namespace Tower
         public GamePresets gamePresets;
         FloorMine prevFloorMine;
         public CameraSettingsController cameraSettings;
+
+        public void OnEnable()
+        {
+            GameController.OnDied += RearrangeFloors;
+        }
+
+        protected void OnDisable()
+        {
+            GameController.OnDied -= RearrangeFloors;
+        }
         public void Start()
         {
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
@@ -46,12 +56,14 @@ namespace Tower
             }
         }
 
-        public virtual void AddFloor(int whichFloor, bool isNewFloor = true)
+        public override void AddFloor(int whichFloor, bool isNewFloor)
         {
             if (isNewFloor)
                 data.FloorCount++;
-            //Debug.Log(data.Guns[whichFloor]);
-            tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
+
+            base.AddFloor(whichFloor);
+
+            tempFloor.GetComponent<FloorMine>().mainTower = this;
             if (floors.Count > 0)
             {
                 prevFloorMine = floors[^1].GetComponent<FloorMine>();

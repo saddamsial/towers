@@ -44,8 +44,8 @@ namespace Bullets
             // }
 
             movingObj.transform.parent = null;
-            movingObj.Despawn();
             OnHit(other);
+            movingObj.Despawn();
         }
 
         private void OnHit(Transform other)

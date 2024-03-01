@@ -4,7 +4,6 @@ using Data_and_Scriptable.GunSo;
 using GameStates;
 using Guns;
 using Managers;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +11,7 @@ namespace Tower.Floor
 {
     public class FloorMine : FloorBase
     {
+        public bool IsTargeted { get; set; }
         public Button addFloorButton;
         public GameObject upgradeButton;
         public GraphicRaycaster myCanvasRaycaster;
@@ -44,21 +44,18 @@ namespace Tower.Floor
         public override void Die(FloorBase diedObj)
         {
             base.Die(diedObj);
-            if (diedObj.transform == attackTo)
+
+            if (diedObj.transform == transform)
             {
-                if (attachedGun.isLaser)
-                {
-                    attachedGun.GetComponent<LaserGun>().DamageState(false, true);
-                }
-                attackTo = null;
-                attachedGun.canShoot = false;
-                attachedGun.ResetRotation();
+
             }
         }
         public void FloorAdded(Transform floor, int whichFloor, TowerController mainTower, GunSo gun, FloorMine previousFloor)
         {
             if (transform != floor) return;
             this.mainTower = mainTower;
+            if (!mainTower.floorMineList.Contains(this))
+                mainTower.floorMineList.Add(this);
             var isEdit = GameStateManager.Instance.IsEditState();
             if (previousFloor != null)
             {

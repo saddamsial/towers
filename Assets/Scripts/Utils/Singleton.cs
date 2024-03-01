@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using GameStates;
+using Tower.Floor;
 using UnityEngine;
 
 namespace Utils
 {
-    public abstract class Singleton<T> : MonoBehaviour where T: MonoBehaviour
+    public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;
         public static T Instance
@@ -11,7 +14,7 @@ namespace Utils
             {
                 if (_instance == null)
                     _instance = FindObjectOfType<T>();
-            
+
                 return _instance;
             }
         }
@@ -19,5 +22,7 @@ namespace Utils
         {
             _instance = null;
         }
+
+
     }
 }
