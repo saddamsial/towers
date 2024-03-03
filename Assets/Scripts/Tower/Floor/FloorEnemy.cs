@@ -52,8 +52,10 @@ namespace Tower.Floor
         public override void Die(FloorBase diedObj)
         {
             base.Die(diedObj);
-
-            AttackToEnemy(enemyTower.SelectTarget());
+            if (diedObj.transform != attackTo)
+            {
+                AttackToEnemy(enemyTower.SelectTarget());
+            }
         }
     }
 }

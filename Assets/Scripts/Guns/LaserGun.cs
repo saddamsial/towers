@@ -26,7 +26,10 @@ public class LaserGun : GunBase
         {
             this.damageable = damageable;
         }
-        StartCoroutine(LaserDelay());
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(LaserDelay());
+        else
+            DamageState(false, true);
     }
 
     public virtual IEnumerator LaserDelay()

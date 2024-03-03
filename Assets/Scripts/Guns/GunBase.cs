@@ -102,6 +102,7 @@ namespace Guns
         public void RotateToTarget()
         {
             turretPivot.DOKill();
+            if (myFloor.attackTo == null) return;
             if (tempBulletCount > 0)
             {
                 coolDownTime = myGun.coolDownTime;
