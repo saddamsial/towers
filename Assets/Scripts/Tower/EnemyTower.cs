@@ -59,18 +59,26 @@ namespace Tower
         public void GameStarted()
         {
             floorsMain = new List<FloorMine>(mainTower.floorMineList);
-            SelectTarget();
+            // SelectTarget();
+            for (int i = 0; i < floors.Count; i++)
+            {
+                floors[i].GetComponent<FloorEnemy>().AttackToEnemy(SelectTarget());
+            }
         }
 
         public FloorMine SelectTarget()
         {
+            floorsMain.Clear();
+            floorsMain = new List<FloorMine>(mainTower.floorMineList);
+
+            if (floorsMain.Count == 0) return null;
             var tempTarget = floorsMain[0];
 
-            floorsHealth2Low = new List<FloorMine>(floorsMain.Where(x => x.attachedGun != null).OrderBy(x => x.myHealth.Current));
+            floorsHealth2Low = new List<FloorMine>(floorsMain./*Where(x => x.attachedGun != null).*/OrderBy(x => x.myHealth.Current));
             floorsPower2Least = new List<FloorMine>(floorsMain.Where(x => x.attachedGun != null).OrderBy(x => x.attachedGun.myGun.myBullet.damage));
             floorsNotTargeted = new List<FloorMine>(floorsMain.Where(x => x.IsTargeted)).ToList();
             floorsFreezed = new List<FloorMine>(floorsMain.Where(x => x.IsFreezed)).ToList();
-
+            tempTarget = floorsHealth2Low[Random.Range(0, floorsHealth2Low.Count)];
             tempTarget.IsTargeted = true;
             return tempTarget;
         }

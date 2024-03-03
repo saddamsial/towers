@@ -43,9 +43,9 @@ namespace Tower.Floor
             attachedGun = attachedGunObj.GetComponent<GunBase>();
             gunObj.transform.parent = gunPosition;
             GameController.onGunPlaced?.Invoke(gunObj, this);
-            if (!attachedGun) return;
             myHealth = attachedGunObj.GetComponent<Health>();
             myHealth.myFloor = this;
+            // if (!attachedGun) return;
         }
         public void Detach()
         {

@@ -31,12 +31,14 @@ namespace Tower.Floor
             myHealth.myFloor = this;
             myHealth.SetupHealth(floor.Health);
         }
+        public void AttackToEnemy(FloorMine floor)
+        {
+            if (!floor) return;
+            attackTo = floor.transform;
+            attachedGun.RotateToTarget();
+        }
         public override void Attack(Transform target)
         {
-            var targett = enemyTower.SelectTarget();
-            attackTo = targett.transform;
-            attachedGun.RotateToTarget();
-
             //TODOtower buraya eğer kullanıcının ilk saldırmasını beklemek istiyorsan kontrol koy
             if (target != transform) return;
             StartCoroutine(DisableOutline(target));
@@ -50,6 +52,8 @@ namespace Tower.Floor
         public override void Die(FloorBase diedObj)
         {
             base.Die(diedObj);
+
+            AttackToEnemy(enemyTower.SelectTarget());
         }
     }
 }

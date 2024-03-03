@@ -15,6 +15,7 @@ namespace Tower
 
         public virtual void RearrangeFloors(FloorBase floorObj)
         {
+
             floors.Remove(floorObj.gameObject);
             if (floors.Count <= 0)
             {

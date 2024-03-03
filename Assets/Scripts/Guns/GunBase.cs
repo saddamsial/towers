@@ -131,7 +131,7 @@ namespace Guns
             {
                 var bullet = myGun.myBullet.prefab.Spawn(spawnPosition[i].position, Quaternion.identity);
                 bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().shootPositions[i],
-                    myFloor.attackTo.GetComponent<FloorBase>().attachedGun.GetComponent<IDamageable>());
+                    myFloor.attackTo.GetComponent<FloorBase>().attachedGunObj.GetComponent<IDamageable>());
 
                 // if (myGun.ammoCount == 0) break;
                 tempBulletCount++;

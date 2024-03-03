@@ -47,7 +47,6 @@ namespace Tower
             }
             cameraSettings.ZoomLevel(data.FloorCount);
         }
-
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -55,7 +54,6 @@ namespace Tower
                 AddNewFloor();
             }
         }
-
         public override void AddFloor(int whichFloor, bool isNewFloor)
         {
             if (isNewFloor)
@@ -74,7 +72,6 @@ namespace Tower
             cameraSettings.ZoomLevel(data.FloorCount);
 
         }
-
         public void EditModeOpen(bool state)
         {
             floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(state);
@@ -83,7 +80,6 @@ namespace Tower
         {
             AddFloor(floors.Count, true);
         }
-
         protected void AddToList()
         {
             if (!GameStateManager.Instance.IsGameState()) return;
@@ -94,18 +90,20 @@ namespace Tower
                 selectedFloors.Add(s.transform);
             }
         }
-
+        public override void RearrangeFloors(FloorBase floorObj)
+        {
+            base.RearrangeFloors(floorObj);
+            floorMineList.Remove(floorObj.gameObject.GetComponent<FloorMine>());
+        }
         protected void ResetSelected()
         {
             StartCoroutine(ClearSelected());
         }
-
         protected IEnumerator ClearSelected()
         {
             yield return new WaitForEndOfFrame(); //WaitForSeconds(0.1f);
             selectedFloors.Clear();
         }
-
         public GunSo FocusedGunSo()
         {
             if (GameController.Instance.currentFocusedGun < 0 ||
