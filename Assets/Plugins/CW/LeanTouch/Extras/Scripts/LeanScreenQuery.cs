@@ -61,12 +61,12 @@ namespace Lean.Common
 
 		public LeanScreenQuery(MethodType newMethod, LayerMask layers)
 		{
-			Method      = newMethod;
-			Search      = SearchType.GetComponentInParent;
+			Method = newMethod;
+			Search = SearchType.GetComponentInParent;
 			RequiredTag = null;
-			Camera      = null;
-			Layers      = layers;
-			Distance    = 50.0f;
+			Camera = null;
+			Layers = layers;
+			Distance = 50.0f;
 		}
 
 		public static void ChangeLayers(GameObject root, bool ancestors, bool children)
@@ -104,8 +104,8 @@ namespace Lean.Common
 
 		public T Query<T>(GameObject gameObject, Vector2 screenPosition)
 		{
-			var result        = default(T);
-			var root          = default(Component);
+			var result = default(T);
+			var root = default(Component);
 			var worldPosition = default(Vector3);
 
 			if (TryQuery(gameObject, screenPosition, ref result, ref root, ref worldPosition) == true)
@@ -118,8 +118,8 @@ namespace Lean.Common
 
 		public bool TryQuery<T>(GameObject gameObject, Vector2 screenPosition, ref T result, ref Component root, ref Vector3 worldPosition)
 		{
-			var camera       = CwHelper.GetCamera(Camera, gameObject);
-			var bestHit      = default(Component);
+			var camera = CwHelper.GetCamera(Camera, gameObject);
+			var bestHit = default(Component);
 			var bestDistance = float.PositiveInfinity;
 			var bestPosition = default(Vector3);
 
@@ -149,8 +149,8 @@ namespace Lean.Common
 			{
 				switch (Search)
 				{
-					case SearchType.GetComponent:           if (TryGetComponent          (hit, ref result, ref component) == false) return false; break;
-					case SearchType.GetComponentInParent:   if (TryGetComponentInParent  (hit, ref result, ref component) == false) return false; break;
+					case SearchType.GetComponent: if (TryGetComponent(hit, ref result, ref component) == false) return false; break;
+					case SearchType.GetComponentInParent: if (TryGetComponentInParent(hit, ref result, ref component) == false) return false; break;
 					case SearchType.GetComponentInChildren: if (TryGetComponentInChildren(hit, ref result, ref component) == false) return false; break;
 				}
 
@@ -215,7 +215,7 @@ namespace Lean.Common
 
 		private static int GetClosestRaycastHitsIndex(int count)
 		{
-			var closestIndex    = -1;
+			var closestIndex = -1;
 			var closestDistance = float.PositiveInfinity;
 
 			for (var i = 0; i < count; i++)
@@ -224,7 +224,7 @@ namespace Lean.Common
 
 				if (distance < closestDistance)
 				{
-					closestIndex    = i;
+					closestIndex = i;
 					closestDistance = distance;
 				}
 			}
@@ -234,18 +234,18 @@ namespace Lean.Common
 
 		private void DoRaycast3D(Camera camera, Vector2 screenPosition, ref Component bestResult, ref float bestDistance, ref Vector3 bestPosition)
 		{
-			var ray   = camera.ScreenPointToRay(screenPosition);
+			var ray = camera.ScreenPointToRay(screenPosition);
 			var count = Physics.RaycastNonAlloc(ray, raycastHits, float.PositiveInfinity, Layers);
 
 			if (count > 0)
 			{
 				var closestHit = raycastHits[GetClosestRaycastHitsIndex(count)];
-				var distance   = closestHit.distance;
+				var distance = closestHit.distance;
 
 				if (distance < bestDistance)
 				{
 					bestDistance = distance;
-					bestResult   = closestHit.collider;
+					bestResult = closestHit.collider;
 					bestPosition = closestHit.point;
 				}
 			}
@@ -253,18 +253,18 @@ namespace Lean.Common
 
 		private void DoRaycast2D(Camera camera, Vector2 screenPosition, ref Component bestResult, ref float bestDistance, ref Vector3 bestPosition)
 		{
-			var ray   = camera.ScreenPointToRay(screenPosition);
+			var ray = camera.ScreenPointToRay(screenPosition);
 			var count = Physics2D.GetRayIntersectionNonAlloc(ray, raycastHit2Ds, float.PositiveInfinity, Layers);
 
 			if (count > 0)
 			{
 				var closestHit = raycastHit2Ds[0];
-				var distance   = closestHit.distance;
-				
+				var distance = closestHit.distance;
+
 				if (distance < bestDistance)
 				{
 					bestDistance = distance;
-					bestResult   = closestHit.transform;
+					bestResult = closestHit.transform;
 					bestPosition = closestHit.point;
 				}
 			}
@@ -276,7 +276,7 @@ namespace Lean.Common
 
 			if (currentEventSystem == null)
 			{
-				currentEventSystem = Object.FindObjectOfType<EventSystem>();
+				currentEventSystem = Object.FindFirstObjectByType<EventSystem>();
 			}
 
 			if (currentEventSystem != null)
@@ -312,7 +312,7 @@ namespace Lean.Common
 						if (distance < bestDistance)
 						{
 							bestDistance = distance;
-							bestResult   = result.gameObject.transform;
+							bestResult = result.gameObject.transform;
 							bestPosition = result.worldPosition;
 						}
 
@@ -336,7 +336,7 @@ namespace Lean.Common.Editor
 		{
 			var method = (LeanScreenQuery.MethodType)property.FindPropertyRelative("Method").enumValueIndex;
 			var height = base.GetPropertyHeight(property, label);
-			var step   = height + 2;
+			var step = height + 2;
 
 			switch (method)
 			{
@@ -349,7 +349,7 @@ namespace Lean.Common.Editor
 		public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
 		{
 			var method = (LeanScreenQuery.MethodType)property.FindPropertyRelative("Method").enumValueIndex;
-			var height     = base.GetPropertyHeight(property, label);
+			var height = base.GetPropertyHeight(property, label);
 
 			rect.height = height;
 
@@ -362,17 +362,17 @@ namespace Lean.Common.Editor
 				switch (method)
 				{
 					case LeanScreenQuery.MethodType.Raycast:
-					{
-						//LeanEditor.BeginError(property.FindPropertyRelative("Distance").floatValue == 0.0f);
-						//	DrawProperty(ref rect, property, label, "Distance", "Distance", "The world space distance from the camera the point will be placed. This should be greater than 0.");
-						//LeanEditor.EndError();
-						CwEditor.BeginError(property.FindPropertyRelative("Layers").intValue == 0.0f);
+						{
+							//LeanEditor.BeginError(property.FindPropertyRelative("Distance").floatValue == 0.0f);
+							//	DrawProperty(ref rect, property, label, "Distance", "Distance", "The world space distance from the camera the point will be placed. This should be greater than 0.");
+							//LeanEditor.EndError();
+							CwEditor.BeginError(property.FindPropertyRelative("Layers").intValue == 0.0f);
 							DrawProperty(ref rect, property, label, "Layers", "Layers", "The scene will be queried (e.g. Raycast) against these layers.");
-						CwEditor.EndError();
-						DrawProperty(ref rect, property, label, "Search", "Search", "When the query hits a GameObject, how should the desired component be searched for relative to it?");
-						DrawProperty(ref rect, property, label, "RequiredTag", "RequiredTag", "The component found from the search must have this tag.");
-					}
-					break;
+							CwEditor.EndError();
+							DrawProperty(ref rect, property, label, "Search", "Search", "When the query hits a GameObject, how should the desired component be searched for relative to it?");
+							DrawProperty(ref rect, property, label, "RequiredTag", "RequiredTag", "The component found from the search must have this tag.");
+						}
+						break;
 				}
 			}
 			EditorGUI.indentLevel--;
@@ -382,12 +382,12 @@ namespace Lean.Common.Editor
 			where T : Object
 		{
 			var propertyObject = property.FindPropertyRelative("Object");
-			var oldValue       = propertyObject.objectReferenceValue as T;
+			var oldValue = propertyObject.objectReferenceValue as T;
 
 			CwEditor.BeginError(oldValue == null);
-				var mixed = EditorGUI.showMixedValue; EditorGUI.showMixedValue = propertyObject.hasMultipleDifferentValues;
-					var newValue = EditorGUI.ObjectField(rect, new GUIContent(title, tooltip), oldValue, typeof(T), true);
-				EditorGUI.showMixedValue = mixed;
+			var mixed = EditorGUI.showMixedValue; EditorGUI.showMixedValue = propertyObject.hasMultipleDifferentValues;
+			var newValue = EditorGUI.ObjectField(rect, new GUIContent(title, tooltip), oldValue, typeof(T), true);
+			EditorGUI.showMixedValue = mixed;
 			CwEditor.EndError();
 
 			if (oldValue != newValue)

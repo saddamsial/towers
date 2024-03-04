@@ -31,6 +31,7 @@ public class TowerData : Data
     public void UpdateFloorGun(int index, GunSo gun)
     {
         Guns[index] = gun;
+        Guns = Guns;
     }
 
     public TowerData() : base("tower")

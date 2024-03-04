@@ -1,7 +1,6 @@
 using UnityEngine;
 using Utils;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal;
 namespace GameStates
 {
     public class GameStateManager : Singleton<GameStateManager>

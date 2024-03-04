@@ -51,10 +51,10 @@ namespace Lean.Touch
 		public LeanScreenDepth(ConversionType newConversion, int newLayers = Physics.DefaultRaycastLayers, float newDistance = 0.0f)
 		{
 			Conversion = newConversion;
-			Camera     = null;
-			Object     = null;
-			Layers     = newLayers;
-			Distance   = newDistance;
+			Camera = null;
+			Object = null;
+			Layers = newLayers;
+			Distance = newDistance;
 		}
 
 		// This will do the actual conversion
@@ -71,7 +71,7 @@ namespace Lean.Touch
 		public Vector3 ConvertDelta(Vector2 lastScreenPoint, Vector2 screenPoint, GameObject gameObject = null, Transform ignore = null)
 		{
 			var lastWorldPoint = Convert(lastScreenPoint, gameObject, ignore);
-			var     worldPoint = Convert(    screenPoint, gameObject, ignore);
+			var worldPoint = Convert(screenPoint, gameObject, ignore);
 
 			return worldPoint - lastWorldPoint;
 		}
@@ -86,109 +86,8 @@ namespace Lean.Touch
 				switch (Conversion)
 				{
 					case ConversionType.FixedDistance:
-					{
-						var screenPoint3 = new Vector3(screenPoint.x, screenPoint.y, Distance);
-
-						position = camera.ScreenToWorldPoint(screenPoint3);
-
-						LastWorldNormal = -camera.transform.forward;
-
-						return true;
-					}
-
-					case ConversionType.DepthIntercept:
-					{
-						var ray   = camera.ScreenPointToRay(screenPoint);
-						var slope = -ray.direction.z;
-
-						if (slope != 0.0f)
 						{
-							var scale = (ray.origin.z - Distance) / slope;
-
-							position = ray.GetPoint(scale);
-
-							LastWorldNormal = Vector3.back;
-
-							return true;
-						}
-					}
-					break;
-
-					case ConversionType.PhysicsRaycast:
-					{
-						var ray       = camera.ScreenPointToRay(screenPoint);
-						var hitCount  = Physics.RaycastNonAlloc(ray, hits, float.PositiveInfinity, Layers);
-						var bestPoint = default(Vector3);
-						var bestDist  = float.PositiveInfinity;
-
-						for (var i = hitCount - 1; i >= 0; i--)
-						{
-							var hit         = hits[i];
-							var hitDistance = hit.distance;
-
-							if (hitDistance < bestDist && IsChildOf(hit.transform, ignore) == false)
-							{
-								bestPoint = hit.point + hit.normal * Distance;
-								bestDist  = hitDistance;
-
-								LastWorldNormal = hit.normal;
-							}
-						}
-
-						if (bestDist < float.PositiveInfinity)
-						{
-							position = bestPoint;
-
-							return true;
-						}
-					}
-					break;
-
-					case ConversionType.PlaneIntercept:
-					{
-						var plane = default(LeanPlane);
-
-						if (Exists(gameObject, ref plane) == true)
-						{
-							var ray = camera.ScreenPointToRay(screenPoint);
-							var hit = default(Vector3);
-
-							if (plane.TryRaycast(ray, ref hit, Distance) == true)
-							{
-								position = hit;
-
-								LastWorldNormal = plane.transform.forward;
-
-								return true;
-							}
-						}
-					}
-					break;
-
-					case ConversionType.PathClosest:
-					{
-						var path = default(LeanPath);
-
-						if (Exists(gameObject, ref path) == true)
-						{
-							var ray = camera.ScreenPointToRay(screenPoint);
-
-							if (path.TryGetClosest(ray, ref position, -1, Distance * Time.deltaTime) == true)
-							{
-								LastWorldNormal = LeanPath.LastWorldNormal;
-
-								return true;
-							}
-						}
-					}
-					break;
-
-					case ConversionType.AutoDistance:
-					{
-						if (gameObject != null)
-						{
-							var depth        = camera.WorldToScreenPoint(gameObject.transform.position).z;
-							var screenPoint3 = new Vector3(screenPoint.x, screenPoint.y, depth + Distance);
+							var screenPoint3 = new Vector3(screenPoint.x, screenPoint.y, Distance);
 
 							position = camera.ScreenToWorldPoint(screenPoint3);
 
@@ -196,26 +95,127 @@ namespace Lean.Touch
 
 							return true;
 						}
-					}
-					break;
+
+					case ConversionType.DepthIntercept:
+						{
+							var ray = camera.ScreenPointToRay(screenPoint);
+							var slope = -ray.direction.z;
+
+							if (slope != 0.0f)
+							{
+								var scale = (ray.origin.z - Distance) / slope;
+
+								position = ray.GetPoint(scale);
+
+								LastWorldNormal = Vector3.back;
+
+								return true;
+							}
+						}
+						break;
+
+					case ConversionType.PhysicsRaycast:
+						{
+							var ray = camera.ScreenPointToRay(screenPoint);
+							var hitCount = Physics.RaycastNonAlloc(ray, hits, float.PositiveInfinity, Layers);
+							var bestPoint = default(Vector3);
+							var bestDist = float.PositiveInfinity;
+
+							for (var i = hitCount - 1; i >= 0; i--)
+							{
+								var hit = hits[i];
+								var hitDistance = hit.distance;
+
+								if (hitDistance < bestDist && IsChildOf(hit.transform, ignore) == false)
+								{
+									bestPoint = hit.point + hit.normal * Distance;
+									bestDist = hitDistance;
+
+									LastWorldNormal = hit.normal;
+								}
+							}
+
+							if (bestDist < float.PositiveInfinity)
+							{
+								position = bestPoint;
+
+								return true;
+							}
+						}
+						break;
+
+					case ConversionType.PlaneIntercept:
+						{
+							var plane = default(LeanPlane);
+
+							if (Exists(gameObject, ref plane) == true)
+							{
+								var ray = camera.ScreenPointToRay(screenPoint);
+								var hit = default(Vector3);
+
+								if (plane.TryRaycast(ray, ref hit, Distance) == true)
+								{
+									position = hit;
+
+									LastWorldNormal = plane.transform.forward;
+
+									return true;
+								}
+							}
+						}
+						break;
+
+					case ConversionType.PathClosest:
+						{
+							var path = default(LeanPath);
+
+							if (Exists(gameObject, ref path) == true)
+							{
+								var ray = camera.ScreenPointToRay(screenPoint);
+
+								if (path.TryGetClosest(ray, ref position, -1, Distance * Time.deltaTime) == true)
+								{
+									LastWorldNormal = LeanPath.LastWorldNormal;
+
+									return true;
+								}
+							}
+						}
+						break;
+
+					case ConversionType.AutoDistance:
+						{
+							if (gameObject != null)
+							{
+								var depth = camera.WorldToScreenPoint(gameObject.transform.position).z;
+								var screenPoint3 = new Vector3(screenPoint.x, screenPoint.y, depth + Distance);
+
+								position = camera.ScreenToWorldPoint(screenPoint3);
+
+								LastWorldNormal = -camera.transform.forward;
+
+								return true;
+							}
+						}
+						break;
 
 					case ConversionType.HeightIntercept:
-					{
-						var ray   = camera.ScreenPointToRay(screenPoint);
-						var slope = -ray.direction.y;
-
-						if (slope != 0.0f)
 						{
-							var scale = (ray.origin.y - Distance) / slope;
+							var ray = camera.ScreenPointToRay(screenPoint);
+							var slope = -ray.direction.y;
 
-							position = ray.GetPoint(scale);
+							if (slope != 0.0f)
+							{
+								var scale = (ray.origin.y - Distance) / slope;
 
-							LastWorldNormal = Vector3.down;
+								position = ray.GetPoint(scale);
 
-							return true;
+								LastWorldNormal = Vector3.down;
+
+								return true;
+							}
 						}
-					}
-					break;
+						break;
 				}
 			}
 			else
@@ -247,7 +247,7 @@ namespace Lean.Touch
 			}
 
 			// Exists in scene?
-			Object = instance = Object.FindObjectOfType<T>();
+			Object = instance = Object.FindFirstObjectByType<T>();
 
 			if (instance != null)
 			{
@@ -257,7 +257,7 @@ namespace Lean.Touch
 			// Doesn't exist
 			return false;
 		}
-		
+
 		// This will return true if current or one of its parents matches the specified gameObject's Transform (current must be non-null)
 		private static bool IsChildOf(Transform current, Transform target)
 		{
@@ -295,17 +295,17 @@ namespace Lean.Touch.Editor
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
 			var conversion = (LeanScreenDepth.ConversionType)property.FindPropertyRelative("Conversion").enumValueIndex;
-			var height     = base.GetPropertyHeight(property, label);
-			var step       = height + 2;
+			var height = base.GetPropertyHeight(property, label);
+			var step = height + 2;
 
 			switch (conversion)
 			{
-				case LeanScreenDepth.ConversionType.FixedDistance:   height += step * 2; break;
-				case LeanScreenDepth.ConversionType.DepthIntercept:  height += step * 2; break;
-				case LeanScreenDepth.ConversionType.PhysicsRaycast:  height += step * 3; break;
-				case LeanScreenDepth.ConversionType.PlaneIntercept:  height += step * 3; break;
-				case LeanScreenDepth.ConversionType.PathClosest:     height += step * 3; break;
-				case LeanScreenDepth.ConversionType.AutoDistance:    height += step * 2; break;
+				case LeanScreenDepth.ConversionType.FixedDistance: height += step * 2; break;
+				case LeanScreenDepth.ConversionType.DepthIntercept: height += step * 2; break;
+				case LeanScreenDepth.ConversionType.PhysicsRaycast: height += step * 3; break;
+				case LeanScreenDepth.ConversionType.PlaneIntercept: height += step * 3; break;
+				case LeanScreenDepth.ConversionType.PathClosest: height += step * 3; break;
+				case LeanScreenDepth.ConversionType.AutoDistance: height += step * 2; break;
 				case LeanScreenDepth.ConversionType.HeightIntercept: height += step * 2; break;
 			}
 
@@ -315,7 +315,7 @@ namespace Lean.Touch.Editor
 		public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
 		{
 			var conversion = (LeanScreenDepth.ConversionType)property.FindPropertyRelative("Conversion").enumValueIndex;
-			var height     = base.GetPropertyHeight(property, label);
+			var height = base.GetPropertyHeight(property, label);
 
 			rect.height = height;
 
@@ -328,53 +328,53 @@ namespace Lean.Touch.Editor
 				switch (conversion)
 				{
 					case LeanScreenDepth.ConversionType.FixedDistance:
-					{
-						CwEditor.BeginError(property.FindPropertyRelative("Distance").floatValue == 0.0f);
-						DrawProperty(ref rect, property, label, "Distance", "Distance", "The world space distance from the camera the point will be placed. This should be greater than 0.");
-						CwEditor.EndError();
-					}
-					break;
+						{
+							CwEditor.BeginError(property.FindPropertyRelative("Distance").floatValue == 0.0f);
+							DrawProperty(ref rect, property, label, "Distance", "Distance", "The world space distance from the camera the point will be placed. This should be greater than 0.");
+							CwEditor.EndError();
+						}
+						break;
 
 					case LeanScreenDepth.ConversionType.DepthIntercept:
-					{
-						DrawProperty(ref rect, property, label, "Distance", "Z =", "The world space point along the Z axis the plane will be placed. For normal 2D scenes this should be 0.");
-					}
-					break;
+						{
+							DrawProperty(ref rect, property, label, "Distance", "Z =", "The world space point along the Z axis the plane will be placed. For normal 2D scenes this should be 0.");
+						}
+						break;
 
 					case LeanScreenDepth.ConversionType.PhysicsRaycast:
-					{
-						CwEditor.BeginError(property.FindPropertyRelative("Layers").intValue == 0);
+						{
+							CwEditor.BeginError(property.FindPropertyRelative("Layers").intValue == 0);
 							DrawProperty(ref rect, property, label, "Layers", "Layers", "The layers used in the raycast.");
-						CwEditor.EndError();
-						DrawProperty(ref rect, property, label, "Distance", "Offset", "The world space offset from the raycast hit point.");
-					}
-					break;
+							CwEditor.EndError();
+							DrawProperty(ref rect, property, label, "Distance", "Offset", "The world space offset from the raycast hit point.");
+						}
+						break;
 
 					case LeanScreenDepth.ConversionType.PlaneIntercept:
-					{
-						DrawObjectProperty<LeanPlane>(ref rect, property, "Plane", "The plane that will be intercepted.");
-						DrawProperty(ref rect, property, label, "Distance", "Offset", "The world space offset from the intercept hit point.");
-					}
-					break;
+						{
+							DrawObjectProperty<LeanPlane>(ref rect, property, "Plane", "The plane that will be intercepted.");
+							DrawProperty(ref rect, property, label, "Distance", "Offset", "The world space offset from the intercept hit point.");
+						}
+						break;
 
 					case LeanScreenDepth.ConversionType.PathClosest:
-					{
-						DrawObjectProperty<LeanPath>(ref rect, property, "Path", "The path that will be intercepted.");
-						DrawProperty(ref rect, property, label, "Distance", "Max Delta", "The maximum amount of segments that can be moved between.");
-					}
-					break;
+						{
+							DrawObjectProperty<LeanPath>(ref rect, property, "Path", "The path that will be intercepted.");
+							DrawProperty(ref rect, property, label, "Distance", "Max Delta", "The maximum amount of segments that can be moved between.");
+						}
+						break;
 
 					case LeanScreenDepth.ConversionType.AutoDistance:
-					{
-						DrawProperty(ref rect, property, label, "Distance", "Offset", "The depth offset from the calculated point.");
-					}
-					break;
+						{
+							DrawProperty(ref rect, property, label, "Distance", "Offset", "The depth offset from the calculated point.");
+						}
+						break;
 
 					case LeanScreenDepth.ConversionType.HeightIntercept:
-					{
-						DrawProperty(ref rect, property, label, "Distance", "Y =", "The world space point along the Y axis the plane will be placed. For normal top down scenes this should be 0.");
-					}
-					break;
+						{
+							DrawProperty(ref rect, property, label, "Distance", "Y =", "The world space point along the Y axis the plane will be placed. For normal top down scenes this should be 0.");
+						}
+						break;
 				}
 			}
 			EditorGUI.indentLevel--;
@@ -384,12 +384,12 @@ namespace Lean.Touch.Editor
 			where T : Object
 		{
 			var propertyObject = property.FindPropertyRelative("Object");
-			var oldValue       = propertyObject.objectReferenceValue as T;
+			var oldValue = propertyObject.objectReferenceValue as T;
 
 			var color = GUI.color; if (oldValue == null) GUI.color = Color.red;
-				var mixed = EditorGUI.showMixedValue; EditorGUI.showMixedValue = propertyObject.hasMultipleDifferentValues;
-					var newValue = EditorGUI.ObjectField(rect, new GUIContent(title, tooltip), oldValue, typeof(T), true);
-				EditorGUI.showMixedValue = mixed;
+			var mixed = EditorGUI.showMixedValue; EditorGUI.showMixedValue = propertyObject.hasMultipleDifferentValues;
+			var newValue = EditorGUI.ObjectField(rect, new GUIContent(title, tooltip), oldValue, typeof(T), true);
+			EditorGUI.showMixedValue = mixed;
 			GUI.color = color;
 
 			if (oldValue != newValue)

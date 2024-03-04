@@ -31,8 +31,8 @@ public class DataPersistenceController : Singleton<DataPersistenceController>
 
     public List<Data> FindAllData()
     {
-        var dataPersistences = FindObjectsOfType<MonoBehaviour>().OfType<Data>();
-        return new List<Data>(dataPersistences);
+        var dataPersistences = FindFirstObjectByType<MonoBehaviour>();//.OfType<Data>();//FindFirstObjectByType
+        return new List<Data>((IEnumerable<Data>)dataPersistences);
     }
 
     public Data GetData(string id, Data defaultData = null)

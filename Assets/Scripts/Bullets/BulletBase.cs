@@ -1,9 +1,7 @@
 using System;
 using Data_and_Scriptable.BulletSo;
-using DG.Tweening;
 using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.iOS;
+
 using UnityEngine;
 using Utils;
 using Utils.PoolSystem;

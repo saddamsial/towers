@@ -57,7 +57,7 @@ namespace EPOOutline.Demo
 
         private void Reset()
         {
-            targetCamera = FindObjectOfType<Camera>();
+            targetCamera = FindFirstObjectByType<Camera>();
         }
 
         private void OnTriggerEnter(Collider other)
