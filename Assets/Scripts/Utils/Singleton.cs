@@ -13,7 +13,7 @@ namespace Utils
             get
             {
                 if (_instance == null)
-                    _instance = FindObjectOfType<T>();
+                    _instance = FindAnyObjectByType<T>();
 
                 return _instance;
             }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Bullets;
 using DG.Tweening;
 using Guns;
@@ -15,6 +16,7 @@ public class LaserGun : GunBase
     bool damage;
     float laserFrequency;
     IDamageable damageable;
+    LineRenderer line;
     private void Start()
     {
         laserFrequency = myGun.frequency;
@@ -41,18 +43,20 @@ public class LaserGun : GunBase
         }
 
         tempBullet = myGun.myBullet.prefab.Spawn(spawnPosition[0].position, Quaternion.identity);
+        line = tempBullet.GetComponent<LineRenderer>();
         tempBullet.transform.GetChild(0).transform.position = tempBullet.transform.GetChild(1).position = tempBullet.transform.position;
-        LaserShoot(tempBullet.transform.GetChild(0), tempBullet.transform.GetChild(1), tempBullet.GetComponent<LineRenderer>());
+        LaserShoot(tempBullet.transform.GetChild(0), tempBullet.transform.GetChild(1));
     }
 
-    public virtual void LaserShoot(Transform firstPoint, Transform endPoint, LineRenderer lineRenderer)
+    public virtual void LaserShoot(Transform firstPoint, Transform endPoint)
     {
         firstPoint.position = spawnPosition[0].position;
         // endPoint.position = myFloor.attackTo.GetComponent<FloorBase>().gunPosition.position + Vector3.up * 0.5f;
-        lineRenderer.enabled = true;
+        line.enabled = true;
         endPoint.DOMove(targetObj.position + Vector3.up * 0.5f, 0.2f).OnUpdate(() =>
         {
-            lineRenderer.SetPositions(new Vector3[] { firstPoint.position, endPoint.position });
+            tempBullet.transform.GetChild(0).position = spawnPosition[0].position;
+            line.SetPositions(new Vector3[] { firstPoint.position, endPoint.position });
         }).OnComplete(() => DamageState(true));
     }
 
@@ -68,17 +72,26 @@ public class LaserGun : GunBase
 
     public virtual void DespawnTempBullet()
     {
-        var lineRenderer = tempBullet.GetComponent<LineRenderer>();
+        if (!tempBullet) return;
         tempBullet.transform.GetChild(0).DOMove(tempBullet.transform.GetChild(1).position, 0.2f).OnUpdate(() =>
                 {
-                    lineRenderer.SetPositions(new Vector3[] { tempBullet.transform.GetChild(0).position, tempBullet.transform.GetChild(1).position });
-                }).OnComplete(() => tempBullet.Despawn());
+                    tempBullet.transform.GetChild(0).position = spawnPosition[0].position;
+                    line.SetPositions(new Vector3[] { tempBullet.transform.GetChild(0).position, tempBullet.transform.GetChild(1).position });
+                }).OnComplete(() =>
+                {
+                    damage = false;
+
+                    line.enabled = false;
+                    tempBullet.Despawn();
+                });
     }
 
     protected override void Update()
     {
         if (!damage) return;
-
+        tempBullet.transform.GetChild(0).position = spawnPosition[0].position;
+        tempBullet.transform.GetChild(1).position = targetObj.position + Vector3.up * 0.5f;
+        line.SetPositions(new Vector3[] { spawnPosition[0].position, targetObj.position + Vector3.up * 0.5f });
         if (laserFrequency > 0)
         {
             laserFrequency -= Time.deltaTime;

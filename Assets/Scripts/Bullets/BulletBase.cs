@@ -24,36 +24,21 @@ namespace Bullets
             tempSpawnEffect = mySkin.spawnEffect.Spawn(transform.position, quaternion.identity);
             movingObj = mySkin.movingObj.Spawn(transform.position, quaternion.identity, transform);
             movingObj.transform.LookAt(target);
-            // transform.LookAt(target);
-
-            // for (int i = 0; i < skin.childCount; i++)
-            // {
-            //     skin.GetChild(i).gameObject.SetActive(i == (int)bullet.bulletType);
-            // }
         }
-
         public void OnReached(Transform other, IDamageable damageable)
         {
             tempExplodeEffect = mySkin.explodeEffect.Spawn(other.position, quaternion.identity);
-
-            // if (other.GetChild(0).TryGetComponent(out IDamageable damageable))
-            // {
             damageable.Damage(bullet.damage);
-            // }
-
             movingObj.transform.parent = null;
             OnHit(other);
             movingObj.Despawn();
         }
-
         private void OnHit(Transform other)
         {
             tempExplodeEffect.Despawn(.2f);
             tempSpawnEffect.Despawn();
             movingObj.transform.parent = null;
-            // mySkin.explodeEffect.Spawn(other.position, quaternion.identity);
             gameObject.Despawn(.2f);
-            // bullet.effect.Spawn(transform.position, Quaternion.identity).Despawn(bullet.despawnTime);
         }
     }
 }

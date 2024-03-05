@@ -77,7 +77,10 @@ namespace Tower.Floor
 
         public void MoveToNewPositionAfterDestroy(Vector3 newPos, float delay)
         {
-            transform.DOMove(newPos, 0.5f + delay).SetEase(Ease.InBack);
+            stoped = false;
+            transform.DOMove(newPos, 0.5f + delay).SetEase(Ease.InBack).OnComplete(() => stoped = true);
         }
+        public bool stoped;
+
     }
 }

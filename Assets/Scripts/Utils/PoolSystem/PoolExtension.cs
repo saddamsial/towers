@@ -12,7 +12,7 @@ namespace Utils.PoolSystem
             get
             {
                 if (_pool == null)
-                    _pool = Object.FindObjectOfType<Pool>();
+                    _pool = Object.FindAnyObjectByType<Pool>();
                 return _pool;
             }
         }

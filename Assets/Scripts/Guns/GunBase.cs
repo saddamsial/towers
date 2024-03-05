@@ -59,7 +59,7 @@ namespace Guns
         protected virtual void Update()
         {
             if (!canShoot) return;
-
+            if (isLaser) return;
             if (freezed)
             {
                 if (freezeCountDown > 0)

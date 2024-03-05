@@ -47,7 +47,10 @@ namespace Tower.Floor
 
             if (diedObj.transform == transform)
             {
-
+                if (attachedGun.isLaser)
+                {
+                    attachedGun.GetComponent<LaserGun>().DamageState(false, true);
+                }
             }
         }
         public void FloorAdded(Transform floor, int whichFloor, TowerController mainTower, GunSo gun, FloorMine previousFloor)
