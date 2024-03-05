@@ -21,7 +21,7 @@ namespace Bullets
                 if (!target.gameObject.activeInHierarchy)
                 {
                     movingObj.transform.DOKill();
-                    // movingObj.Despawn();
+                    movingObj.Despawn();
                 };
             });
         }

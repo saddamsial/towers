@@ -39,7 +39,7 @@ public class LaserGun : GunBase
         if (tempBullet && tempBullet.activeInHierarchy)
         {
             DespawnTempBullet();
-            yield return new WaitUntil(() => !tempBullet.activeInHierarchy);
+            yield return new WaitUntil(() => !line.enabled);
         }
 
         tempBullet = myGun.myBullet.prefab.Spawn(spawnPosition[0].position, Quaternion.identity);
