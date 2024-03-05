@@ -29,7 +29,7 @@ namespace EPOOutline
 
         private static ListRequest request;
         private static AddRequest addRequest;
-        
+
         private Texture2D logoImage;
 
         [SerializeField]
@@ -70,10 +70,10 @@ namespace EPOOutline
                 if (value.GetCustomAttribute<ObsoleteAttribute>() != null)
                     continue;
 
-                var targetValue = (BuildTargetGroup) value.GetValue(null);
+                var targetValue = (BuildTargetGroup)value.GetValue(null);
                 if (targetValue == BuildTargetGroup.Unknown)
                     continue;
-                
+
                 groups.Add(targetValue);
             }
 
@@ -85,7 +85,8 @@ namespace EPOOutline
             var targets = GetApplicableGroups();
             foreach (var buildTargetGroup in targets)
             {
-                var definitions = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+                var definitions = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup));
+                //PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
                 var splited = definitions.Split(';');
 
                 if (Array.Find(splited, x => x == definition) == null)
@@ -127,7 +128,7 @@ namespace EPOOutline
             return false;
         }
 #endif
-        
+
 #if URP_OUTLINE || HDRP_OUTLINE
         private static bool CheckHasActiveRenderers()
         {
@@ -151,7 +152,7 @@ namespace EPOOutline
                 return;
 
             var group = EditorUserBuildSettings.selectedBuildTargetGroup;
-            var definitions = PlayerSettings.GetScriptingDefineSymbolsForGroup(group);
+            var definitions = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(group));//PlayerSettings.GetScriptingDefineSymbolsForGroup(group);
             var splited = definitions.Split(';');
 
             var builder = new StringBuilder();
@@ -170,7 +171,8 @@ namespace EPOOutline
             if (addedCount != 0)
                 builder.Remove(builder.Length - 1, 1);
 
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(group, builder.ToString());
+            PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(group), builder.ToString());
+            //PlayerSettings.SetScriptingDefineSymbolsForGroup(group, builder.ToString());
         }
 
         private static void AddURPDefinition()
@@ -201,11 +203,12 @@ namespace EPOOutline
             var groups = GetApplicableGroups();
             foreach (var group in groups)
             {
-                var definitions = PlayerSettings.GetScriptingDefineSymbolsForGroup(group);
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(group, definitions + ";" + definition);
+                var definitions = PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(group));//PlayerSettings.GetScriptingDefineSymbolsForGroup(group);
+                PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(group), definitions + ";" + definition);
+                //PlayerSettings.SetScriptingDefineSymbolsForGroup(group, definitions + ";" + definition);
             }
         }
-        
+
         private static void Check()
         {
             if (EditorApplication.isPlaying)
@@ -542,4 +545,4 @@ namespace EPOOutline
         }
     }
 #endif
-        }
+}

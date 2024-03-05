@@ -71,7 +71,7 @@ namespace DG.DOTweenEditor
             if (GUILayout.Button("► Play All <i>in Scene</i>", Styles.btPreview))
             {
                 if (!isPreviewing) StartupGlobalPreview();
-                DOTweenAnimation[] anims = Object.FindObjectsOfType<DOTweenAnimation>();
+                DOTweenAnimation[] anims = Object.FindObjectsByType<DOTweenAnimation>(FindObjectsSortMode.None);
                 foreach (DOTweenAnimation anim in anims) AddAnimationToGlobalPreview(anim);
             }
             EditorGUI.EndDisabledGroup();
