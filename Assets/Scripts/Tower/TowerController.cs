@@ -19,7 +19,6 @@ namespace Tower
     public class TowerController : TowerBase
     {
         public List<FloorMine> floorMineList = new();
-
         [ReorderableList]
         public List<Transform> selectedFloors = new();
         public LeanSelectByFinger selections;
@@ -32,7 +31,6 @@ namespace Tower
         {
             GameController.OnDied += RearrangeFloors;
         }
-
         protected void OnDisable()
         {
             GameController.OnDied -= RearrangeFloors;
@@ -95,7 +93,7 @@ namespace Tower
             base.RearrangeFloors(floorObj);
             floorMineList.Remove(floorObj.gameObject.GetComponent<FloorMine>());
         }
-        protected void ResetSelected()
+        public void ResetSelected()
         {
             StartCoroutine(ClearSelected());
         }
@@ -110,6 +108,13 @@ namespace Tower
             !floors[GameController.Instance.currentFocusedGun].GetComponent<FloorBase>().attachedGun) return null;
             var so = floors[GameController.Instance.currentFocusedGun].GetComponent<FloorBase>().attachedGun.myGun;
             return so;
+        }
+        public void DeselectAfterGameDone()
+        {
+            foreach (var floor in floors)
+            {
+                floor.GetComponent<FloorBase>().outline.enabled = false;
+            }
         }
     }
 }

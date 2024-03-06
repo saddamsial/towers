@@ -79,7 +79,8 @@ namespace Tower.Floor
             if (mainTower.floors[^1].transform == transform && mainTower.floors.Count < mainTower.gamePresets.maxPossibleFloor - 1)
                 addFloorButton.gameObject.SetActive(state);
 
-            attachedGun?.ResetRotation();
+            if (attachedGun)
+                attachedGun.ResetRotation();
         }
         public void UpgradeButton()
         {
