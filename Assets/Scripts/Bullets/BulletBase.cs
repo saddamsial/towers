@@ -19,7 +19,7 @@ namespace Bullets
         [SerializeField] private Transform skin;
         [SerializeField] private Projectile mySkin;
         public GameObject movingObj, tempSpawnEffect, tempExplodeEffect;
-        public virtual void Init(Transform target, IDamageable damageable)
+        public virtual void Init(Transform target, IDamageable damageable, Transform targetParent)
         {
             tempSpawnEffect = mySkin.spawnEffect.Spawn(transform.position, quaternion.identity);
             movingObj = mySkin.movingObj.Spawn(transform.position, quaternion.identity, transform);

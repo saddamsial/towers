@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using Unity.Mathematics;
 using GameStates;
+using System.Collections;
 
 namespace Guns
 {
@@ -17,11 +18,12 @@ namespace Guns
     {
         public bool canShoot, coolDown, isLaser;
         public GunSo myGun;
+        GameObject bullet;
         [HideIf("isLaser")]
         public int tempBulletCount;
         private float frequency;
         private float coolDownTime;
-        public float freezeCountDown, freezeTime, slowMultiplier;
+        public float speedMultiplier;
         public FloorBase myFloor;
         public Transform skin;
         [ReorderableList]
@@ -32,21 +34,19 @@ namespace Guns
         private void OnEnable()
         {
             GameController.onGunPlaced += Init;
-            GameController.OnDied += Died;
-            freezeCountDown = freezeTime;
+            GameController.onDied += Died;
+            GameController.onFreeze += Freezed;
         }
-
         private void OnDisable()
         {
             GameController.onGunPlaced -= Init;
-            GameController.OnDied -= Died;
+            GameController.onDied -= Died;
+            GameController.onFreeze -= Freezed;
         }
-
         public float GetFrequency()
         {
             return (1 - myGun.frequency) * 2;
         }
-
         private void Init(GameObject gun, FloorBase floor)
         {
             if (gun != gameObject) return;
@@ -55,7 +55,6 @@ namespace Guns
             canShoot = true;
             skin.GetChild((int)myGun.myBullet.bulletType).gameObject.SetActive(true);
         }
-
         protected virtual void Update()
         {
             if (!canShoot) return;
@@ -65,7 +64,7 @@ namespace Guns
             {
                 if (coolDownTime > 0)
                 {
-                    coolDownTime -= Time.deltaTime;
+                    coolDownTime -= Time.deltaTime * speedMultiplier;
                 }
                 else
                 {
@@ -77,7 +76,7 @@ namespace Guns
             {
                 if (frequency > 0)
                 {
-                    frequency -= Time.deltaTime;
+                    frequency -= Time.deltaTime * speedMultiplier;
                 }
                 else
                 {
@@ -108,7 +107,6 @@ namespace Guns
                 }
             });
         }
-
         public void ResetRotation()
         {
             turretPivot.DORotateQuaternion(firstRotation, 0.4f);//.rotation = firstRotation;
@@ -118,11 +116,11 @@ namespace Guns
             if (!GameStateManager.Instance.IsGameState()) { canShoot = false; ResetRotation(); return; }
             for (int i = 0; i < spawnPosition.Count; i++)
             {
-                var bullet = myGun.myBullet.prefab.Spawn(spawnPosition[i].position, Quaternion.identity);
-                bullet.GetComponent<BulletBase>().Init(myFloor.attackTo.GetComponent<FloorBase>().shootPositions[i],
-                    myFloor.attackTo.GetComponent<FloorBase>().attachedGunObj.GetComponent<IDamageable>());
+                bullet = myGun.myBullet.prefab.Spawn(spawnPosition[i].position, Quaternion.identity);
+                var tempFloorBase = myFloor.attackTo.GetComponent<FloorBase>();
+                bullet.GetComponent<BulletBase>().Init(tempFloorBase.shootPositions[i],
+                    tempFloorBase.attachedGunObj.GetComponent<IDamageable>(), myFloor.attackTo);
 
-                // if (myGun.ammoCount == 0) break;
                 tempBulletCount++;
                 if (tempBulletCount == myGun.ammoCount)
                 {
@@ -131,12 +129,24 @@ namespace Guns
                 }
             }
         }
-
         public void Died(FloorBase diedObj)
         {
             if (diedObj.attachedGunObj != transform) return;
             canShoot = false;
+        }
+        public void Freezed(Transform freezedFloor)
+        {
+            if (myFloor.transform != freezedFloor.transform) return;
+            _freeze ??= StartCoroutine(Freeze());
+        }
 
+        private Coroutine _freeze;
+        public IEnumerator Freeze()
+        {
+            speedMultiplier = .75f;
+            yield return new WaitForSecondsRealtime(2);
+            speedMultiplier = 1;
+            _freeze = null;
         }
     }
 }

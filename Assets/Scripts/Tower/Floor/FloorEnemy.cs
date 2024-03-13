@@ -12,12 +12,12 @@ namespace Tower.Floor
         public Transform skins;
         public override void OnEnable()
         {
-            GameController.OnDied += Die;
+            GameController.onDied += Die;
             InputController.Instance.onTargetSet += Attack;
         }
         public override void OnDisable()
         {
-            GameController.OnDied -= Die;
+            GameController.onDied -= Die;
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
         }

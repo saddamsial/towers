@@ -17,20 +17,20 @@ namespace Tower.Floor
         public GraphicRaycaster myCanvasRaycaster;
         public override void OnEnable()
         {
-            GameController.OnDied += Die;
+            GameController.onDied += Die;
             InputController.Instance.onTargetSet += Attack;
             GameController.onFloorAdded += FloorAdded;
             GameController.onEditMode += OnEditMode;
-            GameController.swapGun += SwapGun;
+            GameController.onSwapGun += SwapGun;
 
             addFloorButton.onClick.RemoveAllListeners();
         }
         public override void OnDisable()
         {
-            GameController.OnDied -= Die;
+            GameController.onDied -= Die;
             GameController.onFloorAdded -= FloorAdded;
             GameController.onEditMode -= OnEditMode;
-            GameController.swapGun -= SwapGun;
+            GameController.onSwapGun -= SwapGun;
 
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;

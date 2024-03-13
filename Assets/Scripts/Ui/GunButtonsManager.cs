@@ -29,14 +29,14 @@ public class GunButtonsManager : MonoBehaviour
     public void OnEnable()
     {
         GameController.onCloseCameraPressed += CloseCameraPressed;
-        GameController.swapGun += StateSetup;
+        GameController.onSwapGun += StateSetup;
         GameController.onZoomOutFromGun += ZoomOut;
     }
 
     public void OnDisable()
     {
         GameController.onCloseCameraPressed -= CloseCameraPressed;
-        GameController.swapGun -= StateSetup;
+        GameController.onSwapGun -= StateSetup;
         GameController.onZoomOutFromGun -= ZoomOut;
     }
     void Start()
@@ -54,7 +54,7 @@ public class GunButtonsManager : MonoBehaviour
         data = (GunData)DataPersistenceController.Instance.GetData("gun", new GunData(tempGunSo.gunName));
         if (buttonNo == 0 && !data.unlockState)
         {
-            Debug.Log("default unlock for machine gun");
+            // Debug.Log("default unlock for machine gun");
             data.UnlockState = true;
         }
     }

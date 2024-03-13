@@ -51,6 +51,9 @@ MonoBehaviour:
   isLaser: 0
   myGun: {fileID: 11400000, guid: 3c2022b59bd394e15979278503498ee2, type: 2}
   tempBulletCount: 0
+  freezeCountDown: 0
+  freezeTime: 0
+  speedMultiplier: 1
   myFloor: {fileID: 0}
   skin: {fileID: 4397896174209589393}
   spawnPosition:

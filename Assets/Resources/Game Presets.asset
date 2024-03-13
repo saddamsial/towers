@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
   myFloorGuns:
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  - {fileID: 11400000, guid: 62f6bf9a657604e7aa40aa9839fc65fe, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}

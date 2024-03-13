@@ -10,11 +10,12 @@ namespace Managers
     {
         public static Action<GameObject, FloorBase> onGunPlaced;
         public static Action<bool> onEditMode;
-        public static Action<FloorBase> OnDied;
+        public static Action<FloorBase> onDied;
         public static Action<Transform, int, TowerController, GunSo, FloorMine> onFloorAdded;
         public static Action<int> onCloseCameraPressed;
         public static Action onZoomOutFromGun;
-        public static Action<GameObject> swapGun;
+        public static Action<GameObject> onSwapGun;
+        public static Action<Transform> onFreeze;
 
         public int currentFocusedGun;
         public void InvokeEditMode(bool state)
@@ -23,7 +24,7 @@ namespace Managers
         }
         public void InvokeSwapGun(GameObject gun = null)
         {
-            swapGun?.Invoke(gun);
+            onSwapGun?.Invoke(gun);
         }
     }
 }

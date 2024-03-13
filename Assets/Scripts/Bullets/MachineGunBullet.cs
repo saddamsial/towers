@@ -7,9 +7,9 @@ namespace Bullets
 {
     public class MachineGunBullet : BulletBase
     {
-        public override void Init(Transform target, IDamageable damageable)
+        public override void Init(Transform target, IDamageable damageable, Transform targetParent)
         {
-            base.Init(target, damageable);
+            base.Init(target, damageable, targetParent);
             // transform.DOJump(target.position + Vector3.up * 0.5f, 0.1f, 1, bullet.speed).SetEase(Ease.Linear)
             //     .OnComplete(() => OnReached(target));
 

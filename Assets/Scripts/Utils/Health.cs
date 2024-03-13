@@ -39,7 +39,7 @@ namespace Utils
             Died = true;
             Current = 0f;
             // if (!myFloor && TryGetComponent<GunBase>(out var gunbase)) myFloor = gunbase.myFloor;
-            GameController.OnDied?.Invoke(myFloor);
+            GameController.onDied?.Invoke(myFloor);
         }
 
         public void Heal(float amount)
