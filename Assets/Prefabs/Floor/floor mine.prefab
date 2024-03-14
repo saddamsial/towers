@@ -1636,6 +1636,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4427154519970895255, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427154519970895255, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d1b64f020fe63804093ef05cc53dd7d1, type: 2}
@@ -1807,6 +1811,7 @@ MonoBehaviour:
   - {fileID: 2493877301905734191}
   - {fileID: 3827298821096632253}
   attackTo: {fileID: 0}
+  skin: {fileID: 5286396719164879258}
   outline: {fileID: 3308107841761508350}
   mainTower: {fileID: 0}
   attachedGunObj: {fileID: 0}
@@ -1817,6 +1822,11 @@ MonoBehaviour:
   addFloorButton: {fileID: 2113837264009979379}
   upgradeButton: {fileID: 6623602993755564726}
   myCanvasRaycaster: {fileID: 3273772851976966159}
+--- !u!4 &5286396719164879258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5654348229809072026, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
+  m_PrefabInstance: {fileID: 514899162596906496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7429381671903486132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6935329347518002868, guid: fac6662e303ad403c894100eb70bbc28, type: 3}

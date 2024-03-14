@@ -11,7 +11,7 @@ using Utils;
 using Utils.PoolSystem;
 
 //machine gun, canon, flame gun, rocket, laser, ice cannon, bomb launcher, tesla, shockwave, plasma
-//wood, stone, metal, semi gold, gold, diamond, platinum 
+//wood, stone, metal, semi gold, gold, titanium, diamond, platinum 
 namespace Tower.Floor
 {
     public abstract class FloorBase : MonoBehaviour
@@ -20,18 +20,18 @@ namespace Tower.Floor
         [SerializeField] public Transform gunPosition;
         public List<Transform> shootPositions = new();
         public Transform attackTo;
+        public Transform skin;
         public Outlinable outline;
         public TowerController mainTower;
         public GameObject attachedGunObj;
         public GunBase attachedGun;
         public GameObject tempGun;
         public Health myHealth;
+        public bool stoped;
         public bool IsFreezed { get; set; }
         public abstract void OnEnable();
         public abstract void OnDisable();
-
         public abstract void Attack(Transform target);
-
         public void AttachGun(GameObject tempGun = null)
         {
             if (attachedGunObj != null)
@@ -74,13 +74,10 @@ namespace Tower.Floor
             if (diedObj.transform != transform) return;
             gameObject.Despawn();
         }
-
         public void MoveToNewPositionAfterDestroy(Vector3 newPos, float delay)
         {
             stoped = false;
             transform.DOMove(newPos, 0.5f + delay).SetEase(Ease.InBack).OnComplete(() => stoped = true);
         }
-        public bool stoped;
-
     }
 }

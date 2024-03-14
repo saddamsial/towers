@@ -57,6 +57,7 @@ namespace Tower.Floor
         {
             if (transform != floor) return;
             this.mainTower = mainTower;
+            SkinSet(whichFloor);
             if (!mainTower.floorMineList.Contains(this))
                 mainTower.floorMineList.Add(this);
             var isEdit = GameStateManager.Instance.IsEditState();
@@ -72,6 +73,10 @@ namespace Tower.Floor
             AttachGun(gun.myPrefab);
             myCanvasRaycaster.enabled = isEdit;
         }
+        private void SkinSet(int index)
+        {
+            skin.GetChild(mainTower.data.FloorLevels[index]).gameObject.SetActive(true);
+        }
         public void OnEditMode(bool state)
         {
             upgradeButton.SetActive(state);
@@ -84,7 +89,15 @@ namespace Tower.Floor
         }
         public void UpgradeButton()
         {
-            Debug.Log("upgrade pressed", gameObject);
+            var myIndex = mainTower.floors.IndexOf(gameObject);
+            mainTower.data.UpdateFloorLevel(myIndex);
+            foreach (Transform c in skin)
+            {
+                c.gameObject.SetActive(false);
+            }
+            SkinSet(myIndex);
+
+            // Debug.Log("upgrade pressed", gameObject);
         }
         public void SwapGun(GameObject newGun = null)
         {

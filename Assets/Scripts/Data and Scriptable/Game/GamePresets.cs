@@ -12,11 +12,11 @@ public class GamePresets : ScriptableObject
     [Label("Levels")]
     public List<EnemyTowerSo> levels = new();
     public int myTowerFloorCount, maxPossibleFloor;
-    public List<FloorSo> myFloorMaterials = new();
+    public List<int> myFloorLevels = new();
     public List<GunSo> myFloorGuns = new();
     public bool HideDefaults;
     [HideIf("HideDefaults")]
-    public List<FloorSo> myFloorMaterialsDefault = new();
+    public List<int> myFloorLevelsDefault = new();
     [HideIf("HideDefaults")]
     public List<GunSo> myFloorGunsDefault = new();
 
@@ -24,6 +24,6 @@ public class GamePresets : ScriptableObject
     public void ResetData()
     {
         myFloorGuns = new List<GunSo>(myFloorGunsDefault);
-        myFloorMaterials = new List<FloorSo>(myFloorMaterialsDefault);
+        myFloorLevels = new List<int>(myFloorLevelsDefault);
     }
 }
