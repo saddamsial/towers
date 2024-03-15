@@ -57,7 +57,6 @@ namespace Tower.Floor
         {
             if (transform != floor) return;
             this.mainTower = mainTower;
-            SkinSet(whichFloor);
             if (!mainTower.floorMineList.Contains(this))
                 mainTower.floorMineList.Add(this);
             var isEdit = GameStateManager.Instance.IsEditState();
@@ -72,10 +71,14 @@ namespace Tower.Floor
             upgradeButton.SetActive(isEdit);
             AttachGun(gun.myPrefab);
             myCanvasRaycaster.enabled = isEdit;
+
+            SkinSet(whichFloor);
         }
         private void SkinSet(int index)
         {
-            skin.GetChild(mainTower.data.FloorLevels[index]).gameObject.SetActive(true);
+            var listIndex = mainTower.data.FloorLevels[index];
+            myHealth.SetupHealth(listIndex);
+            skin.GetChild(listIndex).gameObject.SetActive(true);
         }
         public void OnEditMode(bool state)
         {
@@ -90,20 +93,19 @@ namespace Tower.Floor
         public void UpgradeButton()
         {
             var myIndex = mainTower.floors.IndexOf(gameObject);
-            mainTower.data.UpdateFloorLevel(myIndex);
-            foreach (Transform c in skin)
+            if (mainTower.data.UpdateFloorLevel(myIndex))
             {
-                c.gameObject.SetActive(false);
+                foreach (Transform c in skin)
+                {
+                    c.gameObject.SetActive(false);
+                }
+                SkinSet(myIndex);
             }
-            SkinSet(myIndex);
-
-            // Debug.Log("upgrade pressed", gameObject);
         }
         public void SwapGun(GameObject newGun = null)
         {
             var index = mainTower.floors.IndexOf(gameObject);
             if (index != GameController.Instance.currentFocusedGun) return;
-            //Debug.Log("this gun");
             mainTower.data.UpdateFloorGun(index, newGun.GetComponent<GunBase>().myGun);
             AttachGun(newGun);
         }

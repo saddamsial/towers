@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Data_and_Scriptable.GunSo;
 using DG.Tweening;
 using EPOOutline;
 using GameStates;

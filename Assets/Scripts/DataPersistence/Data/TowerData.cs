@@ -51,10 +51,15 @@ public class TowerData : Data
         Guns[index] = gun;
         Guns = Guns;
     }
-    public void UpdateFloorLevel(int index)
+    public bool UpdateFloorLevel(int index)
     {
+        if (FloorLevels[index] >= 7)
+        {
+            return false;
+        }
         FloorLevels[index]++;
         FloorLevels = FloorLevels;
+        return true;
     }
 
 }

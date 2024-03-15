@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  HideDefaults: 0
+  HideDefaults: 1
   myFloorLevelsDefault: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   myFloorGunsDefault:
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}

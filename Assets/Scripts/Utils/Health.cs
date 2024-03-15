@@ -56,10 +56,6 @@ namespace Utils
             OnFull?.Invoke();
         }
 
-        public void SetupHealth(float hp)
-        {
-            Current = initial = hp;
-
-        }
+        public void SetupHealth(float hp) => Current = initial = 8 + hp * 2;
     }
 }
