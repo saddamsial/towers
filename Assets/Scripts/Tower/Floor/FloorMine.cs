@@ -11,7 +11,7 @@ namespace Tower.Floor
 {
     public class FloorMine : FloorBase
     {
-        public bool IsTargeted { get; set; }
+        public bool isTargeted;
         public Button addFloorButton;
         public GameObject upgradeButton;
         public GraphicRaycaster myCanvasRaycaster;

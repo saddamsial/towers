@@ -33,7 +33,13 @@ namespace Tower.Floor
         }
         public void AttackToEnemy(FloorMine floor)
         {
+            if (attackTo != null)
+            {
+                attackTo.GetComponent<FloorMine>().isTargeted = false;
+                attackTo = null;
+            }
             if (!floor) return;
+            floor.isTargeted = true;
             attackTo = floor.transform;
             attachedGun.RotateToTarget();
         }

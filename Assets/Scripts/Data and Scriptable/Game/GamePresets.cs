@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data_and_Scriptable.GunSo;
@@ -19,11 +20,20 @@ public class GamePresets : ScriptableObject
     public List<int> myFloorLevelsDefault = new();
     [HideIf("HideDefaults")]
     public List<GunSo> myFloorGunsDefault = new();
+    [ReorderableList]
+    [Label("Loots")]
+    public List<Loots> LootList = new();
 
     [Button]
     public void ResetData()
     {
         myFloorGuns = new List<GunSo>(myFloorGunsDefault);
         myFloorLevels = new List<int>(myFloorLevelsDefault);
+    }
+
+    [Serializable]
+    public class Loots
+    {
+        public List<LootItem> loot = new();
     }
 }

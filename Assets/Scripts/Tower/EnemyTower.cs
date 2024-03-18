@@ -36,10 +36,7 @@ namespace Tower
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                GenerateTowerWithSo();
-            }
+
         }
 
         public void GenerateTowerWithSo()
@@ -65,7 +62,6 @@ namespace Tower
                 floors[i].GetComponent<FloorEnemy>().AttackToEnemy(SelectTarget());
             }
         }
-
         public FloorMine SelectTarget()
         {
             floorsMain.Clear();
@@ -73,14 +69,18 @@ namespace Tower
 
             if (floorsMain.Count == 0) return null;
             var tempTarget = floorsMain[0];
+            FillLists();
 
+            tempTarget = floorsHealth2Low[Random.Range(0, floorsHealth2Low.Count)];
+            tempTarget.isTargeted = true;
+            return tempTarget;
+        }
+        private void FillLists()
+        {
             floorsHealth2Low = new List<FloorMine>(floorsMain./*Where(x => x.attachedGun != null).*/OrderBy(x => x.myHealth.Current));
             floorsPower2Least = new List<FloorMine>(floorsMain.Where(x => x.attachedGun != null).OrderBy(x => x.attachedGun.myGun.myBullet.damage));
-            floorsNotTargeted = new List<FloorMine>(floorsMain.Where(x => x.IsTargeted)).ToList();
+            floorsNotTargeted = new List<FloorMine>(floorsMain.Where(x => !x.isTargeted)).ToList();
             floorsFreezed = new List<FloorMine>(floorsMain.Where(x => x.IsFreezed)).ToList();
-            tempTarget = floorsHealth2Low[Random.Range(0, floorsHealth2Low.Count)];
-            tempTarget.IsTargeted = true;
-            return tempTarget;
         }
     }
 }

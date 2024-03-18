@@ -43,3 +43,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  LootList:
+  - loot:
+    - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}
+    - {fileID: 11400000, guid: 2939cbee093fb4e5bb5bd2f482b17ba3, type: 2}
+    - {fileID: 11400000, guid: 858f5dc19922f4c168c05fc7d423787d, type: 2}
+  - loot:
+    - {fileID: 11400000, guid: 90a0b8bcc55f44af5a14e8a215f48f31, type: 2}
+    - {fileID: 11400000, guid: 2939cbee093fb4e5bb5bd2f482b17ba3, type: 2}
+    - {fileID: 11400000, guid: 4f80c4eacc19146bbae7fbcfd98939c1, type: 2}
+  - loot:
+    - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}
+    - {fileID: 11400000, guid: 6af0d407bd05b48448f245e0cc338129, type: 2}
+    - {fileID: 11400000, guid: 4f80c4eacc19146bbae7fbcfd98939c1, type: 2}
+  - loot:
+    - {fileID: 11400000, guid: b7655029f93ee498c92c9165c37495a6, type: 2}
+    - {fileID: 11400000, guid: ef4c0a4f521c347c3997706ea09839c6, type: 2}
+    - {fileID: 11400000, guid: 858f5dc19922f4c168c05fc7d423787d, type: 2}
+  - loot:
+    - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}
+    - {fileID: 11400000, guid: 6af0d407bd05b48448f245e0cc338129, type: 2}
+    - {fileID: 11400000, guid: 4f80c4eacc19146bbae7fbcfd98939c1, type: 2}
