@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b402113393af048c89f6f07e387089be, type: 3}
-  m_Name: Manager 6 Rocket
+  m_Name: Manager 4 Cannon
   m_EditorClassIdentifier: 
-  lootType: 3
-  sprite: {fileID: 21300000, guid: c9b43e357f55a40eeb713ddc18e0347d, type: 3}
+  lootType: 4
+  sprite: {fileID: 21300000, guid: ad747883118aa4aefa7808b037d4564a, type: 3}
   amount: 0
-  managerId: 6
+  managerId: 4

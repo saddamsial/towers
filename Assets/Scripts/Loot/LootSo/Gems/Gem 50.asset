@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b402113393af048c89f6f07e387089be, type: 3}
-  m_Name: Manager 3 Lightning
+  m_Name: Gem 50
   m_EditorClassIdentifier: 
-  lootType: 3
-  sprite: {fileID: 21300000, guid: ea0d15c8ad5814d68ba5d1f53bae6247, type: 3}
-  amount: 0
-  managerId: 3
+  lootType: 1
+  sprite: {fileID: 21300000, guid: 27e5fc7bf572f4a43be6798a41d06de7, type: 3}
+  amount: 50
+  managerId: 50
