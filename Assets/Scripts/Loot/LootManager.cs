@@ -122,13 +122,11 @@ public class LootManager : Singleton<LootManager>
     }
     private void ClearList()
     {
-        // if (spawnedLootItems.Count <= 0) return;
         for (int i = 0; i < spawnedLootItems.Count; i++)
         {
             spawnedLootItems[0].gameObject.SetActive(false);
             spawnedLootItems.RemoveAt(0);
         }
-        // spawnedLootItems.Clear();
         if (spawnedLootItems.Count > 0)
             ClearList();
     }
@@ -147,20 +145,14 @@ public class LootManager : Singleton<LootManager>
         if (!skiped)
         {
             tempObj.DOScale(1.2f * Vector3.one, 1.6f).SetEase(Ease.InOutBounce);
-            tempObj.DOMove(moveToPos.position, 1.6f, true).SetEase(Ease.InBounce).OnComplete(() => amountText.text = currentLoot[remainingLootCount].amount + "");
+            tempObj.DOMove(moveToPos.position, 1.6f, true).SetEase(Ease.InBounce).OnComplete(() => amountText.text = currentLoot[remainingLootCount].amount > 0 ? currentLoot[remainingLootCount].amount + "" : "");
         }
         else
         {
             tempObj.position = moveToPos.position;
-            amountText.text = currentLoot[remainingLootCount].amount + "";
+            amountText.text = amountText.text = currentLoot[remainingLootCount].amount > 0 ? currentLoot[remainingLootCount].amount + "" : "";
             tempObj.localScale = 1.2f * Vector3.one;
         }
         tempObj.GetChild(0).GetComponent<Image>().sprite = currentLoot[remainingLootCount].sprite;
     }
 }
-
-
-// for (int i = 0; i < currentLoot.Count; i++)
-// {
-//     Debug.Log(currentLoot[i].name);
-// }ozon meta  apt  phb  rndr           cell lai ml
