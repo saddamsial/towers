@@ -29,11 +29,24 @@ public class LootManager : Singleton<LootManager>
         {
             NewLoot();
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("gem: " + data.Gem);
+            Debug.Log("gear: " + data.Gear);
+            Debug.Log("ticket: " + data.Ticket);
+            Debug.Log("money: " + data.Money);
+            for (int i = 0; i < data.Managers.Count; i++)
+            {
+                Debug.Log("manager: " + data.Managers[i]);
+            }
+            Debug.Log("loot: " + data.LootCount);
+        }
     }
 
     public void NewLoot()
     {
         gridView.gameObject.SetActive(false);
+        step3.SetActive(false);
         lootPanel.SetActive(true);
         TaptoCollect(false);
         currentLoot = gamePresets.LootList[data.lootCount].loot;
@@ -42,6 +55,11 @@ public class LootManager : Singleton<LootManager>
     }
     public void Skip()
     {
+        if (remainingLootCount != 0)
+            for (int a = 0; a <= remainingLootCount; a++)
+            {
+                SpawnLootObject(true);
+            }
         gridView.gameObject.SetActive(true);
         step1.SetActive(false);
         step2.SetActive(false);
@@ -59,6 +77,7 @@ public class LootManager : Singleton<LootManager>
     }
     public void TaptoCollect(bool open)
     {
+        chestClose.transform.parent.gameObject.SetActive(true);
         step1.SetActive(!open);
         step2.SetActive(open);
         chestClose.SetActive(!open);
@@ -77,8 +96,28 @@ public class LootManager : Singleton<LootManager>
     {
         for (int i = 0; i < currentLoot.Count; i++)
         {
+            switch (currentLoot[i].lootType)
+            {
+                case LootType.manager:
+                    data.AddNewManager(currentLoot[i].managerId);
+                    break;
+                case LootType.gear:
+                    data.Gear += currentLoot[i].amount;
+                    break;
+                case LootType.gem:
+                    data.Gem += currentLoot[i].amount;
+                    break;
+                case LootType.money:
+                    data.Money += currentLoot[i].amount;
+                    break;
+                case LootType.ticket:
+                    data.Ticket += currentLoot[i].amount;
+                    break;
+            }
 
         }
+        data.LootCount++;
+
         lootPanel.SetActive(false);
     }
     private void ClearList()
@@ -86,14 +125,14 @@ public class LootManager : Singleton<LootManager>
         // if (spawnedLootItems.Count <= 0) return;
         for (int i = 0; i < spawnedLootItems.Count; i++)
         {
-            spawnedLootItems[0].gameObject.Despawn();
+            spawnedLootItems[0].gameObject.SetActive(false);
             spawnedLootItems.RemoveAt(0);
         }
         // spawnedLootItems.Clear();
         if (spawnedLootItems.Count > 0)
             ClearList();
     }
-    private void SpawnLootObject()
+    private void SpawnLootObject(bool skiped = false)
     {
         remainingLootCount--;
         deckCount.text = remainingLootCount + "";
@@ -105,10 +144,18 @@ public class LootManager : Singleton<LootManager>
         spawnedLootItems.Add(tempObj);
         var amountText = tempObj.GetChild(1).GetComponent<TMP_Text>();
         amountText.text = "";
-        tempObj.DOScale(1.2f * Vector3.one, 1.6f).SetEase(Ease.InOutBounce);
-        tempObj.DOMove(moveToPos.position, 1.6f, true).SetEase(Ease.InBounce).OnComplete(() => amountText.text = currentLoot[remainingLootCount].amount + "");
+        if (!skiped)
+        {
+            tempObj.DOScale(1.2f * Vector3.one, 1.6f).SetEase(Ease.InOutBounce);
+            tempObj.DOMove(moveToPos.position, 1.6f, true).SetEase(Ease.InBounce).OnComplete(() => amountText.text = currentLoot[remainingLootCount].amount + "");
+        }
+        else
+        {
+            tempObj.position = moveToPos.position;
+            amountText.text = currentLoot[remainingLootCount].amount + "";
+            tempObj.localScale = 1.2f * Vector3.one;
+        }
         tempObj.GetChild(0).GetComponent<Image>().sprite = currentLoot[remainingLootCount].sprite;
-
     }
 }
 
@@ -116,4 +163,4 @@ public class LootManager : Singleton<LootManager>
 // for (int i = 0; i < currentLoot.Count; i++)
 // {
 //     Debug.Log(currentLoot[i].name);
-// }
+// }ozon meta  apt  phb  rndr           cell lai ml
