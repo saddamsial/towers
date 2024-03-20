@@ -30,6 +30,8 @@ namespace Guns
         public Transform turretPivot;
         public Health health;
         private Quaternion firstRotation;
+        private Coroutine _freeze;
+
         private void OnEnable()
         {
             GameController.onGunPlaced += Init;
@@ -133,18 +135,29 @@ namespace Guns
             if (diedObj.attachedGunObj != transform) return;
             canShoot = false;
         }
-        public void Freezed(Transform freezedFloor)
+        public void Freezed(Transform freezedFloor, bool isPowerup = false)
         {
             if (myFloor.transform != freezedFloor.transform) return;
-            _freeze ??= StartCoroutine(Freeze());
+            if (isPowerup)
+            {
+                if (_freeze != null)
+                {
+                    StopCoroutine(_freeze);
+                }
+                _freeze = StartCoroutine(Freeze(true));
+                canShoot = false;
+            }
+            else
+            {
+                _freeze ??= StartCoroutine(Freeze(false));
+            }
         }
-
-        private Coroutine _freeze;
-        public IEnumerator Freeze()
+        public IEnumerator Freeze(bool isPower)
         {
-            speedMultiplier = .75f;
+            speedMultiplier = isPower ? 0.0f : .75f;
             yield return new WaitForSecondsRealtime(2);
             speedMultiplier = 1;
+            canShoot = true;
             _freeze = null;
         }
     }

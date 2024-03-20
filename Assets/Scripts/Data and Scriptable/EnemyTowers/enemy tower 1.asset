@@ -16,9 +16,12 @@ MonoBehaviour:
   - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
     gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
     Health: 5
+    difficulty: 1
   - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
     gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
     Health: 5
+    difficulty: 2
   - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
     gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
     Health: 5
+    difficulty: 4

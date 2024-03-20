@@ -9,6 +9,7 @@ namespace Tower.Floor
     public class FloorEnemy : FloorBase
     {
         public EnemyTower enemyTower;
+        FloorTemp tempFloor;
         public Transform skins;
         public override void OnEnable()
         {
@@ -23,6 +24,7 @@ namespace Tower.Floor
         }
         public void Init(FloorTemp floor, EnemyTower enemyTower, TowerController mainTower)
         {
+            tempFloor = floor;
             this.mainTower = mainTower;
             this.enemyTower = enemyTower;
             skins.GetChild(floor.floorSo.skinNo).gameObject.SetActive(true);
@@ -30,6 +32,7 @@ namespace Tower.Floor
             myHealth = attachedGun.GetComponent<Health>();
             myHealth.myFloor = this;
             myHealth.SetupHealth(floor.Health);
+
         }
         public void AttackToEnemy(FloorMine floor)
         {
@@ -60,7 +63,7 @@ namespace Tower.Floor
             base.Die(diedObj);
             if (diedObj.transform != attackTo)
             {
-                AttackToEnemy(enemyTower.SelectTarget());
+                AttackToEnemy(enemyTower.targetSelector.SelectTarget(tempFloor.difficulty));
             }
         }
     }

@@ -13,6 +13,8 @@ public class EnemyTowerSo : ScriptableObject
         public FloorSo floorSo;
         public GunSo gunToAttach;
         public float Health;
+        [Range(0, 10)]
+        public int difficulty;
     }
 
     public List<FloorTemp> floorTemps = new();

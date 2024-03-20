@@ -26,7 +26,8 @@ namespace Tower.Floor
         public GameObject tempGun;
         public Health myHealth;
         public bool stoped;
-        public bool IsFreezed { get; set; }
+        public bool isFreezed;
+        public bool hasShield;
         public abstract void OnEnable();
         public abstract void OnDisable();
         public abstract void Attack(Transform target);
