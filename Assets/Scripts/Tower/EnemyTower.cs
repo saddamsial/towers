@@ -46,7 +46,8 @@ namespace Tower
             targetSelector.FirstFill();
             for (int i = 0; i < floors.Count; i++)
             {
-                floors[i].GetComponent<FloorEnemy>().AttackToEnemy(targetSelector.SelectTarget(enemyTowerSo.floorTemps[i].difficulty));
+                floors[i].GetComponent<FloorEnemy>().AttackToEnemy(targetSelector.SelectTarget(enemyTowerSo.floorTemps[i].difficulty, floors[i].transform),
+                enemyTowerSo.floorTemps[i].difficulty);
             }
         }
     }

@@ -19,7 +19,6 @@ namespace Bullets
              {
                  if (isIceCannon)
                  {
-                     //TODOtower: burada enemy floor attached gun freeze yap
                      GameController.onFreeze?.Invoke(targetParent, false);
                  }
                  OnReached(target, damageable);

@@ -26,6 +26,7 @@ namespace Tower
         public GamePresets gamePresets;
         FloorMine prevFloorMine;
         public CameraSettingsController cameraSettings;
+        public TargetSelectorEnemy targetSelectorEnemy;
 
         public void OnEnable()
         {
@@ -92,6 +93,7 @@ namespace Tower
         {
             base.RearrangeFloors(floorObj);
             floorMineList.Remove(floorObj.gameObject.GetComponent<FloorMine>());
+            targetSelectorEnemy.FirstFill();
         }
         public void ResetSelected()
         {

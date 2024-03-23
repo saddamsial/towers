@@ -34,7 +34,7 @@ namespace Tower.Floor
             myHealth.SetupHealth(floor.Health);
 
         }
-        public void AttackToEnemy(FloorMine floor)
+        public void AttackToEnemy(FloorMine floor, int difficulty)
         {
             if (attackTo != null)
             {
@@ -44,7 +44,7 @@ namespace Tower.Floor
             if (!floor) return;
             floor.isTargeted = true;
             attackTo = floor.transform;
-            attachedGun.RotateToTarget();
+            attachedGun.RotateToTarget(difficulty);
         }
         public override void Attack(Transform target)
         {
@@ -63,7 +63,7 @@ namespace Tower.Floor
             base.Die(diedObj);
             if (diedObj.transform != attackTo)
             {
-                AttackToEnemy(enemyTower.targetSelector.SelectTarget(tempFloor.difficulty));
+                AttackToEnemy(enemyTower.targetSelector.SelectTarget(tempFloor.difficulty, transform), tempFloor.difficulty);
             }
         }
     }

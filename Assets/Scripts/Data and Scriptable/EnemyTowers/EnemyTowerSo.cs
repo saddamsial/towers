@@ -13,7 +13,7 @@ public class EnemyTowerSo : ScriptableObject
         public FloorSo floorSo;
         public GunSo gunToAttach;
         public float Health;
-        [Range(0, 10)]
+        [Range(0, 9)]
         public int difficulty;
     }
 

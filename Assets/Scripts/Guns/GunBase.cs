@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using GameStates;
 using System.Collections;
+using Unity.VisualScripting;
 
 namespace Guns
 {
@@ -87,26 +88,38 @@ namespace Guns
                 }
             }
         }
-        public void RotateToTarget()
+        public void RotateToTarget(int difficulty = 3)
         {
             turretPivot.DOKill();
-            if (myFloor.attackTo == null) return;
-            if (tempBulletCount > 0)
-            {
-                coolDownTime = myGun.coolDownTime;
-                coolDown = true;
-            }
-            frequency = GetFrequency();
-            canShoot = true;
+            if (myFloor.attackTo == null || !gameObject.activeInHierarchy) return;
+            StartCoroutine(ShootDelayByDifficulty(difficulty));
+        }
 
-            // Debug.Log(myFloor.attackTo, myFloor.attackTo);
-            turretPivot.DODynamicLookAt(myFloor.attackTo.GetComponent<FloorBase>().gunPosition.position, 0.3f).OnComplete(() =>
+        public IEnumerator ShootDelayByDifficulty(int difficulty)
+        {
+            float t = 3 - difficulty;
+            t *= 0.3f;
+            if (t < 0) t = 0;
+            yield return new WaitForSeconds(t);
+            if (myFloor.attackTo != null || myFloor.attackTo.gameObject.activeInHierarchy)
             {
-                if (isLaser)
+                if (tempBulletCount > 0)
                 {
-                    Shoot();
+                    coolDownTime = myGun.coolDownTime;
+                    coolDown = true;
                 }
-            });
+                frequency = GetFrequency();
+                canShoot = true;
+
+                // Debug.Log(myFloor.attackTo, myFloor.attackTo);
+                turretPivot.DODynamicLookAt(myFloor.attackTo.GetComponent<FloorBase>().gunPosition.position, 0.3f).OnComplete(() =>
+                {
+                    if (isLaser)
+                    {
+                        Shoot();
+                    }
+                });
+            }
         }
         public void ResetRotation()
         {
@@ -132,7 +145,14 @@ namespace Guns
         }
         public void Died(FloorBase diedObj)
         {
-            if (diedObj.attachedGunObj != transform) return;
+            if (diedObj.attachedGunObj != transform)
+            {
+                // if (myFloor.attackTo != null)
+                //     RotateToTarget();
+                // else
+                // ResetRotation();
+                return;
+            }
             canShoot = false;
         }
         public void Freezed(Transform freezedFloor, bool isPowerup = false)
