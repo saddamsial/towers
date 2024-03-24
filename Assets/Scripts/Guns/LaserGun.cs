@@ -23,6 +23,8 @@ public class LaserGun : GunBase
     }
     protected override void Shoot()
     {
+        if (!myFloor.attackTo || !myFloor.attackTo.gameObject.activeInHierarchy) return;
+
         targetObj = myFloor.attackTo.GetComponent<FloorBase>().gunPosition;
         if (targetObj.GetChild(0).TryGetComponent(out IDamageable damageable))
         {
@@ -39,7 +41,8 @@ public class LaserGun : GunBase
         if (tempBullet && tempBullet.activeInHierarchy)
         {
             DespawnTempBullet();
-            yield return new WaitUntil(() => !line.enabled);
+            if (line)
+                yield return new WaitUntil(() => !line.enabled);
         }
 
         tempBullet = myGun.myBullet.prefab.Spawn(spawnPosition[0].position, Quaternion.identity);
@@ -75,14 +78,18 @@ public class LaserGun : GunBase
         if (!tempBullet) return;
         tempBullet.transform.GetChild(0).DOMove(tempBullet.transform.GetChild(1).position, 0.2f).OnUpdate(() =>
                 {
-                    tempBullet.transform.GetChild(0).position = spawnPosition[0].position;
-                    line.SetPositions(new Vector3[] { tempBullet.transform.GetChild(0).position, tempBullet.transform.GetChild(1).position });
+                    if (tempBullet)
+                    {
+                        tempBullet.transform.GetChild(0).position = spawnPosition[0].position;
+                        line.SetPositions(new Vector3[] { tempBullet.transform.GetChild(0).position, tempBullet.transform.GetChild(1).position });
+                    }
                 }).OnComplete(() =>
                 {
                     damage = false;
 
                     line.enabled = false;
-                    tempBullet.Despawn();
+                    tempBullet?.Despawn();
+                    tempBullet = null;
                 });
     }
 
@@ -102,7 +109,6 @@ public class LaserGun : GunBase
             damageable.Damage(myGun.myBullet.damage);
             laserFrequency = myGun.frequency;
         }
-
     }
 }
 

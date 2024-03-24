@@ -62,13 +62,13 @@ namespace Tower.Floor
         {
             if (diedObj.transform == attackTo)
             {
-                if (attachedGun.isLaser)
-                {
-                    attachedGun.GetComponent<LaserGun>().DamageState(false, true);
-                }
                 attackTo = null;
                 attachedGun.canShoot = false;
                 attachedGun.ResetRotation();
+            }
+            if (attachedGun.isLaser)
+            {
+                attachedGun.GetComponent<LaserGun>().DamageState(false, true);
             }
             if (diedObj.transform != transform) return;
             gameObject.Despawn();

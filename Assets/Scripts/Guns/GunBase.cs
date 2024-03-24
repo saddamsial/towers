@@ -101,7 +101,7 @@ namespace Guns
             t *= 0.3f;
             if (t < 0) t = 0;
             yield return new WaitForSeconds(t);
-            if (myFloor.attackTo != null || myFloor.attackTo.gameObject.activeInHierarchy)
+            if (myFloor.attackTo != null || (myFloor.attackTo && myFloor.attackTo.gameObject.activeInHierarchy))
             {
                 if (tempBulletCount > 0)
                 {
@@ -145,14 +145,8 @@ namespace Guns
         }
         public void Died(FloorBase diedObj)
         {
-            if (diedObj.attachedGunObj != transform)
-            {
-                // if (myFloor.attackTo != null)
-                //     RotateToTarget();
-                // else
-                // ResetRotation();
-                return;
-            }
+            if (diedObj.attachedGunObj != transform) return;
+
             canShoot = false;
         }
         public void Freezed(Transform freezedFloor, bool isPowerup = false)

@@ -29,23 +29,3 @@ MonoBehaviour:
     gunToAttach: {fileID: 11400000, guid: 477a58235367640c0ba2c17a38a46945, type: 2}
     Health: 0.8
     difficulty: 3
-  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-    Health: 0.8
-    difficulty: 4
-  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 739f3508fabaa4481bd5d0e4346aea6e, type: 2}
-    Health: 0.8
-    difficulty: 5
-  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-    Health: 0.8
-    difficulty: 6
-  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 29e89acafd59b432a93416aac22903a0, type: 2}
-    Health: 0.8
-    difficulty: 7
-  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-    Health: 0.8
-    difficulty: 8
