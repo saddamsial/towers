@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff7f8ef5de34b499a97de4826ab043d, type: 3}
+  m_Name: Grant 50 Points
+  m_EditorClassIdentifier: 
+  PlayerStats: {fileID: 11400000, guid: f308ccf3425e90947b64f8f692aa8675, type: 2}
+  AmountOfPoints: 50

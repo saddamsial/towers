@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 074e6f48e04b763449d894ef6ed011c0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scriptable Objects/Quests/Multiple
+    Objectives Quest/Sync/Sync Multiple Objective Quest.asset
+  uploadId: 534086

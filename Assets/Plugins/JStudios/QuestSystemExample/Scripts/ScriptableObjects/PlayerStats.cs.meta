@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 3fafe6e4675e406e87420ef20a166dff
+timeCreated: 1650544367
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scripts/ScriptableObjects/PlayerStats.cs
+  uploadId: 534086

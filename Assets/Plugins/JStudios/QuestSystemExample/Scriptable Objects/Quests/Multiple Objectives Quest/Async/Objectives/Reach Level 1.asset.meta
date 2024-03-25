@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c12ccf99f26d502448f07a35589bad30
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scriptable Objects/Quests/Multiple
+    Objectives Quest/Async/Objectives/Reach Level 1.asset
+  uploadId: 534086

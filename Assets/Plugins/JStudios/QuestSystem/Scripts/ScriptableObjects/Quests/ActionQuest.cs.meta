@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: b73916d0707f4cfa8cffa0cf5917e761
+timeCreated: 1651736961
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Scripts/ScriptableObjects/Quests/ActionQuest.cs
+  uploadId: 534086

@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 3ff7f8ef5de34b499a97de4826ab043d
+timeCreated: 1650544907
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scripts/ScriptableObjects/GrantPointsAction.cs
+  uploadId: 534086

@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 9f27055b05824c15bce9285f899b247f
+timeCreated: 1650735485
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/Scripts/Editor/Drawers/RequireInterfaceDrawer.cs
+  uploadId: 534086

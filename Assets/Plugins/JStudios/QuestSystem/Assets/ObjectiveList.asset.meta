@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 65f2941f4c8216149b0e16c35d67b4d3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Assets/ObjectiveList.asset
+  uploadId: 534086

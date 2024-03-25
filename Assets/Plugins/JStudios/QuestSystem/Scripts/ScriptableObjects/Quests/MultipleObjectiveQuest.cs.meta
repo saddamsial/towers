@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 472a2e67922942a98a20fec7ab8da5c1
+timeCreated: 1650175529
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Scripts/ScriptableObjects/Quests/MultipleObjectiveQuest.cs
+  uploadId: 534086

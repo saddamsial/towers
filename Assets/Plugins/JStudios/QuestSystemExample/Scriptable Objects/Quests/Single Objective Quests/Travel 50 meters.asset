@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091372ed42914111a9dedf043a306493, type: 3}
+  m_Name: Travel 50 meters
+  m_EditorClassIdentifier: 
+  UniqueId: 40d688ee-113c-4020-97a3-8a2864baeb2f
+  IsInternal: 0
+  HideFromList: 0
+  Name: Travel 50 meters
+  _completionActions: []
+  RawCompleted: 0
+  ActiveState: 2
+  _requireBeforeActive: []
+  _rawTarget: 0
+  Objective: {fileID: 11400000, guid: fbf7e8f841420e24ab549c656274eafb, type: 2}

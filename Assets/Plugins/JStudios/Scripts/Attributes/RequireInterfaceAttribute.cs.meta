@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 9737a60dbc8e43cc8b6f9a0130bd74ef
+timeCreated: 1650111973
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/Scripts/Attributes/RequireInterfaceAttribute.cs
+  uploadId: 534086

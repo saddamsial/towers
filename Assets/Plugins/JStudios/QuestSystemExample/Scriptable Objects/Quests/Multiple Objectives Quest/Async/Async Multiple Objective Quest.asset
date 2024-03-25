@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472a2e67922942a98a20fec7ab8da5c1, type: 3}
+  m_Name: Async Multiple Objective Quest
+  m_EditorClassIdentifier: 
+  UniqueId: dc7aae76-2343-4665-91d4-38a39d6c324f
+  IsInternal: 0
+  HideFromList: 0
+  Name: Async Quest
+  _completionActions: []
+  RawCompleted: 0
+  ActiveState: 1
+  _requireBeforeActive: []
+  _rawTarget: 11
+  Objectives:
+  - {fileID: 11400000, guid: 307f3a7ae44dce544822e891b30b58a9, type: 2}
+  - {fileID: 11400000, guid: c12ccf99f26d502448f07a35589bad30, type: 2}

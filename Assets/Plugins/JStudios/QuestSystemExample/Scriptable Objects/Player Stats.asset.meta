@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f308ccf3425e90947b64f8f692aa8675
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scriptable Objects/Player Stats.asset
+  uploadId: 534086

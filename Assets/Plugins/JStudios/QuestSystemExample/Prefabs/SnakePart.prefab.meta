@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dcfb47b5ae3fb0b468271be7c43e5514
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Prefabs/SnakePart.prefab
+  uploadId: 534086

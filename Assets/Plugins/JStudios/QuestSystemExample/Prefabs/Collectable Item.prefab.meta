@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d8e02fc7d5ef3a849805499d56b0bccd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Prefabs/Collectable Item.prefab
+  uploadId: 534086

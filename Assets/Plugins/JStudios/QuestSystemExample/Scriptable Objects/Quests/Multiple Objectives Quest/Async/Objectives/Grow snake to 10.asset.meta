@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 307f3a7ae44dce544822e891b30b58a9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scriptable Objects/Quests/Multiple
+    Objectives Quest/Async/Objectives/Grow snake to 10.asset
+  uploadId: 534086

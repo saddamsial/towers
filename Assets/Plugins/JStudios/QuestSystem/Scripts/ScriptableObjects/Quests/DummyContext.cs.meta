@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: bda4856bca154829b66f05290c53f966
+timeCreated: 1651733290
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Scripts/ScriptableObjects/Quests/DummyContext.cs
+  uploadId: 534086

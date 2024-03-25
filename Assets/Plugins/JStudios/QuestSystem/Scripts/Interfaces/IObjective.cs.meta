@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 924e2732ef844a6cb08f0ddb95facf03
+timeCreated: 1650735655
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Scripts/Interfaces/IObjective.cs
+  uploadId: 534086

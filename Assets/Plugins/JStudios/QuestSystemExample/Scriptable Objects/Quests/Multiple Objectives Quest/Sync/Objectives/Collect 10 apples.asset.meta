@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 198659099dd401c48ba848d25b04c12e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scriptable Objects/Quests/Multiple
+    Objectives Quest/Sync/Objectives/Collect 10 apples.asset
+  uploadId: 534086

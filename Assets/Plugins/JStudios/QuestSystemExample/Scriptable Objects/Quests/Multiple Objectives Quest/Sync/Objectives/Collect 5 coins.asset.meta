@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 303b98d38460ec84a9c57ac2abb67bac
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystemExample/Scriptable Objects/Quests/Multiple
+    Objectives Quest/Sync/Objectives/Collect 5 coins.asset
+  uploadId: 534086

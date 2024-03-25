@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 091372ed42914111a9dedf043a306493
+timeCreated: 1651737181
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Scripts/ScriptableObjects/Quests/ContextQuest.cs
+  uploadId: 534086

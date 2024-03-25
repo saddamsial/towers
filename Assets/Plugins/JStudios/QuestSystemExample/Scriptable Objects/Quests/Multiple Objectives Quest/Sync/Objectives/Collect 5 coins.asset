@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09db1c0674fc4d23aa1186e7f66a3297, type: 3}
+  m_Name: Collect 5 coins
+  m_EditorClassIdentifier: 
+  UniqueId: c7cd781c-9826-425e-9a74-35b04ebb7a59
+  HideFromList: 0
+  Name: Collect 5 coins
+  _completionActions: []
+  RawCompleted: 0
+  ActiveState: 0
+  _context: {fileID: 11400000, guid: f43a9d15defee6d4ca17fac9ab62a5b4, type: 2}
+  _rawTarget: 5
+  CompleteInstantly: 1

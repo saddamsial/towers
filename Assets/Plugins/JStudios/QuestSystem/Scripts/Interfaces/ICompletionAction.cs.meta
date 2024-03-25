@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 97d37b28dc8342b9a23b13881e7a4c7c
+timeCreated: 1650475011
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223737
+  packageName: Quest System
+  packageVersion: 1.0.0
+  assetPath: Assets/JStudios/QuestSystem/Scripts/Interfaces/ICompletionAction.cs
+  uploadId: 534086
