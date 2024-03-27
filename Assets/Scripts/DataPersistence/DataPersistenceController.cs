@@ -22,6 +22,7 @@ public class DataPersistenceController : Singleton<DataPersistenceController>
         data = ES3.Load("_data", new List<Data>(), settings);
 
         data ??= new();
+        SaveGame();
     }
     public void SaveGame()
     {

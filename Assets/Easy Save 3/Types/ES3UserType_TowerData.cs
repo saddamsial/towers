@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ES3Types
 {
 	[UnityEngine.Scripting.Preserve]
-	[ES3PropertiesAttribute("floorCount", "guns", "id", "FloorCount", "Guns")]
+	[ES3PropertiesAttribute("floorCount", "guns", "floorLevels", "id", "FloorCount", "Guns", "FloorLevels")]
 	public class ES3UserType_TowerData : ES3ObjectType
 	{
 		public static ES3Type Instance = null;
@@ -18,9 +18,11 @@ namespace ES3Types
 			
 			writer.WriteProperty("floorCount", instance.floorCount, ES3Type_int.Instance);
 			writer.WriteProperty("guns", instance.guns, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Data_and_Scriptable.GunSo.GunSo>)));
+			writer.WriteProperty("floorLevels", instance.floorLevels, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<System.Int32>)));
 			writer.WriteProperty("id", instance.id, ES3Type_string.Instance);
 			writer.WriteProperty("FloorCount", instance.FloorCount, ES3Type_int.Instance);
 			writer.WriteProperty("Guns", instance.Guns, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<Data_and_Scriptable.GunSo.GunSo>)));
+			writer.WriteProperty("FloorLevels", instance.FloorLevels, ES3Internal.ES3TypeMgr.GetOrCreateES3Type(typeof(System.Collections.Generic.List<System.Int32>)));
 		}
 
 		protected override void ReadObject<T>(ES3Reader reader, object obj)
@@ -37,6 +39,9 @@ namespace ES3Types
 					case "guns":
 						instance.guns = reader.Read<System.Collections.Generic.List<Data_and_Scriptable.GunSo.GunSo>>();
 						break;
+					case "floorLevels":
+						instance.floorLevels = reader.Read<System.Collections.Generic.List<System.Int32>>();
+						break;
 					case "id":
 						instance.id = reader.Read<System.String>(ES3Type_string.Instance);
 						break;
@@ -45,6 +50,9 @@ namespace ES3Types
 						break;
 					case "Guns":
 						instance.Guns = reader.Read<System.Collections.Generic.List<Data_and_Scriptable.GunSo.GunSo>>();
+						break;
+					case "FloorLevels":
+						instance.FloorLevels = reader.Read<System.Collections.Generic.List<System.Int32>>();
 						break;
 					default:
 						reader.Skip();

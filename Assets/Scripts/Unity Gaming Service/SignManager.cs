@@ -6,9 +6,13 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Unity.Services.RemoteConfig;
 using UnityEngine.UI;
 public class SignManager : MonoBehaviour
 {
+    public GamePresets gamePresets;
+    public struct userAttributes { }
+    public struct appAttributes { }
     public TMP_Text id;
     public Image fillImage;
     async void Start()
@@ -25,7 +29,12 @@ public class SignManager : MonoBehaviour
                 {
                     await AuthenticationService.Instance.SignInAnonymouslyAsync();
                     id.text = "" + AuthenticationService.Instance.PlayerId;
-                    StartCoroutine(LoadYourAsyncScene());
+
+
+                    RemoteConfigService.Instance.FetchCompleted += ApplyRemoteConfig;
+                    RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
+
+                    StartCoroutine(AsyncSceneLoad());
                 }
                 catch (AuthenticationException ex)
                 {
@@ -40,15 +49,37 @@ public class SignManager : MonoBehaviour
                 if (this == null)
                     return;
             }
+
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
     }
-    IEnumerator LoadYourAsyncScene()
+
+    void ApplyRemoteConfig(ConfigResponse configResponse)
+    {
+
+        switch (configResponse.requestOrigin)
+        {
+            case ConfigOrigin.Default:
+                Debug.Log("No settings loaded this session and no local cache file exists; using default values.");
+                break;
+            case ConfigOrigin.Cached:
+                Debug.Log("No settings loaded this session; using cached values from a previous session.");
+                break;
+            case ConfigOrigin.Remote:
+                Debug.Log("RemoteConfigService.Instance.appConfig fetched: " + RemoteConfigService.Instance.appConfig.config.ToString());
+                break;
+        }
+
+        Debug.Log(RemoteConfigService.Instance.appConfig.GetInt("max_possible_floors", 5));
+    }
+
+    IEnumerator AsyncSceneLoad()
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 0.23f));
+        /*
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
         while (!asyncLoad.isDone)
         {
@@ -57,5 +88,6 @@ public class SignManager : MonoBehaviour
             id.text = progress * 100 + "%";
             yield return null;
         }
+        */
     }
 }
