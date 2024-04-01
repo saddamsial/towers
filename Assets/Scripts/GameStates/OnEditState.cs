@@ -9,7 +9,6 @@ namespace GameStates
         [SerializeField] private GameObject editCam, mainCam;
         public UnityEvent stateChangeEvents;
 
-
         public override void OnEnterState()
         {
             base.OnEnterState();

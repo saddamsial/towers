@@ -24,8 +24,8 @@ public class GunButtonsManager : MonoBehaviour
     GunSo tempGunSo;
     public GameObject contentPanel;
     public TowerController mainTower;
-    public GunData data;
-
+    public GunData gunData;
+    public GameObject closeEditModeButton;
     public void OnEnable()
     {
         GameController.onCloseCameraPressed += CloseCameraPressed;
@@ -51,11 +51,11 @@ public class GunButtonsManager : MonoBehaviour
         gunLogo.sprite = tempGunButton.gunLogo;
         gunTitleText.text = tempGunSo.gunName;
 
-        data = (GunData)DataPersistenceController.Instance.GetData("gun", new GunData(tempGunSo.gunName));
-        if (buttonNo == 0 && !data.unlockState)
+        gunData = (GunData)DataPersistenceController.Instance.GetData("gun", new GunData(tempGunSo.gunName));
+        if (buttonNo == 0 && !gunData.unlockState)
         {
             // Debug.Log("default unlock for machine gun");
-            data.UnlockState = true;
+            gunData.UnlockState = true;
         }
     }
     public void ZoomOut()
@@ -64,8 +64,10 @@ public class GunButtonsManager : MonoBehaviour
     }
     public void CloseCameraPressed(int id)
     {
+        var activeState = GameController.Instance.currentFocusedGun != -1;
         swapButton.onClick.RemoveAllListeners();
-        contentPanel.SetActive(GameController.Instance.currentFocusedGun != -1);
+        contentPanel.SetActive(activeState);
+        closeEditModeButton.SetActive(!activeState);
         StateSetup();
 
     }
@@ -99,12 +101,12 @@ public class GunButtonsManager : MonoBehaviour
     }
     public void Unlock(GameObject gun)
     {
-        data.UnlockState = true;
+        gunData.UnlockState = true;
         gunButtonStateText.text = "Equip";
         swapButton.onClick.AddListener(() => GameController.Instance.InvokeSwapGun(gun));
     }
     public bool IsGunUnlocked()
     {
-        return data.unlockState;
+        return gunData.unlockState;
     }
 }

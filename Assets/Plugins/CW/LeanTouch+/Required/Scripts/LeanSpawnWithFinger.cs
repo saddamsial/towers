@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Lean.Common;
 using CW.Common;
+using Mono.Cecil.Cil;
 
 namespace Lean.Touch
 {
@@ -20,53 +21,66 @@ namespace Lean.Touch
 		[System.Serializable]
 		public class FingerData : LeanFingerData
 		{
-			public Transform      Clone;
+			public Transform Clone;
 			public LeanSelectable Selectable;
 		}
 
+		public Transform parent;
 		/// <summary>The prefab that this component can spawn.</summary>
-		public Transform Prefab { set { prefab = value; } get { return prefab; } } [SerializeField] private Transform prefab;
+		public Transform Prefab { set { prefab = value; } get { return prefab; } }
+		[SerializeField] private Transform prefab;
 
 		/// <summary>How should the spawned prefab be rotated?</summary>
-		public RotateType RotateTo { set { rotateTo = value; } get { return rotateTo; } } [SerializeField] private RotateType rotateTo;
+		public RotateType RotateTo { set { rotateTo = value; } get { return rotateTo; } }
+		[SerializeField] private RotateType rotateTo;
 
 		/// <summary>Hold on to the spawned clone while the spawning finger is still being held?</summary>
-		public bool DragAfterSpawn { set { dragAfterSpawn = value; } get { return dragAfterSpawn; } } [SerializeField] private bool dragAfterSpawn;
+		public bool DragAfterSpawn { set { dragAfterSpawn = value; } get { return dragAfterSpawn; } }
+		[SerializeField] private bool dragAfterSpawn;
 
 		/// <summary>If the spawned object is dropped on top of the wrong GameObject (e.g. UI), destroy it?</summary>
-		public bool DestroyIfBlocked { set { destroyIfBlocked = value; } get { return destroyIfBlocked; } } [SerializeField] private bool destroyIfBlocked;
+		public bool DestroyIfBlocked { set { destroyIfBlocked = value; } get { return destroyIfBlocked; } }
+		[SerializeField] private bool destroyIfBlocked;
 
 		public LeanScreenQuery BlockedScreenQuery = new LeanScreenQuery(LeanScreenQuery.MethodType.Raycast, 1 << 5); // Layer 5 = UI
 
 		/// <summary>If the spawned object isn't dropped on top of the specified GameObjects, destroy it?</summary>
-		public bool DestroyIfMissing { set { destroyIfMissing = value; } get { return destroyIfMissing; } } [SerializeField] private bool destroyIfMissing;
+		public bool DestroyIfMissing { set { destroyIfMissing = value; } get { return destroyIfMissing; } }
+		[SerializeField] private bool destroyIfMissing;
 
 		public LeanScreenQuery MissingScreenQuery = new LeanScreenQuery(LeanScreenQuery.MethodType.Raycast);
 
 		/// <summary>If the specified prefab is selectable, select it when spawned?</summary>
-		public bool SelectOnSpawn { set { selectOnSpawn = value; } get { return selectOnSpawn; } } [SerializeField] private bool selectOnSpawn;
+		public bool SelectOnSpawn { set { selectOnSpawn = value; } get { return selectOnSpawn; } }
+		[SerializeField] private bool selectOnSpawn;
 
 		/// <summary>If you want the spawned component to be a selected with a specific select component, you can specify it here.
 		/// None/null = It will be self selected.</summary>
-		public LeanSelect SelectWith { set { selectWith = value; } get { return selectWith; } } [SerializeField] private LeanSelect selectWith;
+		public LeanSelect SelectWith { set { selectWith = value; } get { return selectWith; } }
+		[SerializeField] private LeanSelect selectWith;
 
 		/// <summary>If the selecting finger goes up, deselect the object?</summary>
-		public bool DeselectOnUp { set { deselectOnUp = value; } get { return deselectOnUp; } } [SerializeField] private bool deselectOnUp;
+		public bool DeselectOnUp { set { deselectOnUp = value; } get { return deselectOnUp; } }
+		[SerializeField] private bool deselectOnUp;
 
 		/// <summary>The conversion method used to find a world point from a screen point.</summary>
 		public LeanScreenDepth ScreenDepth = new LeanScreenDepth(LeanScreenDepth.ConversionType.FixedDistance, Physics.DefaultRaycastLayers, 10.0f);
 
 		/// <summary>This allows you to offset the finger position.</summary>
-		public Vector2 PixelOffset { set { pixelOffset = value; } get { return pixelOffset; } } [SerializeField] private Vector2 pixelOffset;
+		public Vector2 PixelOffset { set { pixelOffset = value; } get { return pixelOffset; } }
+		[SerializeField] private Vector2 pixelOffset;
 
 		/// <summary>If you want the pixels to scale based on device resolution, then specify the canvas whose scale you want to use here.</summary>
-		public Canvas PixelScale { set { pixelScale = value; } get { return pixelScale; } } [SerializeField] private Canvas pixelScale;
+		public Canvas PixelScale { set { pixelScale = value; } get { return pixelScale; } }
+		[SerializeField] private Canvas pixelScale;
 
 		/// <summary>This allows you to offset the spawned object position.</summary>
-		public Vector3 WorldOffset { set { worldOffset = value; } get { return worldOffset; } } [SerializeField] private Vector3 worldOffset;
+		public Vector3 WorldOffset { set { worldOffset = value; } get { return worldOffset; } }
+		[SerializeField] private Vector3 worldOffset;
 
 		/// <summary>This allows you transform the WorldOffset to be relative to the specified Transform.</summary>
-		public Transform WorldRelativeTo { set { worldRelativeTo = value; } get { return worldRelativeTo; } } [SerializeField] private Transform worldRelativeTo;
+		public Transform WorldRelativeTo { set { worldRelativeTo = value; } get { return worldRelativeTo; } }
+		[SerializeField] private Transform worldRelativeTo;
 
 		[SerializeField]
 		private List<FingerData> fingerDatas;
@@ -79,14 +93,22 @@ namespace Lean.Touch
 			if (prefab != null && finger != null)
 			{
 				// Spawn and position
-				var clone      = Instantiate(prefab);
+				var clone = Instantiate(prefab);
 				var fingerData = default(FingerData);
 
 				UpdateSpawnedTransform(finger, clone);
 
 				clone.gameObject.SetActive(true);
-
+				clone.SetParent(parent);
 				// Drag?
+				if (clone.TryGetComponent(out RectTransform rect))
+				{
+					rect.offsetMax = rect.offsetMin = Vector2.zero;
+				}
+				// if (clone.TryGetComponent(out SpawnedManagerImageController c))
+				{
+
+				}
 				if (dragAfterSpawn == true)
 				{
 					fingerData = LeanFingerData.FindOrCreate(ref fingerDatas, finger);
@@ -97,7 +119,7 @@ namespace Lean.Touch
 				// Select?
 				if (selectOnSpawn == true)
 				{
-					var selectable         = clone.GetComponent<LeanSelectable>();
+					var selectable = clone.GetComponent<LeanSelectable>();
 					var selectableByFinger = selectable as LeanSelectableByFinger;
 					var selectWithByFinger = selectWith as LeanSelectByFinger;
 
@@ -178,7 +200,7 @@ namespace Lean.Touch
 			}
 
 			// Converted screen position to world position, and optionally offset it
-			var worldPoint = ScreenDepth.Convert(screenPoint, gameObject, instance);
+			var worldPoint = (Vector3)finger.ScreenPosition;//ScreenDepth.Convert(screenPoint, gameObject, instance);
 
 			if (worldRelativeTo != null)
 			{
@@ -196,16 +218,16 @@ namespace Lean.Touch
 			switch (rotateTo)
 			{
 				case RotateType.ThisTransform:
-				{
-					instance.rotation = transform.rotation;
-				}
-				break;
+					{
+						instance.rotation = transform.rotation;
+					}
+					break;
 
 				case RotateType.ScreenDepthNormal:
-				{
-					instance.up = LeanScreenDepth.LastWorldNormal;
-				}
-				break;
+					{
+						instance.up = LeanScreenDepth.LastWorldNormal;
+					}
+					break;
 			}
 		}
 
@@ -233,6 +255,8 @@ namespace Lean.Touch
 					{
 						Destroy(fingerData.Clone.gameObject);
 					}
+					else if (fingerData.Clone.CompareTag("manager spot"))
+						fingerData.Clone.position = Camera.main.WorldToScreenPoint(MissingScreenQuery.Query<Component>(gameObject, finger.ScreenPosition).transform.position);
 
 					LeanScreenQuery.RevertLayers();
 				}
@@ -258,36 +282,37 @@ namespace Lean.Touch.Editor
 			TARGET tgt; TARGET[] tgts; GetTargets(out tgt, out tgts);
 
 			BeginError(Any(tgts, t => t.Prefab == null));
-				Draw("prefab");
+			Draw("prefab");
 			EndError();
+			Draw("parent");
 			Draw("rotateTo", "How should the spawned prefab be rotated?");
 			Draw("dragAfterSpawn", "Hold on to the spawned clone while the spawning finger is still being held?");
 			if (Any(tgts, t => t.DragAfterSpawn == true))
 			{
 				BeginIndent();
-					Draw("ScreenDepth");
-					Draw("destroyIfBlocked", "If the spawned object is dropped on top of the wrong GameObject (e.g. UI), destroy it?");
-					if (Any(tgts, t => t.DestroyIfBlocked == true))
-					{
-						BeginIndent();
-							Draw("BlockedScreenQuery");
-						EndIndent();
-					}
-					Draw("destroyIfMissing", "If the spawned object isn't dropped on top of the specified GameObjects, destroy it?");
-					if (Any(tgts, t => t.DestroyIfMissing == true))
-					{
-						BeginIndent();
-							Draw("MissingScreenQuery");
-						EndIndent();
-					}
+				Draw("ScreenDepth");
+				Draw("destroyIfBlocked", "If the spawned object is dropped on top of the wrong GameObject (e.g. UI), destroy it?");
+				if (Any(tgts, t => t.DestroyIfBlocked == true))
+				{
+					BeginIndent();
+					Draw("BlockedScreenQuery");
+					EndIndent();
+				}
+				Draw("destroyIfMissing", "If the spawned object isn't dropped on top of the specified GameObjects, destroy it?");
+				if (Any(tgts, t => t.DestroyIfMissing == true))
+				{
+					BeginIndent();
+					Draw("MissingScreenQuery");
+					EndIndent();
+				}
 				EndIndent();
 			}
 			Draw("selectOnSpawn", "If the specified prefab is selectable, select it when spawned?");
 			if (Any(tgts, t => t.SelectOnSpawn == true))
 			{
 				BeginIndent();
-					Draw("selectWith", "If you want the spawned component to be a selected with a specific select component, you can specify it here.\n\nNone/null = It will be self selected.");
-					Draw("deselectOnUp", "If the selecting finger goes up, deselect the object?");
+				Draw("selectWith", "If you want the spawned component to be a selected with a specific select component, you can specify it here.\n\nNone/null = It will be self selected.");
+				Draw("deselectOnUp", "If the selecting finger goes up, deselect the object?");
 				EndIndent();
 			}
 

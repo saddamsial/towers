@@ -1,5 +1,6 @@
 {
     "name": "LeanTouchPlus",
+    "rootNamespace": "",
     "references": [
         "LeanCommon",
         "LeanTouch",

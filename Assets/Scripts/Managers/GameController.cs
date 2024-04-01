@@ -16,6 +16,8 @@ namespace Managers
         public static Action onZoomOutFromGun;
         public static Action<GameObject> onSwapGun;
         public static Action<Transform, bool> onFreeze;
+        public static Action<Vector2> onManagerImagePressed;
+        public static Action<Transform> onManagerImageReleased;
 
         public int currentFocusedGun;
         public void InvokeEditMode(bool state)
