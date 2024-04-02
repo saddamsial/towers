@@ -38,7 +38,7 @@ namespace Managers
                 {
                     clickedObject = GetWorldPositionOnPlane(Input.mousePosition, uiLayer).transform;//UiRaycast().transform;
                     if (!clickedObject) return;
-                    GameController.onManagerImagePressed?.Invoke(GetPos(Input.mousePosition, 0));
+                    GameController.onManagerImagePressed?.Invoke(GetPos(Input.mousePosition, 0), clickedObject);
                 }
                 else if (GameStateManager.Instance.IsEditState())
                 {
@@ -52,19 +52,25 @@ namespace Managers
                 if (GameStateManager.Instance.IsManagerEditMode())
                 {
                     // Debug.Log(canvas.localPosition.z + "  " + canvas.position.z);
-                    if (!spawnedManagerImage) return;
+                    if (!spawnedManagerImage || spawnedManagerImage && spawnedManagerImage.GetComponent<SpawnedManagerImageController>().managerPlaced) return;
                     spawnedManagerImage.position = GetPos(Input.mousePosition, 0); //19.5f);//-8.813737 28.31
                 }
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                if (GameStateManager.Instance.IsEditState())
+                if (GameStateManager.Instance.IsEditState() && spawnedManagerImage)
                 {
                     releasedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
                     if (releasedObject && spawnedManagerImage)
-                        GameController.onManagerImageReleased?.Invoke(releasedObject);
-                    else if (spawnedManagerImage)
-                        spawnedManagerImage.gameObject.Despawn();
+                    {
+                        GameController.onManagerImageReleased?.Invoke(releasedObject, spawnedManagerImage);
+                        spawnedManagerImage = null;
+                    }
+                    else if (spawnedManagerImage && !spawnedManagerImage.GetComponent<SpawnedManagerImageController>().managerPlaced)
+                    {
+                        Destroy(spawnedManagerImage.gameObject);
+                        spawnedManagerImage = null;
+                    }
                 }
             }
         }

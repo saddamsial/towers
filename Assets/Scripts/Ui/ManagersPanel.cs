@@ -28,20 +28,29 @@ public class ManagersPanel : Singleton<ManagersPanel>
 
     }
 
-    public void SpawnManagerImage(Vector2 pos)
+    public void SpawnManagerImage(Vector2 pos, Transform clickedObj)
     {
-        tempManagerImage = managerImagePrefab.Spawn(pos, Quaternion.identity, transform).transform;
+        Debug.Log("spawn it");
+        tempManagerImage = Instantiate(managerImagePrefab, pos, Quaternion.identity, transform).transform;
         tempManagerImage.localRotation = Quaternion.identity;
         tempManagerImage.localScale = Vector3.one * 4;
         InputController.Instance.spawnedManagerImage = tempManagerImage;
     }
 
-    public void SpawnedImagePlaced(Transform spot)
+    public void SpawnedImagePlaced(Transform spot, Transform managerImage)
     {
         tempManagerImage.SetParent(managerCanvas.transform);
         tempManagerImage.localRotation = Quaternion.identity;
         tempManagerImage.localScale = Vector3.one * 3;
         tempManagerImage.position = Camera.main.WorldToScreenPoint(spot.position);
+
+
+
+        tempManagerImage.position = Camera.main.ScreenToWorldPoint(tempManagerImage.position);
+        tempManagerImage.SetParent(transform.parent);
+        tempManagerImage.localRotation = Quaternion.identity;
+        tempManagerImage.localScale = Vector3.one * 30;
+
     }
 
 
