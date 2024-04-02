@@ -5,6 +5,7 @@ using Tower;
 using Tower.Floor;
 using UnityEngine;
 using PathCreation;
+using GameStates;
 
 public class CameraSettingsController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CameraSettingsController : MonoBehaviour
     public CinemachineVirtualCamera editCam, gameCam;
     private CinemachineGroupComposer cinemachineGroupComposer;
     public Transform closeCameras, followObj, lookObj;
-    public GameObject zoomBackButton, closeCameraCanvas;
+    public GameObject zoomBackButton, closeCameraCanvas, managerButton;
     int tempCameraNo;
     public PathCreator followPath, lookPath;
     private void OnEnable()
@@ -52,6 +53,7 @@ public class CameraSettingsController : MonoBehaviour
 
     public void CloseCameraButton(int no)
     {
+        if (GameStateManager.Instance.IsManagerEditMode()) return;
         if (tempCameraNo == no)
         {
             BackNormalEditMode();
@@ -65,6 +67,7 @@ public class CameraSettingsController : MonoBehaviour
         closeCameras.GetChild(no).gameObject.SetActive(true);
         zoomBackButton.SetActive(true);
         closeCameraCanvas.SetActive(true);
+        managerButton.SetActive(false);
     }
 
     public void BackNormalEditMode()
@@ -78,6 +81,7 @@ public class CameraSettingsController : MonoBehaviour
         GameController.Instance.currentFocusedGun = -1;
         // closeCameraCanvas.SetActive(false);
         zoomBackButton.SetActive(false);
+        managerButton.SetActive(true);
         closeCameras.GetChild(tempCameraNo).gameObject.SetActive(false);
         tempCameraNo = -1;
     }

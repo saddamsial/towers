@@ -1,8 +1,10 @@
 using System;
+using Cinemachine;
 using GameStates;
 using Tower;
 using UnityEngine;
 using Utils;
+using Utils.PoolSystem;
 
 namespace Managers
 {
@@ -14,10 +16,10 @@ namespace Managers
         private RaycastHit hit;
         private Ray ray;
         [SerializeField] private TowerController towerController;
-        Transform clickedObject, releasedObject;
-        public Transform spawnedManagerImage;
+        public Transform clickedObject, releasedObject, spawnedManagerImage;
         public LayerMask myLayer, enemyLayer, uiLayer;
         public CameraSettingsController cameraSettings;
+        public Transform editCam, canvas;
         void Start()
         {
         }
@@ -36,7 +38,7 @@ namespace Managers
                 {
                     clickedObject = GetWorldPositionOnPlane(Input.mousePosition, uiLayer).transform;//UiRaycast().transform;
                     if (!clickedObject) return;
-                    GameController.onManagerImagePressed?.Invoke(GetPos(Input.mousePosition, 19.5f));
+                    GameController.onManagerImagePressed?.Invoke(GetPos(Input.mousePosition, 0));
                 }
                 else if (GameStateManager.Instance.IsEditState())
                 {
@@ -49,8 +51,9 @@ namespace Managers
             {
                 if (GameStateManager.Instance.IsManagerEditMode())
                 {
+                    // Debug.Log(canvas.localPosition.z + "  " + canvas.position.z);
                     if (!spawnedManagerImage) return;
-                    spawnedManagerImage.position = GetPos(Input.mousePosition, 19.5f);
+                    spawnedManagerImage.position = GetPos(Input.mousePosition, 0); //19.5f);//-8.813737 28.31
                 }
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -58,7 +61,10 @@ namespace Managers
                 if (GameStateManager.Instance.IsEditState())
                 {
                     releasedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
-                    GameController.onManagerImageReleased?.Invoke(clickedObject);
+                    if (releasedObject && spawnedManagerImage)
+                        GameController.onManagerImageReleased?.Invoke(releasedObject);
+                    else if (spawnedManagerImage)
+                        spawnedManagerImage.gameObject.Despawn();
                 }
             }
         }
@@ -76,7 +82,7 @@ namespace Managers
         public Vector3 GetPos(Vector3 screenPos, float z)
         {
             ray = mainCam.ScreenPointToRay(screenPos);
-            var a = new Plane(mainCam.transform.TransformDirection(Vector3.forward), z);
+            var a = new Plane(mainCam.transform.TransformDirection(Vector3.forward), canvas.position);
             //Plane a = new(Vector3.forward, new Vector3(0, 0, z));
             a.Raycast(ray, out var distance);
             return ray.GetPoint(distance);

@@ -14,6 +14,7 @@ namespace Tower.Floor
         public bool isTargeted;
         public Button addFloorButton;
         public GameObject upgradeButton;
+        public GameObject managerSpot;
         public GraphicRaycaster myCanvasRaycaster;
         public override void OnEnable()
         {
@@ -22,6 +23,7 @@ namespace Tower.Floor
             GameController.onFloorAdded += FloorAdded;
             GameController.onEditMode += OnEditMode;
             GameController.onSwapGun += SwapGun;
+            GameController.onManagerEditMode += ManagerPanel;
 
             addFloorButton.onClick.RemoveAllListeners();
         }
@@ -31,6 +33,7 @@ namespace Tower.Floor
             GameController.onFloorAdded -= FloorAdded;
             GameController.onEditMode -= OnEditMode;
             GameController.onSwapGun -= SwapGun;
+            GameController.onManagerEditMode -= ManagerPanel;
 
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
@@ -108,6 +111,12 @@ namespace Tower.Floor
             if (index != GameController.Instance.currentFocusedGun) return;
             mainTower.data.UpdateFloorGun(index, newGun.GetComponent<GunBase>().myGun);
             AttachGun(newGun);
+        }
+
+        public void ManagerPanel(bool isOpen)
+        {
+            managerSpot.SetActive(isOpen);
+            upgradeButton.SetActive(!isOpen);
         }
     }
 }

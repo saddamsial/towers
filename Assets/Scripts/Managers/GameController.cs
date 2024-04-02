@@ -18,6 +18,7 @@ namespace Managers
         public static Action<Transform, bool> onFreeze;
         public static Action<Vector2> onManagerImagePressed;
         public static Action<Transform> onManagerImageReleased;
+        public static Action<bool> onManagerEditMode;
 
         public int currentFocusedGun;
         public void InvokeEditMode(bool state)
@@ -27,6 +28,10 @@ namespace Managers
         public void InvokeSwapGun(GameObject gun = null)
         {
             onSwapGun?.Invoke(gun);
+        }
+        public void InvokeManagerMode(bool state)
+        {
+            onManagerEditMode?.Invoke(state);
         }
     }
 }

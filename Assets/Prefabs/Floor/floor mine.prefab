@@ -1238,7 +1238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1952675846245578232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1247,8 +1247,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6525380010276342740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.215}
-  m_LocalScale: {x: 1.6583381, y: 1.6583381, z: 1.6583381}
+  m_LocalPosition: {x: 0, y: 0, z: 1.44}
+  m_LocalScale: {x: 1.4340982, y: 1.4340982, z: 1.4340982}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7223823546635178784}
@@ -1256,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.014, y: -1.497}
+  m_AnchoredPosition: {x: -0.28, y: -1.4}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &911308204368547280
@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd998adfc889f44979f60c83b80d0013, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ad15db1aebb749f5b1846fbbfa25de7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3520,6 +3520,7 @@ MonoBehaviour:
   isTargeted: 0
   addFloorButton: {fileID: 2113837264009979379}
   upgradeButton: {fileID: 6623602993755564726}
+  managerSpot: {fileID: 6525380010276342740}
   myCanvasRaycaster: {fileID: 3273772851976966159}
 --- !u!4 &5286396719164879258 stripped
 Transform:
