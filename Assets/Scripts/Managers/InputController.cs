@@ -38,6 +38,8 @@ namespace Managers
                 {
                     clickedObject = GetWorldPositionOnPlane(Input.mousePosition, uiLayer).transform;//UiRaycast().transform;
                     if (!clickedObject) return;
+                    // Debug.Log(clickedObject, clickedObject);
+                    ManagersPanel.Instance.tempManagerButtonController = clickedObject.GetComponentInParent<ManagerButtonController>();
                     GameController.onManagerImagePressed?.Invoke(GetPos(Input.mousePosition, 0), clickedObject);
                 }
                 else if (GameStateManager.Instance.IsEditState())
@@ -63,16 +65,24 @@ namespace Managers
                     releasedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
                     if (releasedObject && spawnedManagerImage)
                     {
+                        if (releasedObject.name != "assign") { FalseRelease(); return; }
+                        spawnedManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController.UpdateText(-1);
                         GameController.onManagerImageReleased?.Invoke(releasedObject, spawnedManagerImage);
                         spawnedManagerImage = null;
+                        releasedObject.gameObject.SetActive(false);
                     }
                     else if (spawnedManagerImage && !spawnedManagerImage.GetComponent<SpawnedManagerImageController>().managerPlaced)
                     {
-                        Destroy(spawnedManagerImage.gameObject);
-                        spawnedManagerImage = null;
+                        // if (clickedObject) { clickedObject.parent.GetComponent<ManagerButtonController>().UpdateText(-1); }
+                        FalseRelease();
                     }
                 }
             }
+        }
+        public void FalseRelease()
+        {
+            Destroy(spawnedManagerImage.gameObject);
+            spawnedManagerImage = null;
         }
         private RaycastHit GetWorldPositionOnPlane(Vector3 screenPosition, LayerMask layer)
         {

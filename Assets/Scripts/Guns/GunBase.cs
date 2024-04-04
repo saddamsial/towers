@@ -55,7 +55,7 @@ namespace Guns
             firstRotation = turretPivot.rotation;
             myFloor = floor;
             canShoot = true;
-            skin.GetChild((int)myGun.myBullet.bulletType).gameObject.SetActive(true);
+            // skin.GetChild((int)myGun.myBullet.bulletType).gameObject.SetActive(true);
         }
         protected virtual void Update()
         {

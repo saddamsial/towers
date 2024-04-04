@@ -6,15 +6,15 @@ namespace Data_and_Scriptable.BulletSo
     public enum BulletTypes
     {
         MachineGun = 0,
-        Cannon = 1,
-        Rocket = 2,
-        Laser = 3,
-        IceCannon = 4,
-        BombLauncher = 5,
-        Shotgun = 6,
-        Tesla = 7,
+        BombLauncher = 1,
+        Shotgun = 2,
+        Lightning = 3,
+        Cannon = 4,
+        IceCannon = 5,
+        Rocket = 6,
+        Laser = 7,
         Plasma = 8,//flame gun
-        Shockwave = 9
+
     }
 
     [CreateAssetMenu(menuName = "Bullet")]

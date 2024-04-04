@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18012a9a342184f88bf01b90addb02d9, type: 3}
   m_Name: shotgun bullet so
   m_EditorClassIdentifier: 
-  bulletType: 6
+  bulletType: 2
   prefab: {fileID: 5157209963326484195, guid: e98e81f83aa25446db06363af4fbe754, type: 3}
   isLaser: 0
   speed: 12

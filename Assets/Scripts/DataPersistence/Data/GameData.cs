@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using UnityEngine;
 [ES3Serializable]
 public class GameData : Data
 {
     public int lootCount, playCount, money, gem, gear, ticket;
-    public List<int> managers = new();
+    public Dictionary<int, int> managers = new();
     public int LootCount
     {
         get => lootCount;
@@ -60,12 +60,12 @@ public class GameData : Data
             ES3.Save(id + "ticket", ticket);
         }
     }
-    public List<int> Managers
+    public Dictionary<int, int> Managers
     {
         get => managers;
         set
         {
-            managers = new List<int>(value);
+            managers = new Dictionary<int, int>(value);
             ES3.Save(id + "managers", managers);
         }
     }
@@ -81,11 +81,27 @@ public class GameData : Data
         gear = ES3.Load(id + "gear", 0);
         ticket = ES3.Load(id + "ticket", 0);
         gem = ES3.Load(id + "gem", 0);
-        managers = ES3.Load(id + "managers", new List<int>());
+        managers = ES3.Load(id + "managers", new Dictionary<int, int>());
     }
     public void AddNewManager(int managerId)
     {
-        Managers.Add(managerId);
+        // Managers.Add(managerId, Managers[managerId]);
+        AddOrUpdate(Managers, managerId, 1);
         Managers = Managers;
+    }
+    void AddOrUpdate(Dictionary<int, int> dic, int key, int newValue)
+    {
+        if (dic.TryGetValue(key, out int val))
+        {
+            // yay, value exists!
+            Debug.Log(key + " - " + val);
+            dic[key] = val + newValue;
+        }
+        else
+        {
+            // darn, lets add the value
+            dic.Add(key, newValue);
+            Debug.Log(key + " - " + newValue);
+        }
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data_and_Scriptable.BulletSo;
+using Data_and_Scriptable.GunSo;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -20,4 +22,6 @@ public class LootItem : ScriptableObject
     public int amount;
     [ShowIf("lootType", LootType.manager)]
     public int managerId;
+    [ShowIf("lootType", LootType.manager)]
+    public BulletTypes type;
 }

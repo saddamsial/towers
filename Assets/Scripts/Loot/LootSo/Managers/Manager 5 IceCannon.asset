@@ -16,3 +16,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 9f35db904975f48b9b6673de8a13d323, type: 3}
   amount: 0
   managerId: 5
+  type: 5

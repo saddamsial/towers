@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 1764909787262996028}
   - component: {fileID: 4936797729456803037}
   - component: {fileID: 1868180425888447260}
+  - component: {fileID: 2215982614807365141}
   m_Layer: 5
   m_Name: manager button
   m_TagString: Untagged
@@ -213,6 +214,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2215982614807365141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4366045426617042675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aada5aa5e679e48a5bf039435ac2d3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 7976328414067342824}
+  count: {fileID: 3208494018022821501}
 --- !u!1 &6417494052902627214
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,8 +239,9 @@ GameObject:
   - component: {fileID: 760246695020960193}
   - component: {fileID: 8354052993155516939}
   - component: {fileID: 7976328414067342824}
+  - component: {fileID: 6548848235635466}
   m_Layer: 5
-  m_Name: managet logo
+  m_Name: manager logo
   m_TagString: manager spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,6 +304,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!65 &6548848235635466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417494052902627214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 247.70828, y: 243.34697, z: 1}
+  m_Center: {x: 0.59659004, y: 1.3063004, z: -0.000019323941}
 --- !u!1 &6694156447117091931
 GameObject:
   m_ObjectHideFlags: 0

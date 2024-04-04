@@ -36,6 +36,16 @@ public class TowerData : Data
             ES3.Save(id + "levels", floorLevels);
         }
     }
+    public List<int> floorManagers = new();
+    public List<int> FloorManagers
+    {
+        get => floorManagers;
+        set
+        {
+            floorManagers = new List<int>(value);
+            ES3.Save(id + "floorManagers", floorManagers);
+        }
+    }
     public TowerData() : base("tower")
     {
         Load();
@@ -45,6 +55,7 @@ public class TowerData : Data
         floorCount = ES3.Load(id + "FloorCount", DataPersistenceController.Instance.presets.myTowerFloorCount);
         guns = ES3.Load(id + "guns", DataPersistenceController.Instance.presets.myFloorGuns);
         floorLevels = ES3.Load(id + "levels", DataPersistenceController.Instance.presets.myFloorLevels);
+        floorManagers = ES3.Load(id + "floorManagers", DataPersistenceController.Instance.presets.myFloorManagers);
     }
     public void UpdateFloorGun(int index, GunSo gun)
     {
@@ -60,6 +71,11 @@ public class TowerData : Data
         FloorLevels[index]++;
         FloorLevels = FloorLevels;
         return true;
+    }
+    public void UpdateFloorManager(int index, int managerId)
+    {
+        FloorManagers[index] = managerId;
+        FloorManagers = FloorManagers;
     }
 
 }

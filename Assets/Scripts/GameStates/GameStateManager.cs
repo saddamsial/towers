@@ -13,12 +13,12 @@ namespace GameStates
         public OnPauseState onPauseState;
         public OnEditState onEditState;
         public bool editManagerEditMode;
-        public GameData data;
+        public GameData gameData;
 
         private void Start()
         {
-            data = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
-            data.playCount++;
+            gameData = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
+            gameData.playCount++;
             //Debug.Log("play count-> " + data.playCount);
             currentState = onCompleteState;
             SetState(onMenuState);
@@ -26,10 +26,10 @@ namespace GameStates
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                SetState(onMenuState);
-            }
+            // if (Input.GetKeyDown(KeyCode.M))
+            // {
+            //     SetState(onMenuState);
+            // }
             if (Input.GetKeyDown(KeyCode.G))
             {
                 SetState(onGameState);

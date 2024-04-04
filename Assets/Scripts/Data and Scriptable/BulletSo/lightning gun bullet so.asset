@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18012a9a342184f88bf01b90addb02d9, type: 3}
   m_Name: lightning gun bullet so
   m_EditorClassIdentifier: 
-  bulletType: 7
+  bulletType: 3
   prefab: {fileID: 106988, guid: a9892f6a83fd8d4468ce0c8a3d09d3cd, type: 3}
   isLaser: 1
   speed: 1

@@ -4,9 +4,8 @@ using Utils;
 using UnityEngine.UI;
 using TMPro;
 using Utils.PoolSystem;
-using Unity.Mathematics;
 using DG.Tweening;
-
+using GameStates;
 public class LootManager : Singleton<LootManager>
 {
     public GameData data;
@@ -20,7 +19,7 @@ public class LootManager : Singleton<LootManager>
 
     void Start()
     {
-        data = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
+        data = GameStateManager.Instance.gameData;//(GameData)DataPersistenceController.Instance.GetData("game", new GameData());
     }
 
     void Update()
@@ -28,6 +27,10 @@ public class LootManager : Singleton<LootManager>
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             NewLoot();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            data.AddNewManager(Random.Range(0, 9));
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -134,7 +137,7 @@ public class LootManager : Singleton<LootManager>
     {
         remainingLootCount--;
         deckCount.text = remainingLootCount + "";
-        tempObj = spawnedObj.Spawn(spawnPos.position, quaternion.identity, lootPanel.transform).transform;
+        tempObj = spawnedObj.Spawn(spawnPos.position, Quaternion.identity, lootPanel.transform).transform;
         tempObj.localScale = Vector3.one * 0.2f;
         var rectTransform = tempObj.GetComponent<RectTransform>();
         rectTransform.offsetMin = new Vector2(rectTransform.offsetMin.x, 0);

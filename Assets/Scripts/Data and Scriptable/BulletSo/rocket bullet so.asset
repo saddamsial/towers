@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18012a9a342184f88bf01b90addb02d9, type: 3}
   m_Name: rocket bullet so
   m_EditorClassIdentifier: 
-  bulletType: 2
+  bulletType: 6
   prefab: {fileID: 5157209963326484195, guid: b0d72b21f0b804d1fbbee9ac5741646b, type: 3}
   isLaser: 0
   speed: 12
