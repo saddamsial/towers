@@ -1,10 +1,12 @@
 using Managers;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class SpawnedManagerImageController : MonoBehaviour
 {
     public bool managerPlaced;
     public ManagerButtonController myManagerButtonController;
+    string[] splited;
     Transform tempPlacedSpot;
     void OnEnable()
     {
@@ -24,8 +26,11 @@ public class SpawnedManagerImageController : MonoBehaviour
     {
         if (managerImage != transform) return;
         tempPlacedSpot = placedManager;
-        // ManagersPanel.Instance.tempManagerButtonController = myManagerButtonController;
-        // myManagerButtonController.UpdateText(-1);
+        splited = placedManager.name.Split(' ');
+        var index = int.Parse(splited[0]);
+        gameObject.name = index.ToString();
+        Debug.Log(index + " init");
+        ManagersPanel.Instance.towerData.UpdateFloorManager(index, ManagersPanel.Instance.tempManagerButtonController.index);
         managerPlaced = true;
     }
     public void ImagePressed(Vector2 clickPos, Transform clickedObj)
@@ -34,6 +39,9 @@ public class SpawnedManagerImageController : MonoBehaviour
         tempPlacedSpot.gameObject.SetActive(true);
         ManagersPanel.Instance.tempManagerButtonController = myManagerButtonController;
         myManagerButtonController.UpdateText(1);
+        var index = int.Parse(gameObject.name);
+        Debug.Log(index + " remove");
+        ManagersPanel.Instance.towerData.UpdateFloorManager(index, -1);
         Destroy(gameObject);
     }
 }

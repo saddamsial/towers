@@ -83,6 +83,14 @@ public class GameData : Data
         gem = ES3.Load(id + "gem", 0);
         managers = ES3.Load(id + "managers", new Dictionary<int, int>());
     }
+    public void FirstFillManagers()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            AddOrUpdate(Managers, i, 0);
+            Managers = Managers;
+        }
+    }
     public void AddNewManager(int managerId)
     {
         // Managers.Add(managerId, Managers[managerId]);
@@ -94,14 +102,12 @@ public class GameData : Data
         if (dic.TryGetValue(key, out int val))
         {
             // yay, value exists!
-            Debug.Log(key + " - " + val);
             dic[key] = val + newValue;
         }
         else
         {
             // darn, lets add the value
             dic.Add(key, newValue);
-            Debug.Log(key + " - " + newValue);
         }
     }
 }

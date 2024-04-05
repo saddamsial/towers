@@ -19,6 +19,7 @@ public class ManagersPanel : Singleton<ManagersPanel>
     public Canvas managerCanvas;
     public Transform managerImageUiPanel;
     public TowerController mainTower;
+    public ManagerButtonController tempManagerButtonController;
 
     void OnEnable()
     {
@@ -35,7 +36,6 @@ public class ManagersPanel : Singleton<ManagersPanel>
     }
     void Start()
     {
-
 
     }
     public void Init()
@@ -56,7 +56,6 @@ public class ManagersPanel : Singleton<ManagersPanel>
         tempButton.GetComponent<ManagerButtonController>().Init(managerItems[key], key);
     }
     //bottom-input methods
-
     public void SpawnManagerImage(Vector2 pos, Transform clickedObj)
     {
         if (tempManagerButtonController && tempManagerButtonController.GetCount() <= 0) return;
@@ -86,5 +85,5 @@ public class ManagersPanel : Singleton<ManagersPanel>
         tempManagerImage.localRotation = Quaternion.identity;
         tempManagerImage.localScale = Vector3.one * 7;
     }
-    public ManagerButtonController tempManagerButtonController;
+
 }

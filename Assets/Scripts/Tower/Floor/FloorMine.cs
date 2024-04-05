@@ -74,7 +74,7 @@ namespace Tower.Floor
             upgradeButton.SetActive(isEdit);
             AttachGun(gun.myPrefab);
             myCanvasRaycaster.enabled = isEdit;
-
+            managerSpot.name = whichFloor + " assign";
             SkinSet(whichFloor);
         }
         private void SkinSet(int index)

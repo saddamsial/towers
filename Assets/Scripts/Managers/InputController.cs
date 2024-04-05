@@ -65,7 +65,7 @@ namespace Managers
                     releasedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
                     if (releasedObject && spawnedManagerImage)
                     {
-                        if (releasedObject.name != "assign") { FalseRelease(); return; }
+                        if (!releasedObject.name.Contains("assign")) { FalseRelease(); return; }
                         spawnedManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController.UpdateText(-1);
                         GameController.onManagerImageReleased?.Invoke(releasedObject, spawnedManagerImage);
                         spawnedManagerImage = null;
