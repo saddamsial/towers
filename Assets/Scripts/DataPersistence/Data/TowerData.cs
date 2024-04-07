@@ -77,5 +77,4 @@ public class TowerData : Data
         FloorManagers[index] = managerId;
         FloorManagers = FloorManagers;
     }
-
 }

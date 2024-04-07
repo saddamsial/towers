@@ -36,7 +36,20 @@ public class ManagersPanel : Singleton<ManagersPanel>
     }
     void Start()
     {
-
+        RePlaceManagers();
+    }
+    void RePlaceManagers()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            // Debug.Log(i + "  " + towerData.FloorManagers[i]);
+            if (towerData.FloorManagers[i] != -1)
+            {
+                // tempManagerImage = Instantiate(managerImagePrefab, mainTower.floorMineList[i].managerSpot.transform.position, Quaternion.identity, transform).transform;
+                // tempManagerImage.localRotation = Quaternion.identity;
+                // SpawnedImagePlaced(mainTower.floorMineList[i].managerSpot.transform, tempManagerImage);
+            }
+        }
     }
     public void Init()
     {
@@ -85,5 +98,4 @@ public class ManagersPanel : Singleton<ManagersPanel>
         tempManagerImage.localRotation = Quaternion.identity;
         tempManagerImage.localScale = Vector3.one * 7;
     }
-
 }

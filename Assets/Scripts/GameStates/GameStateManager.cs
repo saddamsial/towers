@@ -18,12 +18,12 @@ namespace GameStates
         private void Start()
         {
             gameData = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
-            Debug.Log("play count-> " + gameData.playCount);
+            // Debug.Log("play count-> " + gameData.PlayCount);
             if (gameData.playCount == 0)
             {
                 gameData.FirstFillManagers();
             }
-            gameData.playCount++;
+            gameData.PlayCount++;
             currentState = onCompleteState;
             SetState(onMenuState);
         }

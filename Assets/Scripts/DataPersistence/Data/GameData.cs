@@ -76,7 +76,7 @@ public class GameData : Data
     }
     public override void Load()
     {
-        playCount = ES3.Load(id + "game", 0);
+        playCount = ES3.Load(id + "PlayCount", 0);
         money = ES3.Load(id + "money", 100);
         gear = ES3.Load(id + "gear", 0);
         ticket = ES3.Load(id + "ticket", 0);
