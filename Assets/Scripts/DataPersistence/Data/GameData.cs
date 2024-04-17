@@ -91,23 +91,24 @@ public class GameData : Data
             Managers = Managers;
         }
     }
-    public void AddNewManager(int managerId)
+    public void AddNewManager(int managerId, int value)
     {
         // Managers.Add(managerId, Managers[managerId]);
-        AddOrUpdate(Managers, managerId, 1);
+        AddOrUpdate(Managers, managerId, value);
         Managers = Managers;
     }
+
     void AddOrUpdate(Dictionary<int, int> dic, int key, int newValue)
     {
         if (dic.TryGetValue(key, out int val))
         {
-            // yay, value exists!
             dic[key] = val + newValue;
+            // Debug.Log("---  " + key + "." + dic[key]);
         }
         else
         {
-            // darn, lets add the value
             dic.Add(key, newValue);
+            // Debug.Log("---  " + key + ".." + dic[key]);
         }
     }
 }

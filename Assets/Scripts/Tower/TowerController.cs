@@ -38,6 +38,7 @@ namespace Tower
         }
         public void Start()
         {
+            gamePresets = Instantiate(gamePresets);
             data = (TowerData)DataPersistenceController.Instance.GetData("tower", new TowerData());
             //Debug.Log(data.FloorCount);
             for (int i = 0; i < data.floorCount; i++)

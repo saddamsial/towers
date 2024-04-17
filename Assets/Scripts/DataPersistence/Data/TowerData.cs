@@ -72,9 +72,22 @@ public class TowerData : Data
         FloorLevels = FloorLevels;
         return true;
     }
-    public void UpdateFloorManager(int index, int managerId)
+    GameData gameData;
+    public void UpdateFloorManager(int floor, int managerId, int newValue, bool managerRemoved)
     {
-        FloorManagers[index] = managerId;
+        FloorManagers[floor] = managerRemoved ? -1 : managerId;
         FloorManagers = FloorManagers;
+
+        gameData ??= ManagersPanel.Instance.gameData;
+        // Debug.Log("floor:  " + floor + "  man id:" + managerId + "   new val:" + newValue);
+        if (managerId != -1)
+        {
+            gameData.AddNewManager(managerId, newValue);
+        }
+        else
+        {
+            gameData.AddNewManager(managerId, newValue);
+        }
+
     }
 }

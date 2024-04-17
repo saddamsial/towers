@@ -16,6 +16,7 @@ namespace Tower.Floor
         public GameObject upgradeButton;
         public GameObject managerSpot;
         public GraphicRaycaster myCanvasRaycaster;
+        public PrePlacedManagerImage prePlacedManagerImage;
         public override void OnEnable()
         {
             GameController.onDied += Die;

@@ -11,11 +11,13 @@ public class ManagerButtonController : MonoBehaviour
     public Image image;
     public TMP_Text count;
     public int index;
-    public void Init(LootItem item, int id)
+    public LootItem tempItem;
+    public void Init(LootItem item)
     {
+        tempItem = item;
         image.sprite = item.sprite;
-        index = id;
-        ManagersPanel.Instance.gameData.Managers.TryGetValue(id, out var a);
+        index = item.managerId;
+        ManagersPanel.Instance.gameData.Managers.TryGetValue(item.managerId, out var a);
         count.text = "" + a;
     }
     public void UpdateText(int val)

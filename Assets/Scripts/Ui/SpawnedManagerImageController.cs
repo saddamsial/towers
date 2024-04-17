@@ -1,4 +1,7 @@
 using Managers;
+using Tower;
+using Tower.Floor;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +13,8 @@ public class SpawnedManagerImageController : MonoBehaviour
     public LootItem myManager;
     string[] splited;
     Transform tempPlacedSpot;
+    public Image myImage;
+    public FloorMine myFloor;
     void OnEnable()
     {
         GameController.onManagerImagePressed += ImagePressed;
@@ -31,19 +36,32 @@ public class SpawnedManagerImageController : MonoBehaviour
         splited = placedManager.name.Split(' ');
         var index = int.Parse(splited[0]);
         gameObject.name = index.ToString();
-        // Debug.Log(index + " init");
-        ManagersPanel.Instance.towerData.UpdateFloorManager(index, ManagersPanel.Instance.tempManagerButtonController.index);
+        // ManagersPanel.Instance.towerData.UpdateFloorManager(index, ManagersPanel.Instance.tempManagerButtonController.index, -1, false);
+        // Debug.Log(index + "--" + ManagersPanel.Instance.tempManagerButtonController.index);
         managerPlaced = true;
+        myImage.overrideSprite = myManagerButtonController.image.sprite;
+        // Debug.Log(myImage.sprite + "---" + myManagerButtonController.image.sprite);
+        if (myFloor == null)
+        {
+            myFloor = ManagersPanel.Instance.mainTower.floorMineList[index];
+        }
+        ManagersPanel.Instance.towerData.UpdateFloorManager(ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor),
+            ManagersPanel.Instance.tempManagerButtonController.index, -1, false);
+        // Debug.Log(index + " init");
     }
     public void ImagePressed(Vector2 clickPos, Transform clickedObj)
     {
         if (clickedObj != transform) return;
-        tempPlacedSpot.gameObject.SetActive(true);
+        tempPlacedSpot?.gameObject.SetActive(true);
         ManagersPanel.Instance.tempManagerButtonController = myManagerButtonController;
         myManagerButtonController.UpdateText(1);
         var index = int.Parse(gameObject.name);
-        // Debug.Log(index + " remove");
-        ManagersPanel.Instance.towerData.UpdateFloorManager(index, -1);
-        Destroy(gameObject);
+        myImage.overrideSprite = myManagerButtonController.image.sprite;
+
+        // Debug.Log("  index-" + index + "    manager id-" + ManagersPanel.Instance.tempManagerButtonController.index + "    floor-" + myFloor);
+        ManagersPanel.Instance.towerData.UpdateFloorManager(ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor),
+            ManagersPanel.Instance.tempManagerButtonController.index, 1, true);
+        ManagersPanel.Instance.mainTower.floorMineList[ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor)].managerSpot.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

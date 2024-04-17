@@ -30,7 +30,7 @@ public class LootManager : Singleton<LootManager>
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            data.AddNewManager(Random.Range(0, 9));
+            data.AddNewManager(Random.Range(0, 9), 1);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -102,7 +102,7 @@ public class LootManager : Singleton<LootManager>
             switch (currentLoot[i].lootType)
             {
                 case LootType.manager:
-                    data.AddNewManager(currentLoot[i].managerId);
+                    data.AddNewManager(currentLoot[i].managerId, 1);
                     break;
                 case LootType.gear:
                     data.Gear += currentLoot[i].amount;

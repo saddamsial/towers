@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f802ceda35f5c4662a240c6ceef56a64, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b4e78a7cdaf8410e992c685adf4b683, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managerPlaced: 0
+  myManagerButtonController: {fileID: 0}
+  myManager: {fileID: 0}
+  myImage: {fileID: 173170949607020838}
 --- !u!65 &1900879976710245598
 BoxCollider:
   m_ObjectHideFlags: 0

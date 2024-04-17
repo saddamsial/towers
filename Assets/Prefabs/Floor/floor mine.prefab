@@ -1652,6 +1652,7 @@ MonoBehaviour:
   assignButton: {fileID: 6525380010276342740}
   managerButtonController: {fileID: 0}
   myItem: {fileID: 0}
+  myFloor: {fileID: 2791473329673029540}
 --- !u!1 &8629431351287155127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,9 +1885,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b3eea32e56c034e73a8f2aeb84e0462e, type: 3}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: b7655029f93ee498c92c9165c37495a6, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image
@@ -3709,6 +3718,7 @@ MonoBehaviour:
   upgradeButton: {fileID: 6623602993755564726}
   managerSpot: {fileID: 6525380010276342740}
   myCanvasRaycaster: {fileID: 3273772851976966159}
+  prePlacedManagerImage: {fileID: 5694065845789936800}
 --- !u!4 &5286396719164879258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5654348229809072026, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
@@ -3849,9 +3859,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 570d4d98fb522499bb37d3e66815a325, type: 3}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: 44b030fe4cfc646d2a3f247d3b7c6d52, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (1)
@@ -3970,10 +3988,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c9b43e357f55a40eeb713ddc18e0347d, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: 02097258e176845e3b9b67ecaeb0a267, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (6)
@@ -4092,10 +4122,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea0d15c8ad5814d68ba5d1f53bae6247, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: 75db5f5560af94aa8a9a49e4c095cbc4, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (3)
@@ -4214,10 +4256,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 049d1403ca0954c6e8c805419a41f803, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: ab43f8879a365498facadbc4747a685f, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (2)
@@ -4336,10 +4390,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f35db904975f48b9b6673de8a13d323, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: 3e6e92d6dafbc4684989b9a15f641884, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (5)
@@ -4458,10 +4524,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ad747883118aa4aefa7808b037d4564a, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: ffff1043bd8f74e14bdbaa7ef4781319, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (4)
@@ -4580,10 +4658,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 13756a141b0b84db08f0c80f06bb5d45, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: 8ad0d96bf46e54e3aba14aa360073a8c, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (8)
@@ -4702,10 +4792,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8271042339025179571}
     m_Modifications:
+    - target: {fileID: 173170949607020838, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d77571e140f0144daaad2a7e4ba19c7c, type: 3}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: myFloor
+      value: 
+      objectReference: {fileID: 2791473329673029540}
     - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: myManager
       value: 
       objectReference: {fileID: 11400000, guid: b46f4f270da344750aea26184da488f8, type: 2}
+    - target: {fileID: 6609901756211546549, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
+      propertyPath: managerPlaced
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7557961241924056775, guid: 92f780b7b918c4bb7ab421180916980d, type: 3}
       propertyPath: m_Name
       value: spawned manager image (7)

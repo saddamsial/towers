@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using Utils;
 
 public class DataPersistenceController : Singleton<DataPersistenceController>
@@ -10,6 +9,10 @@ public class DataPersistenceController : Singleton<DataPersistenceController>
     public GamePresets presets;
     public List<Data> data = new();
 
+    public void Awake()
+    {
+        presets = Instantiate(presets); //Resources.Load<GamePresets>("Game Presets");
+    }
     public void Start()
     {
         LoadGame();
