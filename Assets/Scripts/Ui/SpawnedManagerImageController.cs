@@ -46,6 +46,7 @@ public class SpawnedManagerImageController : MonoBehaviour
             myFloor = ManagersPanel.Instance.mainTower.floorMineList[index];
         }
         ManagersPanel.Instance.mainTower.floorMineList[ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor)].isManagerAssigned = true;
+        ManagersPanel.Instance.mainTower.floorMineList[ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor)].myManagerId = index;
         ManagersPanel.Instance.towerData.UpdateFloorManager(ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor),
             ManagersPanel.Instance.tempManagerButtonController.index, -1, false);
         // Debug.Log(index + " init");
@@ -64,6 +65,7 @@ public class SpawnedManagerImageController : MonoBehaviour
             ManagersPanel.Instance.tempManagerButtonController.index, 1, true);
         ManagersPanel.Instance.mainTower.floorMineList[ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor)].isManagerAssigned = false;
         ManagersPanel.Instance.mainTower.floorMineList[ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor)].managerSpot.SetActive(true);
+        ManagersPanel.Instance.mainTower.floorMineList[ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor)].myManagerId = -1;
         gameObject.SetActive(false);
     }
 }

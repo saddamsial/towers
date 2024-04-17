@@ -3755,6 +3755,7 @@ MonoBehaviour:
   hasShield: 0
   isTargeted: 0
   isManagerAssigned: 0
+  myManagerId: -1
   addFloorButton: {fileID: 2113837264009979379}
   upgradeButton: {fileID: 6623602993755564726}
   managerSpot: {fileID: 6525380010276342740}

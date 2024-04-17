@@ -13,6 +13,7 @@ namespace Tower.Floor
     {
         public bool isTargeted;
         public bool isManagerAssigned;
+        public int myManagerId;
         public Button addFloorButton;
         public GameObject upgradeButton;
         public GameObject managerSpot;
@@ -123,8 +124,9 @@ namespace Tower.Floor
                 managerSpot.SetActive(false);
                 // Debug.Log("asdasdasdasd");
             }
-
             upgradeButton.SetActive(!isOpen);
+            var myIndex = mainTower.floors.IndexOf(gameObject);
+            myManagerId = mainTower.data.FloorManagers[myIndex];
         }
     }
 }

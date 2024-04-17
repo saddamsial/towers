@@ -45,6 +45,7 @@ public class ManagersPanel : Singleton<ManagersPanel>
                 // Debug.Log("****   " + towerData.FloorManagers[i]);
                 mainTower.floorMineList[i].managerSpot.gameObject.SetActive(false);
                 mainTower.floorMineList[i].isManagerAssigned = true;
+                mainTower.floorMineList[i].myManagerId = towerData.FloorManagers[i];
                 mainTower.floorMineList[i].prePlacedManagerImage.Init(managerItems[towerData.FloorManagers[i]], managerButtons[towerData.FloorManagers[i]]);
             }
             mainTower.floorMineList[i].prePlacedManagerImage.myFloor = mainTower.floorMineList[i];
