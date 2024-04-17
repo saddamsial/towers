@@ -49,10 +49,9 @@ MonoBehaviour:
   canShoot: 0
   coolDown: 0
   isLaser: 1
+  gunIdForManager: 3
   myGun: {fileID: 11400000, guid: ca6beda3488674983877a107a4b43bff, type: 2}
   tempBulletCount: 0
-  freezeCountDown: 0
-  freezeTime: 0
   speedMultiplier: 1
   myFloor: {fileID: 0}
   skin: {fileID: 4397896174209589393}

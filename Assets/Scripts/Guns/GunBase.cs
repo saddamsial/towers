@@ -17,6 +17,7 @@ namespace Guns
     public class GunBase : MonoBehaviour
     {
         public bool canShoot, coolDown, isLaser;
+        public int gunIdForManager;
         public GunSo myGun;
         GameObject bullet;
         [HideIf("isLaser")]

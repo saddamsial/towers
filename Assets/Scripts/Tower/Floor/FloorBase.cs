@@ -23,6 +23,7 @@ namespace Tower.Floor
         public TowerController mainTower;
         public GameObject attachedGunObj;
         public GunBase attachedGun;
+        public int myIdealManagerId;
         public GameObject tempGun;
         public Health myHealth;
         public bool stoped;
