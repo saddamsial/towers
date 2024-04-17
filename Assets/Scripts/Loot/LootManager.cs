@@ -133,22 +133,29 @@ public class LootManager : Singleton<LootManager>
         if (spawnedLootItems.Count > 0)
             ClearList();
     }
+    RectTransform rectTransform;
     private void SpawnLootObject(bool skiped = false)
     {
         remainingLootCount--;
         deckCount.text = remainingLootCount + "";
         tempObj = spawnedObj.Spawn(spawnPos.position, Quaternion.identity, lootPanel.transform).transform;
         tempObj.localScale = Vector3.one * 0.2f;
-        var rectTransform = tempObj.GetComponent<RectTransform>();
-        rectTransform.offsetMin = new Vector2(rectTransform.offsetMin.x, 0);
-        rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, 0);
+        rectTransform = tempObj.GetComponent<RectTransform>();
+        rectTransform.offsetMin = new Vector2(0, 0);//rectTransform.offsetMin.x
+        rectTransform.offsetMax = new Vector2(0, 0);//rectTransform.offsetMax.x
         spawnedLootItems.Add(tempObj);
         var amountText = tempObj.GetChild(1).GetComponent<TMP_Text>();
         amountText.text = "";
         if (!skiped)
         {
             tempObj.DOScale(1.2f * Vector3.one, 1.6f).SetEase(Ease.InOutBounce);
-            tempObj.DOMove(moveToPos.position, 1.6f, true).SetEase(Ease.InBounce).OnComplete(() => amountText.text = currentLoot[remainingLootCount].amount > 0 ? currentLoot[remainingLootCount].amount + "" : "");
+            tempObj.DOMove(moveToPos.position, 1.6f, true).SetEase(Ease.InBounce).OnComplete(() =>
+            {
+                amountText.text = currentLoot[remainingLootCount].amount > 0 ? currentLoot[remainingLootCount].amount + "" : "";
+                // rectTransform.offsetMin = new Vector2(0, 0);//rectTransform.offsetMin.x
+                // rectTransform.offsetMax = new Vector2(0, 0);//rectTransform.offsetMax.x;
+            });
+
         }
         else
         {

@@ -16,17 +16,17 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
   - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
-  myTowerFloorCount: 6
+  myTowerFloorCount: 2
   maxPossibleFloor: 10
   myFloorLevels: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   myFloorManagers: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
   myFloorGuns:
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}

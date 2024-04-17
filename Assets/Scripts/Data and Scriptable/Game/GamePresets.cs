@@ -30,6 +30,7 @@ public class GamePresets : ScriptableObject
     [Button]
     public void ResetData()
     {
+        myTowerFloorCount = 2;
         myFloorGuns = new List<GunSo>(myFloorGunsDefault);
         myFloorLevels = new List<int>(myFloorLevelsDefault);
         myFloorManagers = new List<int>(myFloorManagersDefault);
