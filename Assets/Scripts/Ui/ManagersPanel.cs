@@ -44,6 +44,7 @@ public class ManagersPanel : Singleton<ManagersPanel>
             {
                 // Debug.Log("****   " + towerData.FloorManagers[i]);
                 mainTower.floorMineList[i].managerSpot.gameObject.SetActive(false);
+                mainTower.floorMineList[i].isManagerAssigned = true;
                 mainTower.floorMineList[i].prePlacedManagerImage.Init(managerItems[towerData.FloorManagers[i]], managerButtons[towerData.FloorManagers[i]]);
             }
             mainTower.floorMineList[i].prePlacedManagerImage.myFloor = mainTower.floorMineList[i];
@@ -61,6 +62,11 @@ public class ManagersPanel : Singleton<ManagersPanel>
     }
     public void Init()
     {
+        StartCoroutine(InitDelay());
+    }
+    IEnumerator InitDelay()
+    {
+        yield return new WaitForSeconds(0.01f);
         gameData = GameStateManager.Instance.gameData;//(GameData)DataPersistenceController.Instance.GetData("game", new GameData());
         towerData = mainTower.data;
         for (int i = 0; i < managerImageUiPanel.childCount; i++)
@@ -71,6 +77,8 @@ public class ManagersPanel : Singleton<ManagersPanel>
         {
             SpawnButtons(managers.Key);
         }
+
+        RePlaceManagers();
     }
     public void SpawnButtons(int key)
     {

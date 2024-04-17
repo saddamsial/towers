@@ -96,6 +96,7 @@ public class GameData : Data
         // Managers.Add(managerId, Managers[managerId]);
         AddOrUpdate(Managers, managerId, value);
         Managers = Managers;
+        ManagersPanel.Instance.Init();
     }
 
     void AddOrUpdate(Dictionary<int, int> dic, int key, int newValue)

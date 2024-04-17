@@ -12,6 +12,7 @@ namespace Tower.Floor
     public class FloorMine : FloorBase
     {
         public bool isTargeted;
+        public bool isManagerAssigned;
         public Button addFloorButton;
         public GameObject upgradeButton;
         public GameObject managerSpot;
@@ -117,6 +118,12 @@ namespace Tower.Floor
         public void ManagerPanel(bool isOpen)
         {
             managerSpot.SetActive(isOpen);
+            if (isManagerAssigned)
+            {
+                managerSpot.SetActive(false);
+                // Debug.Log("asdasdasdasd");
+            }
+
             upgradeButton.SetActive(!isOpen);
         }
     }
