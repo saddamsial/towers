@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56af7b13f6bb043c2a0652347c2d43f2, type: 3}
-  m_Name: enemy tower 1
+  m_Name: enemy tower 7
   m_EditorClassIdentifier: 
   floorTemps:
   - floorSo: {fileID: 11400000, guid: 4fffea7a7b5d94740b3f4749a7c81e1c, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 38d06cc66472946b1955a3dfb6ecc30e, type: 2}
+    Health: 0.8
+    difficulty: 1
+  - floorSo: {fileID: 11400000, guid: 4fffea7a7b5d94740b3f4749a7c81e1c, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 3c2022b59bd394e15979278503498ee2, type: 2}
     Health: 0.8
     difficulty: 0
   - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
-    gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-    Health: 0.8
-    difficulty: 0
-  - floorSo: {fileID: 11400000, guid: 04f4e69ce0a1b40158c5f26c4d1458e7, type: 2}
     gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
     Health: 0.8
     difficulty: 0

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37c3860c2e3fb4c97bf2499156544909, type: 3}
-  m_Name: simple floor
+  m_Name: 6 floor titanium
   m_EditorClassIdentifier: 
-  skinNo: 0
+  skinNo: 5
   material: {fileID: 0}
   height: 1.6

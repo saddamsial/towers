@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Data_and_Scriptable.GunSo;
 using UnityEngine;
@@ -16,6 +15,5 @@ public class EnemyTowerSo : ScriptableObject
         [Range(0, 9)]
         public int difficulty;
     }
-
     public List<FloorTemp> floorTemps = new();
 }

@@ -95,7 +95,6 @@ namespace Guns
         }
         public void RotateToTarget(int difficulty = 3)
         {
-            Debug.Log("3");
             turretPivot.DOKill();
             if (myFloor.attackTo == null || !gameObject.activeInHierarchy) return;
             StartCoroutine(ShootDelayByDifficulty(difficulty));

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56af7b13f6bb043c2a0652347c2d43f2, type: 3}
+  m_Name: enemy tower 23
+  m_EditorClassIdentifier: 
+  floorTemps:
+  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 08229908a09ca432c803d3a188611a27, type: 2}
+    Health: 0.8
+    difficulty: 4
+  - floorSo: {fileID: 11400000, guid: 04f4e69ce0a1b40158c5f26c4d1458e7, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 29e89acafd59b432a93416aac22903a0, type: 2}
+    Health: 0.8
+    difficulty: 3
+  - floorSo: {fileID: 11400000, guid: 04f4e69ce0a1b40158c5f26c4d1458e7, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+    Health: 0.8
+    difficulty: 3
+  - floorSo: {fileID: 11400000, guid: 04f4e69ce0a1b40158c5f26c4d1458e7, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 477a58235367640c0ba2c17a38a46945, type: 2}
+    Health: 0.8
+    difficulty: 4
+  - floorSo: {fileID: 11400000, guid: 8bd6916cfe0f04f66a4f681aa6e216a4, type: 2}
+    gunToAttach: {fileID: 11400000, guid: 62f6bf9a657604e7aa40aa9839fc65fe, type: 2}
+    Health: 0.8
+    difficulty: 3

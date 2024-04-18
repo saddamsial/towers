@@ -11118,7 +11118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6959244624155126719, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7039087517682093939, guid: fac6662e303ad403c894100eb70bbc28, type: 3}
       propertyPath: m_Layer
@@ -11504,6 +11504,7 @@ MonoBehaviour:
   skin: {fileID: 5286396719164879258}
   outline: {fileID: 3308107841761508350}
   mainTower: {fileID: 0}
+  enemyTower: {fileID: 0}
   attachedGunObj: {fileID: 0}
   attachedGun: {fileID: 0}
   myIdealManagerId: 0

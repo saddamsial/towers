@@ -30,7 +30,8 @@ namespace Tower.Floor
             AttachGun(floor.gunToAttach.myPrefab);
             myHealth = attachedGun.GetComponent<Health>();
             myHealth.myFloor = this;
-            myHealth.SetupHealth(floor.Health);
+            var lvl = floor.floorSo.name.Split(' ');
+            myHealth.SetupHealth(floor.Health + ((int.Parse(lvl[0]) - 4) * 0.5f));
 
         }
         public void AttackToEnemy(FloorMine floor, int difficulty)
