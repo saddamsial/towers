@@ -31,7 +31,8 @@ namespace Bullets
             damageable.Damage(bullet.damage);
             movingObj.transform.parent = null;
             OnHit(other);
-            movingObj.Despawn();
+            if (movingObj.activeInHierarchy)
+                movingObj.Despawn();
         }
         private void OnHit(Transform other)
         {

@@ -45,7 +45,7 @@ public class CameraSettingsController : MonoBehaviour
 
     }
 
-    public void FloorAdded(Transform floor, int whichFloor, TowerController mainTower, GunSo gun, FloorMine prevFloor)
+    public void FloorAdded(Transform floor, int whichFloor, TowerController mainTower, GunSo gun, FloorMine prevFloor, EnemyTower enemyTower)
     {
         targetGroup.AddMember(floor.transform.GetChild(1), 1 - (whichFloor * 0.05f), whichFloor == 0 ? 5 : 2);
         cinemachineGroupComposer.m_MaximumFOV = 50 - whichFloor;

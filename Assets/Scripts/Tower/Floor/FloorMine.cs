@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Data_and_Scriptable.GunSo;
 using GameStates;
 using Guns;
 using Managers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,6 +73,15 @@ namespace Tower.Floor
             attackTo = target;
             attachedGun.RotateToTarget();
         }
+        public void ManagerAttack()
+        {
+            if (!GameStateManager.Instance.IsGameState()) return;
+            if (!isManagerAssigned) return;
+            var t = GetEnemyFloorToAttack();
+            if (t == null) { attachedGun.canShoot = false; return; }
+            attackTo = t;
+            attachedGun.RotateToTarget();
+        }
         public override void Die(FloorBase diedObj)
         {
             base.Die(diedObj);
@@ -83,10 +94,11 @@ namespace Tower.Floor
                 }
             }
         }
-        public void FloorAdded(Transform floor, int whichFloor, TowerController mainTower, GunSo gun, FloorMine previousFloor)
+        public void FloorAdded(Transform floor, int whichFloor, TowerController mainTower, GunSo gun, FloorMine previousFloor, EnemyTower enemyTower)
         {
             if (transform != floor) return;
             this.mainTower = mainTower;
+            this.enemyTower = enemyTower;
             if (!mainTower.floorMineList.Contains(this))
                 mainTower.floorMineList.Add(this);
             var isEdit = GameStateManager.Instance.IsEditState();
@@ -153,7 +165,6 @@ namespace Tower.Floor
             if (isManagerAssigned)
             {
                 managerSpot.SetActive(false);
-                // Debug.Log("asdasdasdasd");
             }
             upgradeButton.SetActive(!isOpen);
             UpgradeButtonMaxLevelCheck();
@@ -165,12 +176,24 @@ namespace Tower.Floor
             if (!isManagerAssigned) return;
             assignedManagerSpot.transform.GetChild(0).gameObject.SetActive(false);
             assignedManagerSpot.transform.GetChild(1).gameObject.SetActive(true);
+            StartCoroutine(ManagerAutoAttack());
         }
         public void ManagerPanelModeEdit()
         {
             if (!isManagerAssigned) return;
             assignedManagerSpot.transform.GetChild(0).gameObject.SetActive(true);
             assignedManagerSpot.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        public IEnumerator ManagerAutoAttack()
+        {
+            yield return new WaitForSeconds(Random.Range(0.9f, 1.5f));
+            if (!attachedGun.canShoot || attachedGun.isLaser)
+                ManagerAttack();
+        }
+        public Transform GetEnemyFloorToAttack()
+        {
+            if (enemyTower.floors.Count <= 0) return null;
+            return enemyTower.floors[Random.Range(0, enemyTower.floors.Count)].transform;
         }
     }
 }

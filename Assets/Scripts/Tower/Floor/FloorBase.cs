@@ -21,6 +21,7 @@ namespace Tower.Floor
         public Transform skin;
         public Outlinable outline;
         public TowerController mainTower;
+        public EnemyTower enemyTower;
         public GameObject attachedGunObj;
         public GunBase attachedGun;
         public int myIdealManagerId;

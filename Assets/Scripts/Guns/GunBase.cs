@@ -61,7 +61,7 @@ namespace Guns
         protected virtual void Update()
         {
             if (!canShoot) return;
-            if (isLaser) return;
+            if (isLaser) { return; }
 
             if (coolDown)
             {
@@ -84,13 +84,18 @@ namespace Guns
                 else
                 {
                     frequency = GetFrequency();
-                    if (!myFloor.attackTo) { canShoot = false; return; }
+                    if (!myFloor.attackTo)
+                    {
+                        canShoot = false;
+                        return;
+                    }
                     Shoot();
                 }
             }
         }
         public void RotateToTarget(int difficulty = 3)
         {
+            Debug.Log("3");
             turretPivot.DOKill();
             if (myFloor.attackTo == null || !gameObject.activeInHierarchy) return;
             StartCoroutine(ShootDelayByDifficulty(difficulty));
@@ -125,6 +130,10 @@ namespace Guns
         public void ResetRotation()
         {
             turretPivot.DORotateQuaternion(firstRotation, 0.4f);//.rotation = firstRotation;
+            if (myFloor.TryGetComponent(out FloorMine floorMineTemp))
+            {
+                floorMineTemp.ManagerAttack();
+            }
         }
         protected virtual void Shoot()
         {

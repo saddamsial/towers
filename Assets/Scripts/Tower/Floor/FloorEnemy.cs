@@ -8,7 +8,6 @@ namespace Tower.Floor
 {
     public class FloorEnemy : FloorBase
     {
-        public EnemyTower enemyTower;
         FloorTemp tempFloor;
         public Transform skins;
         public override void OnEnable()
@@ -36,15 +35,15 @@ namespace Tower.Floor
         }
         public void AttackToEnemy(FloorMine floor, int difficulty)
         {
-            if (attackTo != null)
-            {
-                attackTo.GetComponent<FloorMine>().isTargeted = false;
-                attackTo = null;
-            }
-            if (!floor) return;
-            floor.isTargeted = true;
-            attackTo = floor.transform;
-            attachedGun.RotateToTarget(difficulty);
+            // if (attackTo != null)
+            // {
+            //     attackTo.GetComponent<FloorMine>().isTargeted = false;
+            //     attackTo = null;
+            // }
+            // if (!floor) return;
+            // floor.isTargeted = true;
+            // attackTo = floor.transform;
+            // attachedGun.RotateToTarget(difficulty);
         }
         public override void Attack(Transform target)
         {

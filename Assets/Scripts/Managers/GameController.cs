@@ -11,7 +11,7 @@ namespace Managers
         public static Action<GameObject, FloorBase> onGunPlaced;
         public static Action<bool> onEditMode;
         public static Action<FloorBase> onDied;
-        public static Action<Transform, int, TowerController, GunSo, FloorMine> onFloorAdded;
+        public static Action<Transform, int, TowerController, GunSo, FloorMine, EnemyTower> onFloorAdded;
         public static Action<int> onCloseCameraPressed;
         public static Action onZoomOutFromGun;
         public static Action<GameObject> onSwapGun;

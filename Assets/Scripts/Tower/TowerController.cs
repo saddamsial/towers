@@ -6,13 +6,8 @@ using Lean.Touch;
 using NaughtyAttributes;
 using UnityEngine;
 using Tower.Floor;
-using Utils.PoolSystem;
-using Utils;
-using Cinemachine;
-using UnityEngine.Animations;
 using Managers;
 using Data_and_Scriptable.GunSo;
-using Guns;
 
 namespace Tower
 {
@@ -27,7 +22,7 @@ namespace Tower
         FloorMine prevFloorMine;
         public CameraSettingsController cameraSettings;
         public TargetSelectorEnemy targetSelectorEnemy;
-
+        public EnemyTower enemyTower;
         public void OnEnable()
         {
             GameController.onDied += RearrangeFloors;
@@ -68,7 +63,7 @@ namespace Tower
             }
             floors.Add(tempFloor);
             // if (isNewFloor && floors.Count < gamePresets.myFloorGuns.Count - 1) floors[^1].GetComponent<FloorMine>().addFloorButton.gameObject.SetActive(true);
-            GameController.onFloorAdded?.Invoke(tempFloor.transform, whichFloor, this, data.Guns[whichFloor], prevFloorMine);
+            GameController.onFloorAdded?.Invoke(tempFloor.transform, whichFloor, this, data.Guns[whichFloor], prevFloorMine, enemyTower);
             cameraSettings.ZoomLevel(data.FloorCount);
 
         }
