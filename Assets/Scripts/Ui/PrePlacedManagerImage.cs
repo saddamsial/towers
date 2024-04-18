@@ -17,5 +17,6 @@ public class PrePlacedManagerImage : MonoBehaviour
         transform.GetChild(item.managerId).name = item.managerId.ToString();
         var manager = transform.GetChild(item.managerId).GetComponent<SpawnedManagerImageController>();
         manager.myManagerButtonController = managerButton;
+        myFloor.assignedManagerSpot = transform.GetChild(item.managerId).gameObject;
     }
 }

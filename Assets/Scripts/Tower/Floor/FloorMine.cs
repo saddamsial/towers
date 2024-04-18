@@ -17,6 +17,7 @@ namespace Tower.Floor
         public Button addFloorButton;
         public GameObject upgradeButton;
         public GameObject managerSpot;
+        public GameObject assignedManagerSpot;
         public GraphicRaycaster myCanvasRaycaster;
         public PrePlacedManagerImage prePlacedManagerImage;
         public override void OnEnable()
@@ -112,12 +113,19 @@ namespace Tower.Floor
         public void OnEditMode(bool state)
         {
             upgradeButton.SetActive(state);
+            UpgradeButtonMaxLevelCheck();
             myCanvasRaycaster.enabled = state;
             if (mainTower.floors[^1].transform == transform && mainTower.floors.Count < mainTower.gamePresets.maxPossibleFloor - 1)
                 addFloorButton.gameObject.SetActive(state);
 
             if (attachedGun)
                 attachedGun.ResetRotation();
+        }
+        public void UpgradeButtonMaxLevelCheck()
+        {
+            var myIndex = mainTower.floors.IndexOf(gameObject);
+            if (!mainTower.data.UpdateFloorLevel(myIndex))
+                upgradeButton.SetActive(false);
         }
         public void UpgradeButton()
         {
@@ -130,6 +138,7 @@ namespace Tower.Floor
                 }
                 SkinSet(myIndex);
             }
+            else upgradeButton.SetActive(false);
         }
         public void SwapGun(GameObject newGun = null)
         {
@@ -138,7 +147,6 @@ namespace Tower.Floor
             mainTower.data.UpdateFloorGun(index, newGun.GetComponent<GunBase>().myGun);
             AttachGun(newGun);
         }
-
         public void ManagerPanel(bool isOpen)
         {
             managerSpot.SetActive(isOpen);
@@ -148,8 +156,21 @@ namespace Tower.Floor
                 // Debug.Log("asdasdasdasd");
             }
             upgradeButton.SetActive(!isOpen);
+            UpgradeButtonMaxLevelCheck();
             var myIndex = mainTower.floors.IndexOf(gameObject);
             myManagerId = mainTower.data.FloorManagers[myIndex];
+        }
+        public void ManagerPanelModeGame()
+        {
+            if (!isManagerAssigned) return;
+            assignedManagerSpot.transform.GetChild(0).gameObject.SetActive(false);
+            assignedManagerSpot.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        public void ManagerPanelModeEdit()
+        {
+            if (!isManagerAssigned) return;
+            assignedManagerSpot.transform.GetChild(0).gameObject.SetActive(true);
+            assignedManagerSpot.transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 }

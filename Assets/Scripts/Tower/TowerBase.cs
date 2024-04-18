@@ -43,5 +43,13 @@ namespace Tower
         {
             tempFloor = floorPrefab.Spawn(transform.localPosition + 1.6f * floors.Count * Vector3.up, transform.localRotation, transform);
         }
+        public virtual void ManagerPanelModeGame()
+        {
+
+        }
+        public virtual void ManagerPanelModeEdit()
+        {
+
+        }
     }
 }

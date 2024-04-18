@@ -119,5 +119,19 @@ namespace Tower
                 floor.GetComponent<FloorBase>().outline.enabled = false;
             }
         }
+        public override void ManagerPanelModeGame()
+        {
+            for (int i = 0; i < floorMineList.Count; i++)
+            {
+                floorMineList[i].ManagerPanelModeGame();
+            }
+        }
+        public override void ManagerPanelModeEdit()
+        {
+            for (int i = 0; i < floorMineList.Count; i++)
+            {
+                floorMineList[i].ManagerPanelModeEdit();
+            }
+        }
     }
 }

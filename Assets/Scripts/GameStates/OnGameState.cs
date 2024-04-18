@@ -5,7 +5,7 @@ namespace GameStates
 {
     public class OnGameState : GameState
     {
-        public UnityEvent resetsForGameStart;
+        public UnityEvent resetsForGameStart, exitStateEvents;
 
         public override void OnEnterState()
         {
@@ -20,6 +20,7 @@ namespace GameStates
         public override void OnExitState()
         {
             base.OnExitState();
+            exitStateEvents?.Invoke();
         }
     }
 }
