@@ -19,6 +19,7 @@ namespace Managers
         public static Action<Vector2, Transform> onManagerImagePressed;
         public static Action<Transform, Transform> onManagerImageReleased;
         public static Action<bool> onManagerEditMode;
+        public static Action<int> onManagerCheck;
 
         public int currentFocusedGun;
         public void InvokeEditMode(bool state)

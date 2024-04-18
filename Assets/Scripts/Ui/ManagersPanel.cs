@@ -94,6 +94,7 @@ public class ManagersPanel : Singleton<ManagersPanel>
     {
         if (tempManagerButtonController && tempManagerButtonController.GetCount() <= 0) return;
 
+
         tempManagerImage = Instantiate(managerImagePrefab, pos, Quaternion.identity, transform).transform;
         tempManagerImage.localRotation = Quaternion.identity;
         tempManagerImage.localScale = Vector3.one * 1.1f;
@@ -108,6 +109,7 @@ public class ManagersPanel : Singleton<ManagersPanel>
         yield return new WaitForSeconds(0.1f);
         tempManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController = tempManagerButtonController;
         tempManagerImage.GetComponent<Image>().sprite = tempManagerButtonController.image.sprite;
+        GameController.onManagerCheck?.Invoke(tempManagerButtonController.index);
     }
     public void SpawnedImagePlaced(Transform spot, Transform managerImage)
     {
@@ -126,5 +128,6 @@ public class ManagersPanel : Singleton<ManagersPanel>
         Destroy(tempManagerImage.gameObject);
 
         spot.transform.parent.GetComponentInChildren<PrePlacedManagerImage>().Init(tempManagerButtonController.tempItem, tempManagerButtonController);
+        GameController.onManagerCheck?.Invoke(tempManagerButtonController.index);
     }
 }

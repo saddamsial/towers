@@ -27,6 +27,7 @@ namespace Tower.Floor
             GameController.onEditMode += OnEditMode;
             GameController.onSwapGun += SwapGun;
             GameController.onManagerEditMode += ManagerPanel;
+            GameController.onManagerCheck += ManagerCheck;
 
             addFloorButton.onClick.RemoveAllListeners();
         }
@@ -37,9 +38,17 @@ namespace Tower.Floor
             GameController.onEditMode -= OnEditMode;
             GameController.onSwapGun -= SwapGun;
             GameController.onManagerEditMode -= ManagerPanel;
+            GameController.onManagerCheck -= ManagerCheck;
 
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
+        }
+        public void ManagerCheck(int clickedManager)
+        {
+            if (isManagerAssigned) { managerSpot.SetActive(false); return; }
+            managerSpot.SetActive(attachedGun.gunIdForManager == clickedManager);
+            if (clickedManager == -1)
+                managerSpot.SetActive(true);
         }
         public void SetupManager(int id)
         {

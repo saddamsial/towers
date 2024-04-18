@@ -66,7 +66,7 @@ namespace Managers
                     if (releasedObject && spawnedManagerImage)
                     {
                         if (!releasedObject.name.Contains("assign")) { FalseRelease(); return; }
-                        spawnedManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController.UpdateText(-1);
+                        spawnedManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController.UpdateText(-1);//TODOtower burada hızlı click yapınca error var
                         GameController.onManagerImageReleased?.Invoke(releasedObject, spawnedManagerImage);
                         spawnedManagerImage = null;
                         releasedObject.gameObject.SetActive(false);
@@ -83,6 +83,7 @@ namespace Managers
         {
             Destroy(spawnedManagerImage.gameObject);
             spawnedManagerImage = null;
+            GameController.onManagerCheck?.Invoke(-1);
         }
         private RaycastHit GetWorldPositionOnPlane(Vector3 screenPosition, LayerMask layer)
         {

@@ -36,6 +36,7 @@ public class SpawnedManagerImageController : MonoBehaviour
         splited = placedManager.name.Split(' ');
         var index = int.Parse(splited[0]);
         gameObject.name = index.ToString();
+        GameController.onManagerCheck?.Invoke(-1);
         // ManagersPanel.Instance.towerData.UpdateFloorManager(index, ManagersPanel.Instance.tempManagerButtonController.index, -1, false);
         // Debug.Log(index + "--" + ManagersPanel.Instance.tempManagerButtonController.index);
         managerPlaced = true;
@@ -59,7 +60,7 @@ public class SpawnedManagerImageController : MonoBehaviour
         myManagerButtonController.UpdateText(1);
         var index = int.Parse(gameObject.name);
         myImage.overrideSprite = myManagerButtonController.image.sprite;
-
+        GameController.onManagerCheck?.Invoke(index);
         // Debug.Log("  index-" + index + "    manager id-" + ManagersPanel.Instance.tempManagerButtonController.index + "    floor-" + myFloor);
         ManagersPanel.Instance.towerData.UpdateFloorManager(ManagersPanel.Instance.mainTower.floorMineList.IndexOf(myFloor),
             ManagersPanel.Instance.tempManagerButtonController.index, 1, true);
