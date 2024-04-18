@@ -20,6 +20,7 @@ namespace Managers
         public LayerMask myLayer, enemyLayer, uiLayer;
         public CameraSettingsController cameraSettings;
         public Transform editCam, canvas;
+        public float touchDownTime, touchUpTime;
         void Start()
         {
         }
@@ -28,6 +29,7 @@ namespace Managers
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                touchDownTime = Time.time;
                 if (GameStateManager.Instance.IsGameState())
                 {
                     clickedObject = GetWorldPositionOnPlane(Input.mousePosition, enemyLayer).transform;
@@ -60,6 +62,8 @@ namespace Managers
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
+                touchUpTime = Time.time;
+                if (touchUpTime - touchDownTime < 0.15f) { FalseRelease(); return; }
                 if (GameStateManager.Instance.IsEditState() && spawnedManagerImage)
                 {
                     releasedObject = GetWorldPositionOnPlane(Input.mousePosition, myLayer).transform;
@@ -81,6 +85,8 @@ namespace Managers
         }
         public void FalseRelease()
         {
+            if (!GameStateManager.Instance.IsManagerEditMode()) return;
+            if (!spawnedManagerImage) return;
             Destroy(spawnedManagerImage.gameObject);
             spawnedManagerImage = null;
             GameController.onManagerCheck?.Invoke(-1);

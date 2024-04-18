@@ -107,9 +107,12 @@ public class ManagersPanel : Singleton<ManagersPanel>
     IEnumerator AssignDelay()
     {
         yield return new WaitForSeconds(0.1f);
-        tempManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController = tempManagerButtonController;
-        tempManagerImage.GetComponent<Image>().sprite = tempManagerButtonController.image.sprite;
-        GameController.onManagerCheck?.Invoke(tempManagerButtonController.index);
+        if (tempManagerImage && tempManagerImage.gameObject.activeInHierarchy)
+        {
+            tempManagerImage.GetComponent<SpawnedManagerImageController>().myManagerButtonController = tempManagerButtonController;
+            tempManagerImage.GetComponent<Image>().sprite = tempManagerButtonController.image.sprite;
+            GameController.onManagerCheck?.Invoke(tempManagerButtonController.index);
+        }
     }
     public void SpawnedImagePlaced(Transform spot, Transform managerImage)
     {

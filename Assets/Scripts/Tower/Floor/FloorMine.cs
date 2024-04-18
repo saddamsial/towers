@@ -115,6 +115,7 @@ namespace Tower.Floor
             myCanvasRaycaster.enabled = isEdit;
             managerSpot.name = whichFloor + " assign";
             SkinSet(whichFloor);
+            tempFloorNo = whichFloor;
         }
         private void SkinSet(int index)
         {
@@ -133,10 +134,11 @@ namespace Tower.Floor
             if (attachedGun)
                 attachedGun.ResetRotation();
         }
+        int tempFloorNo;
         public void UpgradeButtonMaxLevelCheck()
         {
             var myIndex = mainTower.floors.IndexOf(gameObject);
-            if (!mainTower.data.UpdateFloorLevel(myIndex))
+            if (mainTower.data.FloorLevels[tempFloorNo] >= 7)
                 upgradeButton.SetActive(false);
         }
         public void UpgradeButton()
