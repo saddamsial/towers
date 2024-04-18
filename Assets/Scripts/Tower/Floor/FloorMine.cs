@@ -41,6 +41,20 @@ namespace Tower.Floor
             if (InputController.Instance)
                 InputController.Instance.onTargetSet -= Attack;
         }
+        public void SetupManager(int id)
+        {
+            attachedGun.speedMultiplier = 1.2f;
+            myHealth.damageMultiplier = 1.2f;
+            myManagerId = id;
+            isManagerAssigned = true;
+        }
+        public void RemoveManager()
+        {
+            isManagerAssigned = false;
+            attachedGun.speedMultiplier = 1;
+            myHealth.damageMultiplier = 1;
+            myManagerId = -1;
+        }
         public override void Attack(Transform target)
         {
             if (!mainTower.selectedFloors.Contains(transform) || !attachedGun) return;

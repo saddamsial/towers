@@ -251,6 +251,7 @@ MonoBehaviour:
   initial: 10
   _current: 0
   hitTransform: {fileID: 1152706401841267163}
+  damageMultiplier: 1
   myFloor: {fileID: 0}
 --- !u!1 &2819018057427728298
 GameObject:

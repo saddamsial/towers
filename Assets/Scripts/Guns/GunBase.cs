@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using GameStates;
 using System.Collections;
-using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 
 namespace Guns
 {
