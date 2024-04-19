@@ -19,7 +19,7 @@ namespace GameStates
         {
             gameData = (GameData)DataPersistenceController.Instance.GetData("game", new GameData());
             // Debug.Log("play count-> " + gameData.PlayCount);
-            if (gameData.playCount == 0)
+            if (gameData.PlayCount == 0)
             {
                 gameData.FirstFillManagers();
             }
@@ -92,7 +92,7 @@ namespace GameStates
 
         public void Restart()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

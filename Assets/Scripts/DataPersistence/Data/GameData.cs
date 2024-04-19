@@ -4,8 +4,28 @@ using UnityEngine;
 [ES3Serializable]
 public class GameData : Data
 {
-    public int lootCount, playCount, money, gem, gear, ticket;
+    private int lootCount, playCount, money, gem, gear, ticket, level, step;
     public Dictionary<int, int> managers = new();
+    public int Step
+    {
+        get => step;
+        set
+        {
+            step = value;
+            ES3.Save(id + "step", step);
+            // Debug.Log("step: " + Step);
+        }
+    }
+    public int Level
+    {
+        get => level;
+        set
+        {
+            level = value;
+            ES3.Save(id + "level", level);
+            // Debug.Log("level: " + Level);
+        }
+    }
     public int LootCount
     {
         get => lootCount;
@@ -81,6 +101,8 @@ public class GameData : Data
         gear = ES3.Load(id + "gear", 0);
         ticket = ES3.Load(id + "ticket", 0);
         gem = ES3.Load(id + "gem", 0);
+        step = ES3.Load(id + "step", 0);
+        level = ES3.Load(id + "level", 0);
         managers = ES3.Load(id + "managers", new Dictionary<int, int>());
     }
     public void FirstFillManagers()

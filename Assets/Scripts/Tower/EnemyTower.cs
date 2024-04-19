@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GameStates;
@@ -25,6 +26,8 @@ namespace Tower
         }
         public void Start()
         {
+            // yield return new WaitForSeconds(0.1f);
+            enemyTowerSo = Resources.Load<EnemyTowerSo>("EnemyTowers/enemy tower " + (GameStateManager.Instance.gameData.Level + 1));
             GenerateTowerWithSo();
         }
         public void GenerateTowerWithSo()

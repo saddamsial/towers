@@ -79,7 +79,7 @@ public class SignManager : MonoBehaviour
     IEnumerator AsyncSceneLoad()
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 0.23f));
-        /*
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
         while (!asyncLoad.isDone)
         {
@@ -88,6 +88,6 @@ public class SignManager : MonoBehaviour
             id.text = progress * 100 + "%";
             yield return null;
         }
-        */
+
     }
 }

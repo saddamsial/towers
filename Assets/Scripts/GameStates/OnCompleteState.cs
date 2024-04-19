@@ -10,6 +10,7 @@ namespace GameStates
         {
             base.OnEnterState();
             stateChangeEvents?.Invoke();
+            GameStateManager.Instance.gameData.Level++;
         }
 
         public override void OnUpdateState()

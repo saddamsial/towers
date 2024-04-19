@@ -52,7 +52,7 @@ public class LootManager : Singleton<LootManager>
         step3.SetActive(false);
         lootPanel.SetActive(true);
         TaptoCollect(false);
-        currentLoot = gamePresets.LootList[data.lootCount].loot;
+        currentLoot = gamePresets.LootList[data.LootCount].loot;
         remainingLootCount = currentLoot.Count;
         deckCount.text = remainingLootCount + "";
     }
