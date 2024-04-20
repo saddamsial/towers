@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: Game Presets
   m_EditorClassIdentifier: 
   dataLocation: saveData.json
-  levels:
-  - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
-  - {fileID: 11400000, guid: 3b564465d0cf248f1a6148856384830e, type: 2}
   myTowerFloorCount: 2
   maxPossibleFloor: 10
   myFloorLevels: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -31,20 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  HideDefaults: 1
-  myFloorLevelsDefault: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-  myFloorManagersDefault: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-  myFloorGunsDefault:
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
-  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  stepCountsForEachLevel: 020000000300000004000000030000000400000003000000040000000400000004000000040000000400000004000000
   LootList:
   - loot:
     - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}
@@ -65,3 +49,24 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}
     - {fileID: 11400000, guid: 6af0d407bd05b48448f245e0cc338129, type: 2}
     - {fileID: 11400000, guid: 4f80c4eacc19146bbae7fbcfd98939c1, type: 2}
+  LevelUpLoots:
+  - loot:
+    - {fileID: 11400000, guid: 36070504d59474c2cab6b02ab55b3387, type: 2}
+    - {fileID: 11400000, guid: 2939cbee093fb4e5bb5bd2f482b17ba3, type: 2}
+  - loot:
+    - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}
+    - {fileID: 11400000, guid: 6af0d407bd05b48448f245e0cc338129, type: 2}
+  HideDefaults: 1
+  myFloorLevelsDefault: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  myFloorManagersDefault: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  myFloorGunsDefault:
+  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
+  - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}

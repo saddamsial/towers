@@ -24,10 +24,10 @@ public class LootManager : Singleton<LootManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            NewLoot();
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     NewLoot();
+        // }
         if (Input.GetKeyDown(KeyCode.M))
         {
             data.AddNewManager(Random.Range(0, 9), 1);
@@ -46,16 +46,25 @@ public class LootManager : Singleton<LootManager>
         }
     }
 
-    public void NewLoot()
+    LootEarnType tempEarnType;
+    public void NewLoot(int earnType)
     {
         gridView.gameObject.SetActive(false);
         step3.SetActive(false);
         lootPanel.SetActive(true);
         TaptoCollect(false);
-        currentLoot = gamePresets.LootList[data.LootCount].loot;
+        tempEarnType = (LootEarnType)earnType;
+        currentLoot = LootReturn((LootEarnType)earnType);//gamePresets.LootList[data.LootCount].loot;
         remainingLootCount = currentLoot.Count;
         deckCount.text = remainingLootCount + "";
     }
+
+    public List<LootItem> LootReturn(LootEarnType type) => type switch
+    {
+        LootEarnType.normal => gamePresets.LootList[data.LootCount].loot,
+        LootEarnType.levelup => gamePresets.LevelUpLoots[Random.Range(0, gamePresets.LevelUpLoots.Count)].loot,
+        _ => gamePresets.LootList[data.LootCount].loot,
+    };
     public void Skip()
     {
         if (remainingLootCount != 0)
@@ -120,7 +129,10 @@ public class LootManager : Singleton<LootManager>
 
         }
         data.LootCount++;
-
+        if (tempEarnType == LootEarnType.levelup)
+        {
+            data.Level++;
+        }
         lootPanel.SetActive(false);
     }
     private void ClearList()

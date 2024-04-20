@@ -1,10 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Data_and_Scriptable.BulletSo;
-using Data_and_Scriptable.GunSo;
 using NaughtyAttributes;
 using UnityEngine;
-
+[Serializable]
+public enum LootEarnType
+{
+    normal = 0,
+    levelup = 1,
+    purchase = 2,
+    gift = 3,
+    store = 4
+}
 public enum LootType
 {
     money,

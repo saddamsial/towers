@@ -1,6 +1,8 @@
 using GameStates;
+using TMPro;
 using Tower;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Managers
@@ -9,9 +11,32 @@ namespace Managers
     {
         [SerializeField] private Transform managersPanel;
         [SerializeField] private TowerController mainTower;
+        [SerializeField] private GamePresets gamePresets;
+        GameData gameData;
+        public TMP_Text moneyCount, gemCount, ticketCount, gearCount, levelCount;
+        public Image stepFillImage;
+        public GameObject levelUpPanel;
+
+        protected override void OnDisable()
+        {
+            gameData.onMoneyUpdated -= UpdateMoney;
+            gameData.onGemUpdated -= UpdateGem;
+            gameData.onGearUpdated -= UpdateGear;
+            gameData.onTicketUpdated -= UpdateTicket;
+            gameData.onStepUpdated -= UpdateStep;
+            gameData.onLevelUpdated -= UpdateLevel;
+            base.OnDisable();
+        }
         private void Start()
         {
-
+            gameData = GameStateManager.Instance.gameData;
+            gameData.onMoneyUpdated += UpdateMoney;
+            gameData.onGemUpdated += UpdateGem;
+            gameData.onGearUpdated += UpdateGear;
+            gameData.onTicketUpdated += UpdateTicket;
+            gameData.onStepUpdated += UpdateStep;
+            gameData.onLevelUpdated += UpdateLevel;
+            LevelStepFirstSetup();
         }
 
         public void ManagerEditMode()
@@ -27,6 +52,48 @@ namespace Managers
             {
                 ManagerEditMode();
             }
+        }
+        private void UpdateMoney(int value)
+        {
+            moneyCount.text = value.ToString();
+        }
+        private void UpdateGear(int value)
+        {
+            gearCount.text = value.ToString();
+        }
+        private void UpdateTicket(int value)
+        {
+            ticketCount.text = value.ToString();
+        }
+        private void UpdateGem(int value)
+        {
+            gemCount.text = value.ToString();
+        }
+        private void UpdateStep(int value)
+        {
+            stepFillImage.fillAmount = StepValueCalculation();
+            if (stepFillImage.fillAmount >= .99f)
+            {
+                levelUpPanel.SetActive(true);
+            }
+        }
+        private void UpdateLevel(int value)
+        {
+            levelUpPanel.SetActive(false);
+            levelCount.text = "Level " + (value + 1).ToString();
+            stepFillImage.fillAmount = 0;
+            gameData.Step = 0;
+        }
+        public void LevelStepFirstSetup()
+        {
+            UpdateStep(0);
+            levelCount.text = "Level " + (gameData.Level + 1).ToString();
+        }
+        public float StepValueCalculation()
+        {
+            var requiredStepCount = gamePresets.stepCountsForEachLevel[gameData.Level];
+            var fillVal = 1.0f / requiredStepCount * gameData.Step;
+            return fillVal;
         }
     }
 }

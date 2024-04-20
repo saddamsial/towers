@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Data_and_Scriptable.GunSo;
 using NaughtyAttributes;
@@ -9,13 +8,18 @@ using UnityEngine;
 public class GamePresets : ScriptableObject
 {
     public string dataLocation;
-    [ReorderableList]
-    [Label("Levels")]
-    public List<EnemyTowerSo> levels = new();
+    // [ReorderableList]
+    // [Label("Levels")]
+    // public List<EnemyTowerSo> levels = new();
     public int myTowerFloorCount, maxPossibleFloor;
     public List<int> myFloorLevels = new();
     public List<int> myFloorManagers = new();
     public List<GunSo> myFloorGuns = new();
+    public List<int> stepCountsForEachLevel = new();
+    [ReorderableList]
+    [Label("Loots")]
+    public List<Loots> LootList = new();
+    public List<Loots> LevelUpLoots = new();
     public bool HideDefaults;
     [HideIf("HideDefaults")]
     public List<int> myFloorLevelsDefault = new();
@@ -23,10 +27,11 @@ public class GamePresets : ScriptableObject
     public List<int> myFloorManagersDefault = new();
     [HideIf("HideDefaults")]
     public List<GunSo> myFloorGunsDefault = new();
-    [ReorderableList]
-    [Label("Loots")]
-    public List<Loots> LootList = new();
-
+    [Serializable]
+    public class Loots
+    {
+        public List<LootItem> loot = new();
+    }
     [Button]
     public void ResetData()
     {
@@ -34,11 +39,5 @@ public class GamePresets : ScriptableObject
         myFloorGuns = new List<GunSo>(myFloorGunsDefault);
         myFloorLevels = new List<int>(myFloorLevelsDefault);
         myFloorManagers = new List<int>(myFloorManagersDefault);
-    }
-
-    [Serializable]
-    public class Loots
-    {
-        public List<LootItem> loot = new();
     }
 }

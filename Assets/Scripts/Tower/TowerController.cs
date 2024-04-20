@@ -42,13 +42,13 @@ namespace Tower
             }
             cameraSettings.ZoomLevel(data.FloorCount);
         }
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                AddNewFloor();
-            }
-        }
+        // public void Update()
+        // {
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     AddNewFloor();
+        // }
+        // }
         public override void AddFloor(int whichFloor, bool isNewFloor)
         {
             if (isNewFloor)

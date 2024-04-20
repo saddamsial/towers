@@ -6,14 +6,11 @@ namespace GameStates
 {
     public class OnEditState : GameState
     {
-        [SerializeField] private GameObject editCam, mainCam;
-        public UnityEvent stateChangeEvents;
+        public UnityEvent stateChangeEvents, exitStateEvents;
 
         public override void OnEnterState()
         {
             base.OnEnterState();
-            mainCam.SetActive(false);
-            editCam.SetActive(true);
             stateChangeEvents?.Invoke();
         }
 
@@ -24,8 +21,7 @@ namespace GameStates
         public override void OnExitState()
         {
             base.OnExitState();
-            mainCam.SetActive(true);
-            editCam.SetActive(false);
+            exitStateEvents?.Invoke();
         }
     }
 }

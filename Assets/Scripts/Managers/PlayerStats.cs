@@ -11,6 +11,12 @@ public class PlayerStats : Singleton<PlayerStats>
     {
         yield return new WaitForSeconds(0.1f);
         data = GameStateManager.Instance.gameData;
+        UpdateMoney(0);
+        UpdateGem(0);
+        // UpdateStep(0);
+        // UpdateLevel(0);
+        // UpdateTicket(0);
+        // UpdateGear(0);
     }
     void Update()
     {
@@ -22,6 +28,8 @@ public class PlayerStats : Singleton<PlayerStats>
             UpdateTicket(5);
         if (Input.GetKeyDown(KeyCode.Alpha4))
             UpdateGear(10);
+        if (Input.GetKeyDown(KeyCode.S))
+            UpdateStep(1);
     }
     public void UpdateMoney(int amount)
     {
@@ -39,4 +47,13 @@ public class PlayerStats : Singleton<PlayerStats>
     {
         data.Gear += amount;
     }
+    public void UpdateStep(int amount)
+    {
+        data.Step += amount;
+    }
+    public void UpdateLevel(int amount)
+    {
+        data.Level += amount;
+    }
+
 }

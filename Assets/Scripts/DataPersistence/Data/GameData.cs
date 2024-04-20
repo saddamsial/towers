@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [ES3Serializable]
 public class GameData : Data
 {
+    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated;
     private int lootCount, playCount, money, gem, gear, ticket, level, step;
     public Dictionary<int, int> managers = new();
     public int Step
@@ -13,6 +14,7 @@ public class GameData : Data
         {
             step = value;
             ES3.Save(id + "step", step);
+            onStepUpdated?.Invoke(Step);
             // Debug.Log("step: " + Step);
         }
     }
@@ -23,6 +25,7 @@ public class GameData : Data
         {
             level = value;
             ES3.Save(id + "level", level);
+            onLevelUpdated?.Invoke(Level);
             // Debug.Log("level: " + Level);
         }
     }
@@ -51,6 +54,7 @@ public class GameData : Data
         {
             money = value;
             ES3.Save(id + "money", money);
+            onMoneyUpdated?.Invoke(Money);
             // Debug.Log("money: " + Money);
         }
     }
@@ -61,6 +65,7 @@ public class GameData : Data
         {
             gem = value;
             ES3.Save(id + "gem", gem);
+            onGemUpdated?.Invoke(Gem);
         }
     }
     public int Gear
@@ -70,6 +75,7 @@ public class GameData : Data
         {
             gear = value;
             ES3.Save(id + "gear", gear);
+            onGearUpdated?.Invoke(Gear);
         }
     }
     public int Ticket
@@ -79,6 +85,7 @@ public class GameData : Data
         {
             ticket = value;
             ES3.Save(id + "ticket", ticket);
+            onTicketUpdated?.Invoke(Ticket);
         }
     }
     public Dictionary<int, int> Managers
@@ -92,7 +99,6 @@ public class GameData : Data
     }
     public GameData() : base("game")
     {
-        // playCount = 0;
         Load();
     }
     public override void Load()
@@ -116,7 +122,6 @@ public class GameData : Data
     }
     public void AddNewManager(int managerId, int value)
     {
-        // Managers.Add(managerId, Managers[managerId]);
         AddOrUpdate(Managers, managerId, value);
         Managers = Managers;
         ManagersPanel.Instance.Init();
