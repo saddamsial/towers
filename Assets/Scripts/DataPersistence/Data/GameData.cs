@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 [ES3Serializable]
 public class GameData : Data
 {
@@ -51,6 +51,7 @@ public class GameData : Data
         {
             money = value;
             ES3.Save(id + "money", money);
+            // Debug.Log("money: " + Money);
         }
     }
     public int Gem
