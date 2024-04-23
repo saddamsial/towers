@@ -67,6 +67,7 @@ public class LootManager : Singleton<LootManager>
     };
     public void Skip()
     {
+        if (tempObj) tempObj.DOKill();
         if (remainingLootCount != 0)
             for (int a = 0; a <= remainingLootCount; a++)
             {

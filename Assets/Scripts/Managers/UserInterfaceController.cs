@@ -2,6 +2,7 @@ using DG.Tweening;
 using GameStates;
 using TMPro;
 using Tower;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -73,11 +74,16 @@ namespace Managers
         }
         private void UpdateStep(int value)
         {
-            stepFillImage.fillAmount = StepValueCalculation();
-            if (stepFillImage.fillAmount >= .99f)
+            // stepFillImage.fillAmount = StepValueCalculation();
+            DOTween.To(() => stepFillImage.fillAmount, x => stepFillImage.fillAmount = x, StepValueCalculation(), .1f).OnComplete(() =>
             {
-                levelUpPanel.SetActive(true);
-            }
+                if (stepFillImage.fillAmount >= .99f)
+                {
+                    levelUpPanel.SetActive(true);
+                }
+            });
+
+
         }
         private void UpdateLevel(int value)
         {
