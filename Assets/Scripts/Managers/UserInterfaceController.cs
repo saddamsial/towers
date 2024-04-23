@@ -1,3 +1,4 @@
+using DG.Tweening;
 using GameStates;
 using TMPro;
 using Tower;
@@ -13,8 +14,9 @@ namespace Managers
         [SerializeField] private TowerController mainTower;
         [SerializeField] private GamePresets gamePresets;
         GameData gameData;
-        public TMP_Text moneyCount, gemCount, ticketCount, gearCount, levelCount;
+        public TMP_Text moneyCount, gemCount, ticketCount, gearCount, levelCount, inGameMoney;
         public Image stepFillImage;
+        public int tempMoney;
         public GameObject levelUpPanel;
 
         protected override void OnDisable()
@@ -94,6 +96,11 @@ namespace Managers
             var requiredStepCount = gamePresets.stepCountsForEachLevel[gameData.Level];
             var fillVal = 1.0f / requiredStepCount * gameData.Step;
             return fillVal;
+        }
+        public void InGameMoney(int m)
+        {
+            tempMoney += m;
+            inGameMoney.text = tempMoney.ToString();
         }
     }
 }

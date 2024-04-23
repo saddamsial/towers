@@ -20,6 +20,7 @@ namespace Managers
         public static Action<Transform, Transform> onManagerImageReleased;
         public static Action<bool> onManagerEditMode;
         public static Action<int> onManagerCheck;
+        public static Action<float> onEnemyDamaged;
 
         public int currentFocusedGun;
         public void InvokeEditMode(bool state)

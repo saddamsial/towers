@@ -16,12 +16,8 @@ namespace Tower
         public virtual void RearrangeFloors(FloorBase floorObj)
         {
             floors.Remove(floorObj.gameObject);
-            if (floors.Count <= 0)
-            {
-                GameStateManager.Instance.SetState(GameStateManager.Instance.onCompleteState);
-                return;
-            }
-            StartCoroutine(MovePosition());
+            if (floors.Count > 0)
+                StartCoroutine(MovePosition());
         }
         public IEnumerator MovePosition()
         {

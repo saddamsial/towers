@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Data_and_Scriptable.BulletSo;
 using Data_and_Scriptable.GunSo;
+using DG.Tweening;
 using Guns;
 using Managers;
 using TMPro;
@@ -95,15 +96,25 @@ public class GunButtonsManager : MonoBehaviour
         }
         else
         {
-            gunButtonStateText.text = "Unlock";
+            gunButtonStateText.text = "$" + mainTower.gamePresets.gunUnlockPrices[buttonNo];
             swapButton.onClick.AddListener(() => Unlock(tempGunSo.myPrefab));
         }
     }
     public void Unlock(GameObject gun)
     {
+
+        var tempMoney = mainTower.gamePresets.gunUnlockPrices[buttonNo];
+        if (!PlayerStats.Instance.MoneyCheck(tempMoney))
+        {
+            swapButton.GetComponent<DOTweenAnimation>().RecreateTweenAndPlay();
+            // swapButton.GetComponent<DOTweenAnimation>().DORestart();
+            return;
+        }
+
         gunData.UnlockState = true;
         gunButtonStateText.text = "Equip";
         swapButton.onClick.AddListener(() => GameController.Instance.InvokeSwapGun(gun));
+
     }
     public bool IsGunUnlocked()
     {

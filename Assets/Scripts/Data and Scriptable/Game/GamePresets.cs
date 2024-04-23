@@ -11,14 +11,21 @@ public class GamePresets : ScriptableObject
     // [ReorderableList]
     // [Label("Levels")]
     // public List<EnemyTowerSo> levels = new();
-    public int myTowerFloorCount, maxPossibleFloor;
+    public int myTowerFloorCount, maxPossibleFloor, enemyFloorMoney;
     public List<int> myFloorLevels = new();
     public List<int> myFloorManagers = new();
+    public List<int> gunUnlockPrices = new();
+    public List<int> addFloorGemCounts = new();
     public List<GunSo> myFloorGuns = new();
     public List<int> stepCountsForEachLevel = new();
+    public bool showLoots;
+    [ShowIf("showLoots")]
     [ReorderableList]
     [Label("Loots")]
     public List<Loots> LootList = new();
+    [ShowIf("showLoots")]
+    [ReorderableList]
+    [Label("Level Up Loots")]
     public List<Loots> LevelUpLoots = new();
     public bool HideDefaults;
     [HideIf("HideDefaults")]

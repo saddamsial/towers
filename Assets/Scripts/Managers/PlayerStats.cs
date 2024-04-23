@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Data.Common;
+using DG.Tweening;
 using GameStates;
+using Managers;
 using UnityEngine;
 using Utils;
 
@@ -55,5 +57,22 @@ public class PlayerStats : Singleton<PlayerStats>
     {
         data.Level += amount;
     }
-
+    public void AddInGameMoney()
+    {
+        data.Money += UserInterfaceController.Instance.tempMoney;
+    }
+    public bool MoneyCheck(int money)
+    {
+        var result = money <= data.Money;
+        if (!result) UserInterfaceController.Instance.moneyCount.GetComponent<DOTweenAnimation>().RecreateTweenAndPlay();
+        else UpdateMoney(-money);
+        return result;
+    }
+    public bool GemCheck(int gem)
+    {
+        var result = gem <= data.Gem;
+        if (!result) UserInterfaceController.Instance.gemCount.GetComponent<DOTweenAnimation>().RecreateTweenAndPlay();
+        else UpdateGem(-gem);
+        return result;
+    }
 }

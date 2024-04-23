@@ -8,6 +8,7 @@ using UnityEngine;
 using Tower.Floor;
 using Managers;
 using Data_and_Scriptable.GunSo;
+using JStudios.QuestSystemExample.Scripts.ScriptableObjects;
 
 namespace Tower
 {
@@ -73,7 +74,9 @@ namespace Tower
         }
         public void AddNewFloor()
         {
-            AddFloor(floors.Count, true);
+            // Debug.Log(gamePresets.addFloorGemCounts[floors.Count - 2]);
+            if (PlayerStats.Instance.GemCheck(gamePresets.addFloorGemCounts[floors.Count - 2]))
+                AddFloor(floors.Count, true);
         }
         protected void AddToList()
         {
@@ -90,6 +93,11 @@ namespace Tower
             base.RearrangeFloors(floorObj);
             floorMineList.Remove(floorObj.gameObject.GetComponent<FloorMine>());
             targetSelectorEnemy.FirstFill();
+            if (floors.Count <= 0)
+            {
+                GameStateManager.Instance.SetState(GameStateManager.Instance.onFailState);
+                return;
+            }
         }
         public void ResetSelected()
         {

@@ -15,8 +15,11 @@ MonoBehaviour:
   dataLocation: saveData.json
   myTowerFloorCount: 2
   maxPossibleFloor: 10
+  enemyFloorMoney: 150
   myFloorLevels: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   myFloorManagers: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  gunUnlockPrices: 00000000e8030000c4090000ac0d00007017000070170000581b0000401f000028230000
+  addFloorGemCounts: 0a0000000f00000014000000190000001e00000023000000280000002d0000003200000037000000
   myFloorGuns:
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
   - {fileID: 11400000, guid: 4ecb66268372b43f2ae5744de62670f8, type: 2}
@@ -29,6 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   - {fileID: 11400000, guid: e5bcaf9c0c78c4c3fbf4e51158797135, type: 2}
   stepCountsForEachLevel: 020000000300000004000000030000000400000003000000040000000400000004000000040000000400000004000000
+  showLoots: 0
   LootList:
   - loot:
     - {fileID: 11400000, guid: ce46cccda29284912b7b41c7a0e8da9f, type: 2}

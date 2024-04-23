@@ -67,6 +67,7 @@ namespace Tower.Floor
                 attackTo = null;
                 attachedGun.canShoot = false;
                 attachedGun.ResetRotation();
+                // PlayerStats.Instance.UpdateMoney(mainTower.gamePresets.enemyFloorMoney);
             }
             if (attachedGun.isLaser)
             {
@@ -79,6 +80,14 @@ namespace Tower.Floor
         {
             stoped = false;
             transform.DOMove(newPos, 0.5f + delay).SetEase(Ease.InBack).OnComplete(() => { stoped = true; attachedGun.RotateToTarget(); });
+        }
+        public void SetLayerAllChildren(Transform root, int layer)
+        {
+            var children = root.GetComponentsInChildren<Transform>(includeInactive: true);
+            foreach (var child in children)
+            {
+                child.gameObject.layer = layer;
+            }
         }
     }
 }

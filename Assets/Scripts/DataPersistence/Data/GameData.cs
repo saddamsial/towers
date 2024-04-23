@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameData : Data
 {
     public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated;
-    private int lootCount, playCount, money, gem, gear, ticket, level, step;
+    private int lootCount, playCount, money, gem, gear, ticket, level, step, enemyLevel;
     public Dictionary<int, int> managers = new();
     public int Step
     {
@@ -27,6 +27,15 @@ public class GameData : Data
             ES3.Save(id + "level", level);
             onLevelUpdated?.Invoke(Level);
             // Debug.Log("level: " + Level);
+        }
+    }
+    public int EnemyLevel
+    {
+        get => enemyLevel;
+        set
+        {
+            enemyLevel = value;
+            ES3.Save(id + "enemyLevel", enemyLevel);
         }
     }
     public int LootCount
@@ -110,6 +119,7 @@ public class GameData : Data
         gem = ES3.Load(id + "gem", 0);
         step = ES3.Load(id + "step", 0);
         level = ES3.Load(id + "level", 0);
+        enemyLevel = ES3.Load(id + "enemyLevel", 0);
         managers = ES3.Load(id + "managers", new Dictionary<int, int>());
     }
     public void FirstFillManagers()

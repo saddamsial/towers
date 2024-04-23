@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Data_and_Scriptable.GunSo;
 using GameStates;
 using Guns;
 using Managers;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +15,7 @@ namespace Tower.Floor
         public bool isManagerAssigned;
         public int myManagerId;
         public Button addFloorButton;
+        public TMP_Text addFloorAmountText;
         public GameObject upgradeButton;
         public GameObject managerSpot;
         public GameObject assignedManagerSpot;
@@ -109,13 +108,18 @@ namespace Tower.Floor
             }
             addFloorButton.onClick.RemoveAllListeners();
             addFloorButton.onClick.AddListener(mainTower.AddNewFloor);
+            if (mainTower.floors.Count >= 2)
+                addFloorAmountText.text = mainTower.gamePresets.addFloorGemCounts[mainTower.floors.Count - 2].ToString();
             if (whichFloor < mainTower.gamePresets.maxPossibleFloor - 1) addFloorButton.gameObject.SetActive(isEdit);
             upgradeButton.SetActive(isEdit);
             AttachGun(gun.myPrefab);
             myCanvasRaycaster.enabled = isEdit;
             managerSpot.name = whichFloor + " assign";
             SkinSet(whichFloor);
+            myHealth.isEnemy = false;
             tempFloorNo = whichFloor;
+            // attachedGun.gameObject.layer = LayerMask.NameToLayer("tower");
+            SetLayerAllChildren(attachedGunObj.transform, LayerMask.NameToLayer("tower"));
         }
         private void SkinSet(int index)
         {

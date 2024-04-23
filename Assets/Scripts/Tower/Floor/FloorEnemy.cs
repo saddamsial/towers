@@ -30,10 +30,15 @@ namespace Tower.Floor
             AttachGun(floor.gunToAttach.myPrefab);
             myHealth = attachedGun.GetComponent<Health>();
             myHealth.myFloor = this;
+            myHealth.isEnemy = true;
             var lvl = floor.floorSo.name.Split(' ');
             myHealth.SetupHealth(floor.Health + ((int.Parse(lvl[0]) - 4) * 0.5f));
 
+            SetLayerAllChildren(attachedGunObj.transform, LayerMask.NameToLayer("enemy"));
+
+
         }
+
         public void AttackToEnemy(FloorMine floor, int difficulty)
         {
             if (attackTo != null)

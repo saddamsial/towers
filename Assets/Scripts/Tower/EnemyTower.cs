@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using GameStates;
 using Managers;
 using Tower.Floor;
 using UnityEngine;
-using Utils;
-using Utils.PoolSystem;
 
 namespace Tower
 {
@@ -15,6 +10,7 @@ namespace Tower
         public TowerController mainTower;
         public EnemyTowerSo enemyTowerSo;
         public TargetSelectorEnemy targetSelector;
+        public EnemyHealthFillManager enemyHp;
 
         public void OnEnable()
         {
@@ -27,7 +23,7 @@ namespace Tower
         public void Start()
         {
             // yield return new WaitForSeconds(0.1f);
-            enemyTowerSo = Resources.Load<EnemyTowerSo>("EnemyTowers/enemy tower " + (GameStateManager.Instance.gameData.Level + 1));
+            enemyTowerSo = Resources.Load<EnemyTowerSo>("EnemyTowers/enemy tower " + (GameStateManager.Instance.gameData.EnemyLevel + 1));
             GenerateTowerWithSo();
         }
         public void GenerateTowerWithSo()
@@ -46,11 +42,25 @@ namespace Tower
         }
         public void GameStarted()
         {
+            var initialHp = 0f;
             targetSelector.FirstFill();
             for (int i = 0; i < floors.Count; i++)
             {
                 floors[i].GetComponent<FloorEnemy>().AttackToEnemy(targetSelector.SelectTarget(enemyTowerSo.floorTemps[i].difficulty, floors[i].transform),
                 enemyTowerSo.floorTemps[i].difficulty);
+                initialHp += floors[i].GetComponent<FloorEnemy>().myHealth.Current;
+            }
+
+            enemyHp.Init(initialHp);
+        }
+
+        public override void RearrangeFloors(FloorBase floorObj)
+        {
+            base.RearrangeFloors(floorObj);
+            if (floors.Count <= 0)
+            {
+                GameStateManager.Instance.SetState(GameStateManager.Instance.onCompleteState);
+                return;
             }
         }
     }

@@ -16,6 +16,7 @@ namespace Utils
         public float DamageTaken { get; set; }
         public bool Died { get; set; }
         public bool IsVulnerable { get; set; } = true;
+        public bool isEnemy = false;
         public void Damage(float amount)
         {
             if (ReachedThreshold(DeathThreshold)) return;
@@ -23,11 +24,14 @@ namespace Utils
             if (IsVulnerable) Decrease(amount);
 
             DamageTaken = amount;
-
+            if (isEnemy) GameController.onEnemyDamaged?.Invoke(amount);
             if (!ReachedThreshold(DeathThreshold)) return;
 
             Died = true;
             Current = 0f;
+            if (isEnemy)
+                UserInterfaceController.Instance.InGameMoney(myFloor.mainTower.gamePresets.enemyFloorMoney);
+
             // if (!myFloor && TryGetComponent<GunBase>(out var gunbase)) myFloor = gunbase.myFloor;
             GameController.onDied?.Invoke(myFloor);
         }
