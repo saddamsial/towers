@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [ES3Serializable]
 public class GameData : Data
 {
-    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated;
+    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated, onGameCountUpdated;
     private int lootCount, playCount, money, gem, gear, ticket, level, step, enemyLevel;
     public Dictionary<int, int> managers = new();
     public int Step
@@ -54,6 +54,7 @@ public class GameData : Data
         {
             playCount = value;
             ES3.Save(id + "PlayCount", playCount);
+            onGameCountUpdated?.Invoke(PlayCount);
         }
     }
     public int Money

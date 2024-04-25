@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using GameStates;
-using Tower.Floor;
 using UnityEngine;
 
 namespace Utils
