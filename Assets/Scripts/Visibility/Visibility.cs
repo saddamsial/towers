@@ -17,7 +17,7 @@ public enum ConditionType
     money,
     gem,
     gamecount,
-    eventTrigger
+    lootCount
 }
 public class Visibility : MonoBehaviour
 {
@@ -48,29 +48,59 @@ public class Visibility : MonoBehaviour
     [ShowIf("conditionType", ConditionType.gamecount)]
     public int desiredGameCount;
     [BoxGroup("Condition")]
+    [ShowIf("conditionType", ConditionType.lootCount)]
+    public int desiredLootCount;
+    [BoxGroup("Condition")]
     [Label("Show or Hide")]
     public bool conditionAction;
     #endregion
-
-    private IEnumerator Start()
+    IEnumerator Start()
     {
-        yield return new WaitForSeconds(0.1f);
-        gameData = GameStateManager.Instance.gameData;
-
-        if (conditionType == ConditionType.money)
-            gameData.onMoneyUpdated += CheckMoney;
-        else if (conditionType == ConditionType.gem)
-            gameData.onGemUpdated += CheckGem;
-        else if (conditionType == ConditionType.step)
-            gameData.onStepUpdated += CheckStep;
-        else if (conditionType == ConditionType.level)
-            gameData.onLevelUpdated += CheckLevel;
-        else if (conditionType == ConditionType.gamecount)
-            gameData.onGameCountUpdated += CheckGameCount;
-
-        VisibilityManager.Instance.AddToList(conditionType, this);
-
         SetVisible(startVisible);
+        yield return new WaitForSeconds(0.1f);
+        gameData ??= GameStateManager.Instance.gameData;
+
+        Init();
+        VisibilityManager.Instance.AddToList(conditionType, this);
+    }
+    private void OnEnable()
+    {
+        gameData ??= GameStateManager.Instance.gameData;
+        if (gameData != null)
+            Init();
+    }
+    public void Init()
+    {
+        if (conditionType == ConditionType.money)
+        {
+            gameData.onMoneyUpdated += CheckMoney;
+            CheckMoney(gameData.Money);
+        }
+        else if (conditionType == ConditionType.gem)
+        {
+            gameData.onGemUpdated += CheckGem;
+            CheckGem(gameData.Gem);
+        }
+        else if (conditionType == ConditionType.step)
+        {
+            gameData.onStepUpdated += CheckStep;
+            CheckStep(gameData.TotalStep);
+        }
+        else if (conditionType == ConditionType.level)
+        {
+            gameData.onLevelUpdated += CheckLevel;
+            CheckLevel(gameData.Level);
+        }
+        else if (conditionType == ConditionType.lootCount)
+        {
+            gameData.onLootCountUpdated += CheckLootCount;
+            CheckLootCount(gameData.LootCount);
+        }
+        else if (conditionType == ConditionType.gamecount)
+        {
+            gameData.onGameCountUpdated += CheckGameCount;
+            CheckGameCount(gameData.PlayCount);
+        }
     }
     void OnDisable()
     {
@@ -86,22 +116,25 @@ public class Visibility : MonoBehaviour
             gameData.onStepUpdated -= CheckStep;
         else if (conditionType == ConditionType.level)
             gameData.onLevelUpdated -= CheckLevel;
+        else if (conditionType == ConditionType.lootCount)
+            gameData.onLevelUpdated -= CheckLootCount;
         else if (conditionType == ConditionType.gamecount)
             gameData.onGameCountUpdated -= CheckGameCount;
     }
     private void CheckMoney(int amount)
     {
-        if (amount >= desiredLevel)
+        if (amount >= desiredMoney)
             SetVisible(conditionAction);
     }
     private void CheckGem(int amount)
     {
-        if (amount >= desiredLevel)
+        if (amount >= desiredGem)
             SetVisible(conditionAction);
     }
     private void CheckStep(int amount)
     {
-        if (amount >= desiredLevel)
+        amount = gameData.TotalStep;
+        if (amount >= desiredStep)
             SetVisible(conditionAction);
     }
     private void CheckLevel(int amount)
@@ -109,9 +142,14 @@ public class Visibility : MonoBehaviour
         if (amount >= desiredLevel)
             SetVisible(conditionAction);
     }
+    private void CheckLootCount(int amount)
+    {
+        if (amount >= desiredLootCount)
+            SetVisible(conditionAction);
+    }
     private void CheckGameCount(int amount)
     {
-        if (amount >= desiredLevel)
+        if (amount >= desiredGameCount)
             SetVisible(conditionAction);
     }
 

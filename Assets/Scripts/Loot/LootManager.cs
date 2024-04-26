@@ -67,7 +67,12 @@ public class LootManager : Singleton<LootManager>
     };
     public void Skip()
     {
-        if (tempObj) tempObj.DOKill();
+        if (tempObj)
+        {
+            tempObj.DOKill();
+            tempObj.DOComplete();
+            SkipFixSpawnedObj(tempObj, remainingLootCount);
+        }
         if (remainingLootCount != 0)
             for (int a = 0; a <= remainingLootCount; a++)
             {
@@ -85,6 +90,7 @@ public class LootManager : Singleton<LootManager>
             obj.SetParent(gridView);
             var rectTransform = obj.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(200, 200);
+            SkipFixSpawnedObj(obj, i, false);
         }
         step3.SetActive(true);
     }
@@ -102,6 +108,8 @@ public class LootManager : Singleton<LootManager>
     public void TapForNextItem()
     {
         if (remainingLootCount <= 0) { Skip(); return; }
+        tempObj.DOKill();
+        SkipFixSpawnedObj(tempObj, remainingLootCount);
         tempObj.gameObject.SetActive(false);
         SpawnLootObject();
     }
@@ -129,10 +137,10 @@ public class LootManager : Singleton<LootManager>
             }
 
         }
-        data.LootCount++;
+        data.LootCount += 1;
         if (tempEarnType == LootEarnType.levelup)
         {
-            data.Level++;
+            data.Level += 1;
         }
         lootPanel.SetActive(false);
     }
@@ -147,6 +155,7 @@ public class LootManager : Singleton<LootManager>
             ClearList();
     }
     RectTransform rectTransform;
+    TMP_Text amountText;
     private void SpawnLootObject(bool skiped = false)
     {
         remainingLootCount--;
@@ -157,7 +166,7 @@ public class LootManager : Singleton<LootManager>
         rectTransform.offsetMin = new Vector2(0, 0);//rectTransform.offsetMin.x
         rectTransform.offsetMax = new Vector2(0, 0);//rectTransform.offsetMax.x
         spawnedLootItems.Add(tempObj);
-        var amountText = tempObj.GetChild(1).GetComponent<TMP_Text>();
+        amountText = tempObj.GetChild(1).GetComponent<TMP_Text>();
         amountText.text = "";
         if (!skiped)
         {
@@ -172,10 +181,17 @@ public class LootManager : Singleton<LootManager>
         }
         else
         {
-            tempObj.position = moveToPos.position;
-            amountText.text = amountText.text = currentLoot[remainingLootCount].amount > 0 ? currentLoot[remainingLootCount].amount + "" : "";
-            tempObj.localScale = 1.2f * Vector3.one;
+            SkipFixSpawnedObj(tempObj, remainingLootCount);
         }
         tempObj.GetChild(0).GetComponent<Image>().sprite = currentLoot[remainingLootCount].sprite;
+    }
+
+    public void SkipFixSpawnedObj(Transform tempObj, int index, bool arrangePos = true)
+    {
+        amountText ??= tempObj.GetChild(1).GetComponent<TMP_Text>();
+        if (arrangePos)
+            tempObj.position = moveToPos.position;
+        amountText.text = amountText.text = currentLoot[index].amount.ToString();//> 0 ? currentLoot[remainingLootCount].amount + "" : "";
+        tempObj.localScale = 1.2f * Vector3.one;
     }
 }

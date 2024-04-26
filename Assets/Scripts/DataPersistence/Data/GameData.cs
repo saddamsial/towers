@@ -1,21 +1,31 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [ES3Serializable]
 public class GameData : Data
 {
-    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated, onGameCountUpdated;
-    private int lootCount, playCount, money, gem, gear, ticket, level, step, enemyLevel;
+    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated, onGameCountUpdated, onLootCountUpdated;
+    private int lootCount, playCount, money, gem, gear, ticket, level, step, enemyLevel, totalStep;
     public Dictionary<int, int> managers = new();
+    public int TotalStep
+    {
+        get => totalStep;
+        set
+        {
+            totalStep = value;
+            ES3.Save(id + "totalStep", totalStep);
+        }
+    }
     public int Step
     {
         get => step;
         set
         {
             step = value;
+            TotalStep += 1;
             ES3.Save(id + "step", step);
             onStepUpdated?.Invoke(Step);
-            // Debug.Log("step: " + Step);
         }
     }
     public int Level
@@ -26,7 +36,6 @@ public class GameData : Data
             level = value;
             ES3.Save(id + "level", level);
             onLevelUpdated?.Invoke(Level);
-            // Debug.Log("level: " + Level);
         }
     }
     public int EnemyLevel
@@ -45,6 +54,7 @@ public class GameData : Data
         {
             lootCount = value;
             ES3.Save(id + "lootCount", lootCount);
+            onLootCountUpdated?.Invoke(LootCount);
         }
     }
     public int PlayCount
@@ -119,8 +129,10 @@ public class GameData : Data
         ticket = ES3.Load(id + "ticket", 0);
         gem = ES3.Load(id + "gem", 0);
         step = ES3.Load(id + "step", 0);
+        totalStep = ES3.Load(id + "totalStep", 0);
         level = ES3.Load(id + "level", 0);
         enemyLevel = ES3.Load(id + "enemyLevel", 0);
+        lootCount = ES3.Load(id + "lootCount", 0);
         managers = ES3.Load(id + "managers", new Dictionary<int, int>());
     }
     public void FirstFillManagers()
