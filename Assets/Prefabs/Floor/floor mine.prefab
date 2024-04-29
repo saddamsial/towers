@@ -7222,6 +7222,7 @@ GameObject:
   - component: {fileID: 8332089937609217671}
   - component: {fileID: 8232146915416535876}
   - component: {fileID: 6151127547991792819}
+  - component: {fileID: 1599541872175595632}
   m_Layer: 7
   m_Name: upgrade
   m_TagString: Untagged
@@ -7384,6 +7385,32 @@ MonoBehaviour:
   onDropHandler:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1599541872175595632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623602993755564726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9f860da090741b0b09a7f745ea34c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startVisible: 0
+  myRendererList:
+  - {fileID: 565711221432076489}
+  - {fileID: 1339490720743874990}
+  - {fileID: 6623602993755564726}
+  conditionType: 7
+  desiredLevel: 0
+  desiredStep: 0
+  desiredMoney: 0
+  desiredGem: 0
+  desiredGameCount: 0
+  desiredLootCount: 0
+  desiredEnemyLevel: 2
+  conditionAction: 1
 --- !u!1 &6667003637164569192
 GameObject:
   m_ObjectHideFlags: 0
@@ -9131,6 +9158,7 @@ GameObject:
   - component: {fileID: 5502181821868751848}
   - component: {fileID: 7173160840604347766}
   - component: {fileID: 2113837264009979379}
+  - component: {fileID: 7968622589710257470}
   m_Layer: 7
   m_Name: add floor
   m_TagString: Untagged
@@ -9243,6 +9271,34 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7968622589710257470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657879919854231507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9f860da090741b0b09a7f745ea34c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startVisible: 0
+  myRendererList:
+  - {fileID: 8657879919854231507}
+  - {fileID: 4480218662811061558}
+  - {fileID: 4628742100137693254}
+  - {fileID: 6545027243844377380}
+  - {fileID: 6433803293832375658}
+  conditionType: 7
+  desiredLevel: 0
+  desiredStep: 0
+  desiredMoney: 0
+  desiredGem: 0
+  desiredGameCount: 0
+  desiredLootCount: 0
+  desiredEnemyLevel: 4
+  conditionAction: 1
 --- !u!1 &8745660600770120892
 GameObject:
   m_ObjectHideFlags: 0

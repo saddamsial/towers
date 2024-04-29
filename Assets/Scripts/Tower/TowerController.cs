@@ -8,7 +8,6 @@ using UnityEngine;
 using Tower.Floor;
 using Managers;
 using Data_and_Scriptable.GunSo;
-using JStudios.QuestSystemExample.Scripts.ScriptableObjects;
 
 namespace Tower
 {

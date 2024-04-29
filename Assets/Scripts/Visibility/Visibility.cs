@@ -17,7 +17,8 @@ public enum ConditionType
     money,
     gem,
     gamecount,
-    lootCount
+    lootCount,
+    enemyLevel
 }
 public class Visibility : MonoBehaviour
 {
@@ -50,6 +51,10 @@ public class Visibility : MonoBehaviour
     [BoxGroup("Condition")]
     [ShowIf("conditionType", ConditionType.lootCount)]
     public int desiredLootCount;
+    [BoxGroup("Condition")]
+    [ShowIf("conditionType", ConditionType.enemyLevel)]
+    public int desiredEnemyLevel;
+
     [BoxGroup("Condition")]
     [Label("Show or Hide")]
     public bool conditionAction;
@@ -101,6 +106,12 @@ public class Visibility : MonoBehaviour
             gameData.onGameCountUpdated += CheckGameCount;
             CheckGameCount(gameData.PlayCount);
         }
+        else if (conditionType == ConditionType.enemyLevel)
+        {
+            gameData.onEnemyLevelUpdated += CheckEnemyLevel;
+            CheckEnemyLevel(gameData.EnemyLevel);
+        }
+
     }
     void OnDisable()
     {
@@ -120,6 +131,8 @@ public class Visibility : MonoBehaviour
             gameData.onLevelUpdated -= CheckLootCount;
         else if (conditionType == ConditionType.gamecount)
             gameData.onGameCountUpdated -= CheckGameCount;
+        else if (conditionType == ConditionType.enemyLevel)
+            gameData.onEnemyLevelUpdated -= CheckEnemyLevel;
     }
     private void CheckMoney(int amount)
     {
@@ -150,6 +163,11 @@ public class Visibility : MonoBehaviour
     private void CheckGameCount(int amount)
     {
         if (amount >= desiredGameCount)
+            SetVisible(conditionAction);
+    }
+    private void CheckEnemyLevel(int amount)
+    {
+        if (amount >= desiredEnemyLevel)
             SetVisible(conditionAction);
     }
 

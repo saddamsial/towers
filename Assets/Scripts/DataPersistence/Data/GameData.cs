@@ -5,7 +5,7 @@ using UnityEngine;
 [ES3Serializable]
 public class GameData : Data
 {
-    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated, onGameCountUpdated, onLootCountUpdated;
+    public Action<int> onMoneyUpdated, onGemUpdated, onGearUpdated, onTicketUpdated, onStepUpdated, onLevelUpdated, onGameCountUpdated, onLootCountUpdated, onEnemyLevelUpdated;
     private int lootCount, playCount, money, gem, gear, ticket, level, step, enemyLevel, totalStep;
     public Dictionary<int, int> managers = new();
     public int TotalStep

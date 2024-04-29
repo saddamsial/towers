@@ -156,7 +156,8 @@ namespace Tower.Floor
                 }
                 SkinSet(myIndex);
             }
-            else upgradeButton.SetActive(false);
+            else if (mainTower.data.FloorLevels[tempFloorNo] >= 7)
+                upgradeButton.SetActive(false);
         }
         public void SwapGun(GameObject newGun = null)
         {

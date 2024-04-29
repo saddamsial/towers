@@ -68,9 +68,14 @@ public class TowerData : Data
         {
             return false;
         }
-        FloorLevels[index]++;
-        FloorLevels = FloorLevels;
-        return true;
+        gameData ??= ManagersPanel.Instance.gameData;
+        if (PlayerStats.Instance.MoneyCheck(ManagersPanel.Instance.mainTower.gamePresets.upgradeFloorPrices[FloorLevels[index]]))
+        {
+            FloorLevels[index]++;
+            FloorLevels = FloorLevels;
+            return true;
+        }
+        return false;
     }
     GameData gameData;
     public void UpdateFloorManager(int floor, int managerId, int newValue, bool managerRemoved)

@@ -15,6 +15,7 @@ public class GamePresets : ScriptableObject
     public List<int> myFloorLevels = new();
     public List<int> myFloorManagers = new();
     public List<int> gunUnlockPrices = new();
+    public List<int> upgradeFloorPrices = new();
     public List<int> addFloorGemCounts = new();
     public List<GunSo> myFloorGuns = new();
     public List<int> stepCountsForEachLevel = new();

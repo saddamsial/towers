@@ -108,5 +108,15 @@ namespace Managers
             tempMoney += m;
             inGameMoney.text = tempMoney.ToString();
         }
+        public void DeleteData()
+        {
+            ES3.DeleteFile("saveData.json");
+            ES3.DeleteFile("data.json");
+
+            // ES3.DeleteFile(ES3.Directory.PersistentDataPath.ToString());
+            // ES3.DeleteDirectory(ES3.Directory.DataPath.ToString());
+            // ES3.DeleteDirectory(ES3.Directory.PersistentDataPath.ToString());
+
+        }
     }
 }
